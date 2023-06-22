@@ -2,7 +2,7 @@
 ## A Magic Number Eliminator for Datalog Code
 This project provides a tool that accepts Datalog code as input and outputs a new version of the code with all "magic numbers" removed.
 
-Logo
+<img src="logo.png" width="20%" alt="Blaster Development" id="logo">
 
 MagicXform is a Python-based tool for automatically refactoring Datalog code by eliminating magic numbers. It takes in Datalog code as input, identifies all instances of magic numbers, and replaces them with named constants to make the code more maintainable, understandable, and robust.
 
@@ -12,9 +12,18 @@ MagicXform is a Python-based tool for automatically refactoring Datalog code by 
 - Replacement of magic numbers with appropriately named constants
 - The output of refactored Datalog code
 
-### Prerequisites
-- Python 3
-- Z3 Theorem Prover (version 4.12.2 or older)
+### Dependencies
+
+This project has the following dependencies:
+
+- [Z3 Theorem Prover](https://github.com/Z3Prover/z3)
+
+- [Spacer on Jupyter](https://github.com/agurfinkel/spacer-on-jupyter)
+
+- [CHC Tools](https://github.dev/chc-comp/chc-tools)
+
+Please make sure you install or clone these dependencies as appropriate.
+
 
 ### Installation
 Clone the repository and navigate into the project directory:
@@ -23,7 +32,6 @@ Clone the repository and navigate into the project directory:
 git clone https://github.com/Erveftick/magicXform
 cd magicXform
 
-pip z3
 pip argparse
 ```
 
@@ -34,11 +42,15 @@ Use the following command to run the script with the default input and output fi
 
 ```bash
 python3 magicXform.py
+```
 
-# You can also specify custom problem and result files using the --pf and --rf parameters respectively:
+By default, if no files are specified, the script will look for problem.smt2 as the input file and will write the output to result.smt2.
+
+You can also specify custom problem and result files using the --pf and --rf parameters respectively:
+
+```bash
 python3 magicXform.py --pf my_problem.smt2 --rf my_result.smt2
 ```
-By default, if no files are specified, the script will look for problem.smt2 as the input file and will write the output to result.smt2.
 
 ### Structure
 The main functionality of MagicXform includes:
