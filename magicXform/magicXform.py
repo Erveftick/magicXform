@@ -1,8 +1,11 @@
 import sys
+from secrets import z3_path, chc_tools_path, spacer_path
+sys.path.append(z3_path)
+sys.path.append(chc_tools_path)
+sys.path.append(spacer_path)
+
 import argparse
 import z3
-sys.path.append("/home/ekvashyn/Code/spacer-on-jupyter/src")
-
 from spacer_tutorial import *
 from chctools import chcmodel, horndb
 

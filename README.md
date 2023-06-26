@@ -22,7 +22,9 @@ This project has the following dependencies:
 
 - [CHC Tools](https://github.dev/chc-comp/chc-tools)
 
-Please make sure you install or clone these dependencies as appropriate.
+Please make sure you install dependencies mentioned above as appropriate. Provide a path to the modules in **secrets.py** as it was made in *secrets.sample.py*
+
+This project also provides **requirements.txt** file with necessary PyPl dependencies.
 
 
 ### Installation
@@ -32,7 +34,7 @@ Clone the repository and navigate into the project directory:
 git clone https://github.com/Erveftick/magicXform
 cd magicXform
 
-pip argparse
+pip install -r requirements.txt
 ```
 
 No additional installation steps are required as the script utilizes Python's built-in modules along with the Z3 Theorem Prover.
