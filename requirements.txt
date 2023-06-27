@@ -1,4 +1,2 @@
 argparse
 z3-solver
-# git+https://github.com/chc-comp/chc-tools.git@29aad20
-# git+https://github.com/agurfinkel/spacer-on-jupyter.git@ec80607

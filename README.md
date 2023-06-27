@@ -1,26 +1,22 @@
 # magicXform
-## A Magic Number Eliminator for Datalog Code
-This project provides a tool that accepts Datalog code as input and outputs a new version of the code with all "magic numbers" removed.
+## A Magic Number Eliminator for CHC
+This project provides a tool that accepts CHC as input and outputs a new version of the code with all "magic numbers" removed.
 
 <img src="logo.png" width="20%" alt="Blaster Development" id="logo">
 
-MagicXform is a Python-based tool for automatically refactoring Datalog code by eliminating magic numbers. It takes in Datalog code as input, identifies all instances of magic numbers, and replaces them with named constants to make the code more maintainable, understandable, and robust.
+MagicXform is a Python-based tool for automatically refactoring CHC by eliminating magic numbers. It takes in CHC as input, identifies all instances of magic numbers, and replaces them with named constants to make the code more maintainable, understandable, and robust.
 
 ### Features
-- Efficient parsing of Datalog code
+- Efficient parsing of CHC
 - Identification of magic numbers
 - Replacement of magic numbers with appropriately named constants
-- The output of refactored Datalog code
+- The output of refactored CHC
 
 ### Dependencies
 
 This project has the following dependencies:
 
 - [Z3 Theorem Prover](https://github.com/Z3Prover/z3)
-
-- [Spacer on Jupyter](https://github.com/agurfinkel/spacer-on-jupyter)
-
-- [CHC Tools](https://github.dev/chc-comp/chc-tools)
 
 Please make sure you install dependencies mentioned above as appropriate. Provide a path to the modules in **secrets.py** as it was made in *secrets.sample.py*
 
@@ -57,7 +53,7 @@ python3 magicXform.py --pf my_problem.smt2 --rf my_result.smt2
 ### Structure
 The main functionality of MagicXform includes:
 
-- Parsing the input Datalog code and setting up the Fixedpoint object
+- Parsing the input CHC and setting up the Fixedpoint object
 - Identifying magic numbers and preparing replacements
 - Replacing the magic numbers and generating new rules
 - Handling invariants and generating additional conditions

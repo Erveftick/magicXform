@@ -1,18 +1,13 @@
 import sys
-from secrets import z3_path, chc_tools_path, spacer_path
+from secrets import z3_path, z3_eval_path
 sys.path.append(z3_path)
-sys.path.append(chc_tools_path)
-sys.path.append(spacer_path)
 
-import argparse
-import z3
-from spacer_tutorial import *
-from chctools import chcmodel, horndb
+import argparse, subprocess, z3
+from datetime import datetime
 
 # proof mode must be enabled before any expressions are created
 z3.set_param(proof=True)
 z3.set_param(model=True)
-
 
 # Create the script args parser
 parser = argparse.ArgumentParser(description="A script to process problem and result files")
@@ -20,6 +15,7 @@ parser = argparse.ArgumentParser(description="A script to process problem and re
 # Add optional arguments with default values
 parser.add_argument('--pf', default='problem.smt2', help='Path to the problem file')
 parser.add_argument('--rf', default='result.smt2', help='Path to the result file')
+parser.add_argument('--max_depth', default=100, help='Amount of iteration for SPACER to find the invariant')
 
 
 ascii_art = r"""
@@ -36,6 +32,15 @@ print(ascii_art)
 
 Z = z3.IntSort()
 B = z3.BoolSort()
+
+
+def get_current_time():
+    """Get the current time and format it"""
+    return datetime.now().strftime("%H:%M:%S")
+
+def t_log(log):
+    curr_time = get_current_time()
+    print(f"{curr_time} | ----- {log} ----- \n")
 
 def read_file(problem_file='prblm.smt2'):
     with open(problem_file, 'r') as file:
@@ -60,22 +65,20 @@ def apply_to_each_expr(fml, fn, *args, **kwargs):
 
 #---- Initial problem parser functions -----------
 
-def setup_fixedpoint():
+def setup_fixedpoint(max_depth):
     fp = z3.Fixedpoint()
-    fp.set('spacer.max_level', 40)
+    fp.set('spacer.max_level', max_depth)
     return fp
 
 def parse_queries(fp, code):
     queries = fp.parse_string(code)
     assert len(queries) == 1
-    fp.query(queries[0])
     return queries
 
 def extract_rules(fp):
     return fp.get_rules()
 
 #---- Magic number finders -----------
-
 
 def is_magic_num(v):
     return z3.is_int_value(v) and v.as_long() != 0
@@ -120,14 +123,35 @@ def apply_substitution(rules, substitutions):
 def generate_additional_conditions(substitutions):
     return [(sub_var == sub_val) for sub_val, sub_var in substitutions]
 
-def process_first_rule(rules, substitutions):
-    _, _, rule_body = expand_quant(rules[0])
+def implies_and_way(rule_body, additional_conditions):
     assert(z3.is_implies(rule_body))
     assert(z3.is_and(rule_body.arg(0)))
-   
-    additional_conditions = generate_additional_conditions(substitutions)
-    upd_first_rule_tail = z3.And(*rule_body.arg(0).children(), *additional_conditions)
-    rules[0] = z3.Implies(upd_first_rule_tail, rule_body.arg(1))
+    return z3.And(*rule_body.arg(0).children(), *additional_conditions)
+
+def implies_way(rule_body, additional_conditions):
+    assert(z3.is_implies(rule_body))
+    assert not z3.is_and(rule_body.arg(0))
+    return z3.And(rule_body.arg(0), *additional_conditions)
+
+def clear_inv_way(additional_conditions):
+    return z3.And(*additional_conditions)
+    
+def construct_first_rule(rule_body, additional_conditions):
+    if z3.is_implies(rule_body):
+        if z3.is_and(rule_body.arg(0)):
+            return rule_body.arg(1), implies_and_way(rule_body, additional_conditions)
+        else:
+            return rule_body.arg(1), implies_way(rule_body, additional_conditions)
+    else:
+        return rule_body, clear_inv_way(additional_conditions)
+
+
+def process_first_rule(rules, substitutions):
+    _, _, rule_body = expand_quant(rules[0])
+    additional_conditions = generate_additional_conditions(substitutions)    
+    rule_head, rule_tail = construct_first_rule(rule_body, additional_conditions)
+    rules[0] = z3.Implies(rule_tail, rule_head)
+
     return rules
 
 def create_new_rules(rules, magic_values_vars):
@@ -136,8 +160,8 @@ def create_new_rules(rules, magic_values_vars):
 def create_new_vars(rules):
     return list(set().union(*map(mk_rule_vars, rules)))
 
-def process_rules_and_queries(code):
-    fp = setup_fixedpoint()
+def process_rules_and_queries(code, max_depth):
+    fp = setup_fixedpoint(max_depth)
     queries = parse_queries(fp, code)
     rules = extract_rules(fp)
     magic_values = find_magic_values(rules)
@@ -233,49 +257,93 @@ def rewritten_result(fp_new, queries):
     return fp_new.to_string(queries)
 
 def write_to_console(fp_new, queries):
-    print("----- Rewritten code section -----\n")
+    t_log("Rewritten code section")
     print(rewritten_result(fp_new, queries))
 
 def write_to_file(fp_new, queries, filename='res.smt2'):
     with open(filename, 'w') as f:
         print(rewritten_result(fp_new, queries), file=f)
 
-def process_horn(sh_db, fp_rules):
-    res, answer = solve_horn(fp_rules, max_unfold=40)
-    s_res = str(res)
+# Result section
 
-    print("----- Result section -----\n")
-    print(f"Result: {s_res.upper()}")
-    if res == z3.sat:
-        print(f"Model valid?: {chcmodel.ModelValidator(sh_db, answer).validate()}")
-        print(f"Answer: \n {answer.sexpr()}")
+def extract_required_parts(logs):
+    logs_list = logs.split('\n')  # Splits the logs into lines
+    required_parts = []
 
-def main():
-    # Parse the cmd arguments
+    for log in logs_list:
+        if log.startswith("(define-fun inv"):
+            required_parts.append(log)
+        elif len(required_parts) > 0 and not log.startswith("expand:"):
+            # continue appending lines if it's part of the 'define-fun' block
+            required_parts.append(log)
+
+    return '\n'.join(required_parts)
+
+def push_subprocess(result_file, max_depth):
+    cmd = [
+        z3_eval_path + "/z3",
+        "fp.spacer.max_level="+ str(max_depth),
+        "fp.spacer.global=true",
+        result_file,
+        "-v:1"
+    ]
+
+    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    output, logs = proc.communicate()
+    output = output.decode('utf-8').upper()
+    logs = logs.decode('utf-8')
+
+    t_log("Result section")
+
+    if "UNSAT" in output:
+        result = "SAT"
+        inv = extract_required_parts(logs)
+        print(f"Output: {result}")
+        print(f"Invariant: \n{inv}")
+        return result, inv
+    elif "SAT" in output:
+        result = "UNSAT"
+        print(f"Output: {result}")
+        print(f"Logs: \n{logs}")
+        return result, logs        
+    else:
+        print(f"Output: {output}")
+        print(f"Errors: \n{logs}")
+        return output, logs        
+
+def parse_cmd_args():
     program_args = parser.parse_args()
 
     problem_file = str(program_args.pf)
     result_file = str(program_args.rf)
+    max_depth = int(program_args.max_depth)
+
+    t_log(f"CMD params: {vars(program_args)}")
+
+    return problem_file, result_file, max_depth
+
+def main():
+    problem_file, result_file, max_depth = parse_cmd_args()
 
     code = read_file(problem_file)
 
-    rules, queries, magic_values_vars = process_rules_and_queries(code)
+    rules, queries, magic_values_vars = process_rules_and_queries(code, max_depth)
 
     new_rules = create_new_rules(rules, magic_values_vars)
     new_vars = create_new_vars(rules)
     
     fp_new = set_fixedpoint(new_rules, new_vars, magic_values_vars)
 
-    write_to_console(fp_new, queries)
-    write_to_file(fp_new, queries, result_file)
-
     fp_rules = fp_new.get_rules()
     fp_rules.push(z3.Implies(queries[0], z3.BoolVal(False)))
 
-    sh_db = horndb.HornClauseDb("prblm")
-    sh_db.load_from_fp(fp_new, queries)
-    process_horn(sh_db, fp_rules)
-    
+    write_to_console(fp_new, queries)
+    write_to_file(fp_new, queries, result_file)
+
+    output, _ = push_subprocess(result_file, max_depth)
+    result_file = (f"../results/{output}-{result_file}")
+
+    write_to_file(fp_new, queries, result_file)
 
 if __name__ == '__main__':
     main()
