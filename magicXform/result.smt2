@@ -1,0 +1,13 @@
+(declare-rel inv2 (Int Int Int))
+(declare-rel fail ())
+(declare-var A Int)
+(declare-var B Int)
+(declare-var C Int)
+(declare-var D Int)
+(declare-var E Int)
+(rule (=> (and (= E 0) (= D 0) (= 1351235 A)) (inv2 E D A)))
+(rule (let ((a!1 (= C (ite (= (mod E 2) 0) (+ D 1) D))))
+  (=> (and (inv2 E D A) (= B (+ E 1)) a!1) (inv2 B C A))))
+(rule (=> (and (inv2 E D A) (= E (* 2 A)) (not (= D A))) fail))
+(query fail)
+

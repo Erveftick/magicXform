@@ -16,6 +16,7 @@ parser = argparse.ArgumentParser(description="A script to process problem and re
 parser.add_argument('--pf', default='problem.smt2', help='Path to the problem file')
 parser.add_argument('--rf', default='result.smt2', help='Path to the result file')
 parser.add_argument('--max_depth', default=100, help='Amount of iteration for SPACER to find the invariant')
+parser.add_argument('--s', default=True, help='Indicate whether SPACER will find solution for rewrittencode')
 
 
 ascii_art = r"""
@@ -87,12 +88,26 @@ def has_comparison_operator(expr):
     comparison_ops = [z3.is_lt, z3.is_le, z3.is_gt, z3.is_ge, z3.is_eq, z3.is_distinct]
     return any(op(expr) for op in comparison_ops)
 
+def has_div_or_mod_operator(expr):
+    div_ops = [z3.is_div, z3.is_idiv, z3.is_mod]
+    return any(op(expr) for op in div_ops)
+
+def has_magic_num_child(expr):
+    return any(is_magic_num(child) for child in expr.children())
+
+def find_magic_root(expr):
+    """Magic root means if expr has comparison operator and at least one of the children is a number"""
+    return has_comparison_operator(expr) and has_magic_num_child(expr)
+
+
 def find_magic_in_gnd_rule(rule):
     myset = set()
 
     def find_magic(x, found):
-        if has_comparison_operator(x): 
-            for arg in [x.arg(0), x.arg(1)]:
+        if has_div_or_mod_operator(x):
+            return False
+        if find_magic_root(x): 
+            for arg in x.children():
                 if is_magic_num(arg):
                     found.add(arg)
             return False
@@ -119,6 +134,31 @@ def prepare_substitution(values):
 
 def apply_substitution(rules, substitutions):
     return [z3.substitute(rule, substitutions) for rule in rules]
+
+def reverse_pairs(lst):
+    return [(y, x) for x, y in lst]
+
+def substitute_with_exceptions(rule, substitutions):
+    rule_quant, rule_args, rule_body = expand_quant(rule)
+    reversed_subs = reverse_pairs(substitutions)
+    new_sub_rule = set()
+    
+    def custom_substituter(expr, found):
+        if has_div_or_mod_operator(expr):
+            sub_expr = z3.substitute(expr, reversed_subs)
+            found.add((expr, sub_expr))
+            return False
+        else:
+            return True
+            
+    apply_to_each_expr(rule_body, custom_substituter, found=new_sub_rule)
+    substituted_rule_body = z3.substitute(rule_body, new_sub_rule)
+    substituted_rule = rule_quant(rule_args, substituted_rule_body)
+    return substituted_rule
+
+def apply_custom_substitution(rules, substitutions):
+    subs_rules = apply_substitution(rules, substitutions)
+    return [substitute_with_exceptions(rule, substitutions) for rule in subs_rules]
 
 def generate_additional_conditions(substitutions):
     return [(sub_var == sub_val) for sub_val, sub_var in substitutions]
@@ -164,9 +204,10 @@ def process_rules_and_queries(code, max_depth):
     fp = setup_fixedpoint(max_depth)
     queries = parse_queries(fp, code)
     rules = extract_rules(fp)
-    magic_values = find_magic_values(rules)
+    magic_values = find_magic_values(rules[1:])
     magic_values_vars, substitutions = prepare_substitution(magic_values)
-    subs_rules = apply_substitution(rules, substitutions)
+    subs_rules = apply_custom_substitution(rules, substitutions)
+
     new_rules = process_first_rule(subs_rules, substitutions)
     return new_rules, queries, magic_values_vars
 
@@ -311,19 +352,26 @@ def push_subprocess(result_file, max_depth):
         print(f"Errors: \n{logs}")
         return output, logs        
 
+def dummy_bool_parser(s):
+    if s == 'False':
+        return False
+    else:
+        return True
+
 def parse_cmd_args():
     program_args = parser.parse_args()
 
     problem_file = str(program_args.pf)
     result_file = str(program_args.rf)
+    is_solving_on = dummy_bool_parser(program_args.s)
     max_depth = int(program_args.max_depth)
 
     t_log(f"CMD params: {vars(program_args)}")
 
-    return problem_file, result_file, max_depth
+    return problem_file, result_file, max_depth, is_solving_on
 
 def main():
-    problem_file, result_file, max_depth = parse_cmd_args()
+    problem_file, result_file, max_depth, is_solving_on = parse_cmd_args()
 
     code = read_file(problem_file)
 
@@ -340,10 +388,11 @@ def main():
     write_to_console(fp_new, queries)
     write_to_file(fp_new, queries, result_file)
 
-    output, _ = push_subprocess(result_file, max_depth)
-    result_file = (f"../results/{output}-{result_file}")
+    if is_solving_on:
+        output, _ = push_subprocess(result_file, max_depth)
+        result_file = (f"../results/{output}-{result_file}")
 
-    write_to_file(fp_new, queries, result_file)
+        write_to_file(fp_new, queries, result_file)
 
 if __name__ == '__main__':
     main()
