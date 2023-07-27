@@ -1,8 +1,9 @@
 import sys
 from secrets import z3_path, z3_eval_path
+from spinner import Loader
 sys.path.append(z3_path)
 
-import argparse, subprocess, z3
+import argparse, subprocess, z3, time
 from datetime import datetime
 
 # proof mode must be enabled before any expressions are created
@@ -33,6 +34,7 @@ print(ascii_art)
 
 Z = z3.IntSort()
 B = z3.BoolSort()
+start_time = time.time()
 
 
 def get_current_time():
@@ -327,15 +329,20 @@ def push_subprocess(result_file, max_depth):
         "fp.spacer.global=true",
         result_file,
         "-v:1"
+        # fp.xform.inline_eager=false 
+        # fp.xform.inline_linear=false
     ]
+
+    loader = Loader("Finding an invariant for the rewritten code...", "\n").start()
 
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     output, logs = proc.communicate()
     output = output.decode('utf-8').upper()
     logs = logs.decode('utf-8')
 
+    loader.stop()
     t_log("Result section")
-
+    
     if "UNSAT" in output:
         result = "SAT"
         inv = extract_required_parts(logs)
@@ -387,12 +394,18 @@ def main():
 
     write_to_console(fp_new, queries)
     write_to_file(fp_new, queries, result_file)
-
+    
     if is_solving_on:
-        output, _ = push_subprocess(result_file, max_depth)
-        result_file = (f"../results/{output}-{result_file}")
+        print(code)
+        output, _ = push_subprocess(problem_file, max_depth)
+        result_file = (f"../r/{output}-{problem_file}")
+        out_time = time.time() - start_time
+        out_time = round(out_time, 2)
 
         write_to_file(fp_new, queries, result_file)
+        t_log(f"Program took {out_time}s to run")
+    
+    
 
 if __name__ == '__main__':
     main()

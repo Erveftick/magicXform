@@ -2,6 +2,7 @@ venv
 magicXform/secrets.py
 magicXform/__pycache__/
 magicXform/.z3-trace
+magicXform/res_*.smt2
 challenges/
 passed-challenges/
-results/
+results/SAT
