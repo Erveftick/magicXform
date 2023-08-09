@@ -1,0 +1,5245 @@
+** expand-pob: query!0 level: 0 depth: 0 exprID: 1 pobID: none
+true
+
+** add-lemma: 0 exprID: 2 pobID: 1
+query!0
+false
+
+
+* LEVEL 1
+
+** expand-pob: query!0 level: 1 depth: 0 exprID: 1 pobID: none
+true
+
+** expand-pob: inv2 level: 0 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** add-lemma: 0 exprID: 708 pobID: 328
+inv2
+(< x K10000)
+
+** expand-pob: query!0 level: 1 depth: 0 exprID: 1 pobID: none
+true
+
+** add-lemma: 1 exprID: 2 pobID: 1
+query!0
+false
+
+Propagating
+
+
+* LEVEL 2
+
+** expand-pob: query!0 level: 2 depth: 0 exprID: 1 pobID: none
+true
+
+** expand-pob: inv2 level: 1 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** expand-pob: inv2 level: 0 depth: 0 exprID: 904 pobID: 328
+(and (= (+ x (* (- 1) K10000)) (- 1))
+     (< x (+ y (- 1)))
+     (< x K5000))
+
+** add-lemma: 0 exprID: 957 pobID: 904
+inv2
+(< x (+ K10000 (- 1)))
+
+** expand-pob: inv2 level: 1 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** add-lemma: 1 exprID: 708 pobID: 328
+inv2
+(< x K10000)
+
+** expand-pob: query!0 level: 2 depth: 0 exprID: 1 pobID: none
+true
+
+** add-lemma: 2 exprID: 2 pobID: 1
+query!0
+false
+
+Propagating
+
+
+* LEVEL 3
+
+** expand-pob: query!0 level: 3 depth: 0 exprID: 1 pobID: none
+true
+
+** expand-pob: inv2 level: 2 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** expand-pob: inv2 level: 1 depth: 0 exprID: 904 pobID: 328
+(and (= (+ x (* (- 1) K10000)) (- 1))
+     (< x (+ y (- 1)))
+     (< x K5000))
+
+** expand-pob: inv2 level: 0 depth: 0 exprID: 1265 pobID: 904
+(and (< x K5000)
+     (= (+ x (* (- 1) K10000)) (- 2))
+     (< x (+ K5000 (- 1)))
+     (< x (+ y (- 2))))
+
+** add-lemma: 0 exprID: 1314 pobID: 1265
+inv2
+(< x (+ K10000 (- 2)))
+
+** expand-pob: inv2 level: 1 depth: 0 exprID: 904 pobID: 328
+(and (= (+ x (* (- 1) K10000)) (- 1))
+     (< x (+ y (- 1)))
+     (< x K5000))
+
+** add-lemma: 1 exprID: 957 pobID: 904
+inv2
+(< x (+ K10000 (- 1)))
+
+** expand-pob: inv2 level: 0 depth: 0 exprID: 1410 pobID: 1
+(and (< x (+ y (- 1))) (< x K5000))
+
+** expand-pob: inv2 level: 2 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** add-lemma: 2 exprID: 708 pobID: 328
+inv2
+(< x K10000)
+
+** expand-pob: query!0 level: 3 depth: 0 exprID: 1 pobID: none
+true
+
+** add-lemma: 3 exprID: 2 pobID: 1
+query!0
+false
+
+Propagating
+
+
+* LEVEL 4
+
+** expand-pob: query!0 level: 4 depth: 0 exprID: 1 pobID: none
+true
+
+** expand-pob: inv2 level: 3 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** expand-pob: inv2 level: 2 depth: 0 exprID: 904 pobID: 328
+(and (= (+ x (* (- 1) K10000)) (- 1))
+     (< x (+ y (- 1)))
+     (< x K5000))
+
+** expand-pob: inv2 level: 1 depth: 0 exprID: 1265 pobID: 904
+(and (< x K5000)
+     (= (+ x (* (- 1) K10000)) (- 2))
+     (< x (+ K5000 (- 1)))
+     (< x (+ y (- 2))))
+
+** expand-pob: inv2 level: 0 depth: 0 exprID: 1636 pobID: 1265
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (= (+ x (* (- 1) K10000)) (- 3))
+     (< x (+ y (- 3))))
+
+** add-lemma: 0 exprID: 1719 pobID: 1636
+inv2
+(< x (+ K10000 (- 3)))
+
+** expand-pob: inv2 level: 0 depth: 0 exprID: 1840 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (< x (+ y (- 3))))
+
+** expand-pob: inv2 level: 1 depth: 0 exprID: 1265 pobID: 904
+(and (< x K5000)
+     (= (+ x (* (- 1) K10000)) (- 2))
+     (< x (+ K5000 (- 1)))
+     (< x (+ y (- 2))))
+
+** add-lemma: 1 exprID: 1314 pobID: 1265
+inv2
+(< x (+ K10000 (- 2)))
+
+** expand-pob: inv2 level: 0 depth: 0 exprID: 1876 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ y (- 2))))
+
+** expand-pob: inv2 level: 2 depth: 0 exprID: 904 pobID: 328
+(and (= (+ x (* (- 1) K10000)) (- 1))
+     (< x (+ y (- 1)))
+     (< x K5000))
+
+** add-lemma: 2 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** expand-pob: inv2 level: 3 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** expand-pob: inv2 level: 2 depth: 0 exprID: 2040 pobID: 328
+(and (< x y)
+     (= (+ x (* (- 1) K10000)) (- 1))
+     (>= x K5000))
+
+** add-lemma: 2 exprID: 957 pobID: 904
+inv2
+(< x (+ K10000 (- 1)))
+
+** expand-pob: inv2 level: 0 depth: 0 exprID: 2105 pobID: 1
+(and (< x y) (>= x K5000))
+
+** add-lemma: 0 exprID: 2087 pobID: 2105
+inv2
+(< x (+ K5000 (- 4999)))
+
+** expand-pob: inv2 level: 1 depth: 1 exprID: 2105 pobID: 1
+(and (< x y) (>= x K5000))
+
+** add-lemma: 1 exprID: 2240 pobID: 2105
+inv2
+(< x (+ K5000 (- 4998)))
+
+** expand-pob: inv2 level: 2 depth: 2 exprID: 2105 pobID: 1
+(and (< x y) (>= x K5000))
+
+** add-lemma: 2 exprID: 1271 pobID: 2105
+inv2
+(< x (+ K5000 (- 1)))
+
+** expand-pob: inv2 level: 0 depth: 2 exprID: 326 pobID: 1
+(< x y)
+
+** expand-pob: inv2 level: 3 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** add-lemma: 3 exprID: 708 pobID: 328
+inv2
+(< x K10000)
+
+** expand-pob: query!0 level: 4 depth: 0 exprID: 1 pobID: none
+true
+
+** add-lemma: 4 exprID: 2 pobID: 1
+query!0
+false
+
+Propagating
+
+
+* LEVEL 5
+
+** expand-pob: query!0 level: 5 depth: 0 exprID: 1 pobID: none
+true
+
+** expand-pob: inv2 level: 4 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** expand-pob: inv2 level: 3 depth: 0 exprID: 904 pobID: 328
+(and (= (+ x (* (- 1) K10000)) (- 1))
+     (< x (+ y (- 1)))
+     (< x K5000))
+
+** expand-pob: inv2 level: 2 depth: 0 exprID: 1265 pobID: 904
+(and (< x K5000)
+     (= (+ x (* (- 1) K10000)) (- 2))
+     (< x (+ K5000 (- 1)))
+     (< x (+ y (- 2))))
+
+** expand-pob: inv2 level: 1 depth: 0 exprID: 1636 pobID: 1265
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (= (+ x (* (- 1) K10000)) (- 3))
+     (< x (+ y (- 3))))
+
+** expand-pob: inv2 level: 0 depth: 0 exprID: 2641 pobID: 1636
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (< x (+ y (- 4)))
+     (< x (+ K5000 (- 3)))
+     (= (+ x (* (- 1) K10000)) (- 4)))
+
+** add-lemma: 0 exprID: 2708 pobID: 2641
+inv2
+(< x (+ K10000 (- 4)))
+
+** expand-pob: inv2 level: 0 depth: 0 exprID: 2858 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (< x (+ y (- 4)))
+     (< x (+ K5000 (- 3))))
+
+** expand-pob: inv2 level: 1 depth: 0 exprID: 1636 pobID: 1265
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (= (+ x (* (- 1) K10000)) (- 3))
+     (< x (+ y (- 3))))
+
+** add-lemma: 1 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** expand-pob: inv2 level: 2 depth: 0 exprID: 1265 pobID: 904
+(and (< x K5000)
+     (= (+ x (* (- 1) K10000)) (- 2))
+     (< x (+ K5000 (- 1)))
+     (< x (+ y (- 2))))
+
+** add-lemma: 2 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** expand-pob: inv2 SUBS level: 1 depth: 0 exprID: 3081 pobID: 1
+(and (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 3)))
+     (>= y (+ K10000 1))
+     (<= K10000 K5000))
+
+** add-lemma: 2 exprID: 3141 pobID: 3081
+inv2
+(< y (+ K10000 1))
+
+** expand-pob: inv2 SUBS level: 2 depth: 1 exprID: 3081 pobID: 1
+(and (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 3)))
+     (>= y (+ K10000 1))
+     (<= K10000 K5000))
+
+** expand-pob: inv2 level: 3 depth: 0 exprID: 904 pobID: 328
+(and (= (+ x (* (- 1) K10000)) (- 1))
+     (< x (+ y (- 1)))
+     (< x K5000))
+
+** add-lemma: 3 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** expand-pob: inv2 SUBS level: 1 depth: 0 exprID: 3081 pobID: 1
+(and (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 3)))
+     (>= y (+ K10000 1))
+     (<= K10000 K5000))
+
+** expand-pob: inv2 SUBS level: 2 depth: 1 exprID: 3081 pobID: 1
+(and (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 3)))
+     (>= y (+ K10000 1))
+     (<= K10000 K5000))
+
+** expand-pob: inv2 SUBS level: 3 depth: 2 exprID: 3081 pobID: 1
+(and (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 3)))
+     (>= y (+ K10000 1))
+     (<= K10000 K5000))
+
+** add-lemma: 3 exprID: 3141 pobID: 3081
+inv2
+(< y (+ K10000 1))
+
+** expand-pob: inv2 level: 4 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** expand-pob: inv2 level: 3 depth: 0 exprID: 2040 pobID: 328
+(and (< x y)
+     (= (+ x (* (- 1) K10000)) (- 1))
+     (>= x K5000))
+
+** add-lemma: 3 exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 4 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** add-lemma: 4 exprID: 3946 pobID: 328
+inv2
+(or (< x K10000) (> x (+ y (- 1))))
+
+** expand-pob: query!0 level: 5 depth: 0 exprID: 1 pobID: none
+true
+
+** expand-pob: inv2 level: 4 depth: 0 exprID: 4158 pobID: 1
+(and (= K10000 x) (> x y))
+
+** expand-pob: inv2 level: 3 depth: 0 exprID: 3939 pobID: 4158
+(and (= (+ x (* (- 1) K10000)) (- 1))
+     (< x K5000)
+     (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 2 depth: 0 exprID: 4250 pobID: 3939
+(and (< x K5000)
+     (= (+ x (* (- 1) K10000)) (- 2))
+     (< x (+ K5000 (- 1)))
+     (> x (+ y (- 2))))
+
+** expand-pob: inv2 level: 1 depth: 0 exprID: 4267 pobID: 4250
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (= (+ x (* (- 1) K10000)) (- 3))
+     (> x (+ y (- 3))))
+
+** add-lemma: 1 exprID: 1719 pobID: 1636
+inv2
+(< x (+ K10000 (- 3)))
+
+** expand-pob: inv2 level: 0 depth: 0 exprID: 4314 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (> x (+ y (- 3))))
+
+** add-lemma: 0 exprID: 1274 pobID: 4314
+inv2
+(< x (+ y (- 2)))
+
+** expand-pob: inv2 level: 1 depth: 1 exprID: 4314 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (> x (+ y (- 3))))
+
+** expand-pob: inv2 level: 0 depth: 1 exprID: 4425 pobID: 4314
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (< x (+ K5000 (- 3)))
+     (> x (+ y (- 4))))
+
+** add-lemma: 0 exprID: 2439 pobID: 4425
+inv2
+(< x (+ y (- 4)))
+
+** expand-pob: inv2 level: 1 depth: 1 exprID: 4314 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (> x (+ y (- 3))))
+
+** add-lemma: 1 exprID: 1274 pobID: 4314
+inv2
+(< x (+ y (- 2)))
+
+** expand-pob: inv2 level: 2 depth: 0 exprID: 4250 pobID: 3939
+(and (< x K5000)
+     (= (+ x (* (- 1) K10000)) (- 2))
+     (< x (+ K5000 (- 1)))
+     (> x (+ y (- 2))))
+
+** add-lemma: 2 exprID: 1314 pobID: 1265
+inv2
+(< x (+ K10000 (- 2)))
+
+** expand-pob: inv2 level: 0 depth: 0 exprID: 4749 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (> x (+ y (- 2))))
+
+** expand-pob: inv2 level: 1 depth: 1 exprID: 4749 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (> x (+ y (- 2))))
+
+** add-lemma: 1 exprID: 4790 pobID: 4749
+inv2
+(or (< x (+ y (- 1))) (> x (+ K5000 (- 2))))
+
+** expand-pob: inv2 level: 2 depth: 2 exprID: 4749 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (> x (+ y (- 2))))
+
+** add-lemma: 2 exprID: 4790 pobID: 4749
+inv2
+(or (< x (+ y (- 1))) (> x (+ K5000 (- 2))))
+
+** expand-pob: inv2 level: 3 depth: 0 exprID: 3939 pobID: 4158
+(and (= (+ x (* (- 1) K10000)) (- 1))
+     (< x K5000)
+     (> x (+ y (- 1))))
+
+** add-lemma: 3 exprID: 957 pobID: 904
+inv2
+(< x (+ K10000 (- 1)))
+
+** expand-pob: inv2 level: 0 depth: 0 exprID: 4984 pobID: 1
+(and (< x K5000) (> x (+ y (- 1))))
+
+** add-lemma: 0 exprID: 892 pobID: 4984
+inv2
+(< x (+ y (- 1)))
+
+** expand-pob: inv2 level: 1 depth: 1 exprID: 4984 pobID: 1
+(and (< x K5000) (> x (+ y (- 1))))
+
+** add-lemma: 1 exprID: 4985 pobID: 4984
+inv2
+(or (< x y) (> x (+ K5000 (- 1))))
+
+** expand-pob: inv2 level: 2 depth: 2 exprID: 4984 pobID: 1
+(and (< x K5000) (> x (+ y (- 1))))
+
+** add-lemma: 2 exprID: 4985 pobID: 4984
+inv2
+(or (< x y) (> x (+ K5000 (- 1))))
+
+** expand-pob: inv2 SUBS level: 1 depth: 2 exprID: 5193 pobID: 1
+(and (>= x (+ y (- 1)))
+     (<= x (+ K5000 (- 1)))
+     (<= y (+ K5000 (- 1))))
+
+** expand-pob: inv2 level: 0 depth: 2 exprID: 3065 pobID: 1
+(and (<= x (+ K5000 (- 1))) (<= y (+ K5000 (- 1))))
+
+** add-lemma: 0 exprID: 5179 pobID: 3065
+inv2
+(> y (+ K5000 (- 1)))
+
+** expand-pob: inv2 level: 1 depth: 3 exprID: 3065 pobID: 1
+(and (<= x (+ K5000 (- 1))) (<= y (+ K5000 (- 1))))
+
+** add-lemma: 1 exprID: 5179 pobID: 3065
+inv2
+(> y (+ K5000 (- 1)))
+
+** expand-pob: inv2 SUBS level: 2 depth: 3 exprID: 5193 pobID: 1
+(and (>= x (+ y (- 1)))
+     (<= x (+ K5000 (- 1)))
+     (<= y (+ K5000 (- 1))))
+
+** add-lemma: 2 exprID: 3118 pobID: 5193
+inv2
+(or (< x (+ y (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> y (+ K5000 (- 1))))
+
+** expand-pob: inv2 level: 3 depth: 3 exprID: 4984 pobID: 1
+(and (< x K5000) (> x (+ y (- 1))))
+
+** add-lemma: 3 exprID: 4985 pobID: 4984
+inv2
+(or (< x y) (> x (+ K5000 (- 1))))
+
+** expand-pob: inv2 SUBS level: 2 depth: 3 exprID: 5193 pobID: 1
+(and (>= x (+ y (- 1)))
+     (<= x (+ K5000 (- 1)))
+     (<= y (+ K5000 (- 1))))
+
+** expand-pob: inv2 SUBS level: 3 depth: 4 exprID: 5193 pobID: 1
+(and (>= x (+ y (- 1)))
+     (<= x (+ K5000 (- 1)))
+     (<= y (+ K5000 (- 1))))
+
+** expand-pob: inv2 level: 2 depth: 4 exprID: 5280 pobID: 5193
+(and (< x K5000)
+     (>= x (+ y (- 2)))
+     (<= x (+ K5000 (- 2)))
+     (<= y (+ K5000 (- 1))))
+
+** add-lemma: 2 exprID: 1685 pobID: 5280
+inv2
+(< x (+ y (- 3)))
+
+** expand-pob: inv2 level: 0 depth: 4 exprID: 5545 pobID: 1
+(and (< x K5000)
+     (<= x (+ K5000 (- 2)))
+     (<= y (+ K5000 (- 1))))
+
+** expand-pob: inv2 level: 1 depth: 5 exprID: 5545 pobID: 1
+(and (< x K5000)
+     (<= x (+ K5000 (- 2)))
+     (<= y (+ K5000 (- 1))))
+
+** expand-pob: inv2 level: 2 depth: 6 exprID: 5545 pobID: 1
+(and (< x K5000)
+     (<= x (+ K5000 (- 2)))
+     (<= y (+ K5000 (- 1))))
+
+** add-lemma: 2 exprID: 5179 pobID: 3065
+inv2
+(> y (+ K5000 (- 1)))
+
+** expand-pob: inv2 SUBS level: 3 depth: 4 exprID: 5193 pobID: 1
+(and (>= x (+ y (- 1)))
+     (<= x (+ K5000 (- 1)))
+     (<= y (+ K5000 (- 1))))
+
+** add-lemma: 3 exprID: 3118 pobID: 5193
+inv2
+(or (< x (+ y (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> y (+ K5000 (- 1))))
+
+** expand-pob: inv2 level: 4 depth: 0 exprID: 4158 pobID: 1
+(and (= K10000 x) (> x y))
+
+** add-lemma: 4 exprID: 708 pobID: 328
+inv2
+(< x K10000)
+
+** expand-pob: query!0 level: 5 depth: 0 exprID: 1 pobID: none
+true
+
+** add-lemma: 5 exprID: 2 pobID: 1
+query!0
+false
+
+Propagating
+
+** add-lemma: 1 exprID: 892 pobID: 4984
+inv2
+(< x (+ y (- 1)))
+
+** add-lemma: 1 exprID: 2439 pobID: 4425
+inv2
+(< x (+ y (- 4)))
+
+** add-lemma: 1 exprID: 2708 pobID: 2641
+inv2
+(< x (+ K10000 (- 4)))
+
+** add-lemma: 2 exprID: 892 pobID: 4984
+inv2
+(< x (+ y (- 1)))
+
+** add-lemma: 2 exprID: 1274 pobID: 4314
+inv2
+(< x (+ y (- 2)))
+
+** add-lemma: 2 exprID: 1719 pobID: 1636
+inv2
+(< x (+ K10000 (- 3)))
+
+** add-lemma: 2 exprID: 2439 pobID: 4425
+inv2
+(< x (+ y (- 4)))
+
+** add-lemma: 2 exprID: 2708 pobID: 2641
+inv2
+(< x (+ K10000 (- 4)))
+
+** add-lemma: 2 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 3 exprID: 892 pobID: 4984
+inv2
+(< x (+ y (- 1)))
+
+** add-lemma: 3 exprID: 1274 pobID: 4314
+inv2
+(< x (+ y (- 2)))
+
+** add-lemma: 3 exprID: 1314 pobID: 1265
+inv2
+(< x (+ K10000 (- 2)))
+
+** add-lemma: 3 exprID: 1685 pobID: 5280
+inv2
+(< x (+ y (- 3)))
+
+** add-lemma: 3 exprID: 1719 pobID: 1636
+inv2
+(< x (+ K10000 (- 3)))
+
+** add-lemma: 3 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 3 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: 3 exprID: 4790 pobID: 4749
+inv2
+(or (< x (+ y (- 1))) (> x (+ K5000 (- 2))))
+
+** add-lemma: 3 exprID: 5179 pobID: 3065
+inv2
+(> y (+ K5000 (- 1)))
+
+** add-lemma: 4 exprID: 892 pobID: 4984
+inv2
+(< x (+ y (- 1)))
+
+** add-lemma: 4 exprID: 957 pobID: 904
+inv2
+(< x (+ K10000 (- 1)))
+
+** add-lemma: 4 exprID: 1274 pobID: 4314
+inv2
+(< x (+ y (- 2)))
+
+** add-lemma: 4 exprID: 1314 pobID: 1265
+inv2
+(< x (+ K10000 (- 2)))
+
+** add-lemma: 4 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** add-lemma: 4 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 4 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: 4 exprID: 3118 pobID: 5193
+inv2
+(or (< x (+ y (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> y (+ K5000 (- 1))))
+
+** add-lemma: 4 exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** add-lemma: 4 exprID: 4790 pobID: 4749
+inv2
+(or (< x (+ y (- 1))) (> x (+ K5000 (- 2))))
+
+** add-lemma: 4 exprID: 4985 pobID: 4984
+inv2
+(or (< x y) (> x (+ K5000 (- 1))))
+
+** add-lemma: 4 exprID: 5179 pobID: 3065
+inv2
+(> y (+ K5000 (- 1)))
+
+** add-lemma: 5 exprID: 708 pobID: 328
+inv2
+(< x K10000)
+
+** add-lemma: 5 exprID: 892 pobID: 4984
+inv2
+(< x (+ y (- 1)))
+
+** add-lemma: 5 exprID: 957 pobID: 904
+inv2
+(< x (+ K10000 (- 1)))
+
+** add-lemma: 5 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** add-lemma: 5 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: 5 exprID: 3118 pobID: 5193
+inv2
+(or (< x (+ y (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> y (+ K5000 (- 1))))
+
+** add-lemma: 5 exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** add-lemma: 5 exprID: 3946 pobID: 328
+inv2
+(or (< x K10000) (> x (+ y (- 1))))
+
+** add-lemma: 5 exprID: 4790 pobID: 4749
+inv2
+(or (< x (+ y (- 1))) (> x (+ K5000 (- 2))))
+
+** add-lemma: 5 exprID: 4985 pobID: 4984
+inv2
+(or (< x y) (> x (+ K5000 (- 1))))
+
+** add-lemma: 5 exprID: 5179 pobID: 3065
+inv2
+(> y (+ K5000 (- 1)))
+
+** add-lemma: 6 exprID: 708 pobID: 328
+inv2
+(< x K10000)
+
+** add-lemma: 6 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** add-lemma: 6 exprID: 3118 pobID: 5193
+inv2
+(or (< x (+ y (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> y (+ K5000 (- 1))))
+
+** add-lemma: 6 exprID: 3946 pobID: 328
+inv2
+(or (< x K10000) (> x (+ y (- 1))))
+
+** add-lemma: 6 exprID: 4790 pobID: 4749
+inv2
+(or (< x (+ y (- 1))) (> x (+ K5000 (- 2))))
+
+** add-lemma: 6 exprID: 4985 pobID: 4984
+inv2
+(or (< x y) (> x (+ K5000 (- 1))))
+
+** add-lemma: 6 exprID: 5179 pobID: 3065
+inv2
+(> y (+ K5000 (- 1)))
+
+** add-lemma: 6 exprID: 2 pobID: 1
+query!0
+false
+
+** add-lemma: 7 exprID: 3118 pobID: 5193
+inv2
+(or (< x (+ y (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> y (+ K5000 (- 1))))
+
+** add-lemma: 7 exprID: 4790 pobID: 4749
+inv2
+(or (< x (+ y (- 1))) (> x (+ K5000 (- 2))))
+
+** add-lemma: 7 exprID: 4985 pobID: 4984
+inv2
+(or (< x y) (> x (+ K5000 (- 1))))
+
+** add-lemma: 7 exprID: 5179 pobID: 3065
+inv2
+(> y (+ K5000 (- 1)))
+
+** add-lemma: 7 exprID: 2 pobID: 1
+query!0
+false
+
+** add-lemma: 8 exprID: 3118 pobID: 5193
+inv2
+(or (< x (+ y (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> y (+ K5000 (- 1))))
+
+** add-lemma: 8 exprID: 4790 pobID: 4749
+inv2
+(or (< x (+ y (- 1))) (> x (+ K5000 (- 2))))
+
+** add-lemma: 8 exprID: 4985 pobID: 4984
+inv2
+(or (< x y) (> x (+ K5000 (- 1))))
+
+** add-lemma: 8 exprID: 5179 pobID: 3065
+inv2
+(> y (+ K5000 (- 1)))
+
+** add-lemma: 9 exprID: 3118 pobID: 5193
+inv2
+(or (< x (+ y (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> y (+ K5000 (- 1))))
+
+** add-lemma: 9 exprID: 4790 pobID: 4749
+inv2
+(or (< x (+ y (- 1))) (> x (+ K5000 (- 2))))
+
+** add-lemma: 9 exprID: 4985 pobID: 4984
+inv2
+(or (< x y) (> x (+ K5000 (- 1))))
+
+** add-lemma: 9 exprID: 5179 pobID: 3065
+inv2
+(> y (+ K5000 (- 1)))
+
+** add-lemma: oo exprID: 3118 pobID: 5193
+inv2
+(or (< x (+ y (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> y (+ K5000 (- 1))))
+
+** add-lemma: oo exprID: 4790 pobID: 4749
+inv2
+(or (< x (+ y (- 1))) (> x (+ K5000 (- 2))))
+
+** add-lemma: oo exprID: 4985 pobID: 4984
+inv2
+(or (< x y) (> x (+ K5000 (- 1))))
+
+** add-lemma: oo exprID: 5179 pobID: 3065
+inv2
+(> y (+ K5000 (- 1)))
+
+
+* LEVEL 6
+
+** expand-pob: query!0 level: 6 depth: 0 exprID: 1 pobID: none
+true
+
+Propagating
+
+
+* LEVEL 7
+
+** expand-pob: query!0 level: 7 depth: 0 exprID: 1 pobID: none
+true
+
+Propagating
+
+
+* LEVEL 8
+
+** expand-pob: query!0 level: 8 depth: 0 exprID: 1 pobID: none
+true
+
+** expand-pob: inv2 level: 7 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** expand-pob: inv2 level: 6 depth: 0 exprID: 2040 pobID: 328
+(and (< x y)
+     (= (+ x (* (- 1) K10000)) (- 1))
+     (>= x K5000))
+
+** expand-pob: inv2 level: 5 depth: 0 exprID: 11127 pobID: 2040
+(and (< x y)
+     (>= x K5000)
+     (= (+ x (* (- 1) K10000)) (- 2))
+     (>= x (+ K5000 (- 1))))
+
+** expand-pob: inv2 level: 4 depth: 0 exprID: 11143 pobID: 11127
+(and (< x y)
+     (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (= (+ x (* (- 1) K10000)) (- 3))
+     (>= x (+ K5000 (- 2))))
+
+** expand-pob: inv2 level: 3 depth: 0 exprID: 11178 pobID: 11143
+(and (< x y)
+     (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (>= x (+ K5000 (- 3)))
+     (= (+ x (* (- 1) K10000)) (- 4)))
+
+** add-lemma: 3 exprID: 895 pobID: 11178
+inv2
+(< x K5000)
+
+** expand-pob: inv2 level: 0 depth: 0 exprID: 11209 pobID: 1
+(and (< x y) (= (+ x (* (- 1) K10000)) (- 4)))
+
+** expand-pob: inv2 level: 1 depth: 1 exprID: 11209 pobID: 1
+(and (< x y) (= (+ x (* (- 1) K10000)) (- 4)))
+
+** add-lemma: 1 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 2 depth: 2 exprID: 11209 pobID: 1
+(and (< x y) (= (+ x (* (- 1) K10000)) (- 4)))
+
+** add-lemma: 2 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 3 depth: 3 exprID: 11209 pobID: 1
+(and (< x y) (= (+ x (* (- 1) K10000)) (- 4)))
+
+** expand-pob: inv2 level: 2 depth: 3 exprID: 11367 pobID: 11209
+(and (< x (+ y (- 1)))
+     (< x K5000)
+     (= (+ x (* (- 1) K10000)) (- 5)))
+
+** add-lemma: 2 exprID: 11355 pobID: 11367
+inv2
+(< x (+ K10000 (- 5)))
+
+** expand-pob: inv2 level: 3 depth: 3 exprID: 11209 pobID: 1
+(and (< x y) (= (+ x (* (- 1) K10000)) (- 4)))
+
+** add-lemma: 3 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 4 depth: 0 exprID: 11143 pobID: 11127
+(and (< x y)
+     (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (= (+ x (* (- 1) K10000)) (- 3))
+     (>= x (+ K5000 (- 2))))
+
+** add-lemma: 4 exprID: 1719 pobID: 1636
+inv2
+(< x (+ K10000 (- 3)))
+
+** expand-pob: inv2 level: 5 depth: 0 exprID: 11127 pobID: 2040
+(and (< x y)
+     (>= x K5000)
+     (= (+ x (* (- 1) K10000)) (- 2))
+     (>= x (+ K5000 (- 1))))
+
+** add-lemma: 5 exprID: 1314 pobID: 1265
+inv2
+(< x (+ K10000 (- 2)))
+
+** expand-pob: inv2 level: 6 depth: 0 exprID: 2040 pobID: 328
+(and (< x y)
+     (= (+ x (* (- 1) K10000)) (- 1))
+     (>= x K5000))
+
+** add-lemma: 6 exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 7 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** add-lemma: 7 exprID: 3946 pobID: 328
+inv2
+(or (< x K10000) (> x (+ y (- 1))))
+
+** expand-pob: query!0 level: 8 depth: 0 exprID: 1 pobID: none
+true
+
+** expand-pob: inv2 level: 7 depth: 0 exprID: 4158 pobID: 1
+(and (= K10000 x) (> x y))
+
+** expand-pob: inv2 level: 6 depth: 0 exprID: 11781 pobID: 4158
+(and (= (+ x (* (- 1) K10000)) (- 1))
+     (>= x K5000)
+     (> x y))
+
+** add-lemma: 6 exprID: 957 pobID: 904
+inv2
+(< x (+ K10000 (- 1)))
+
+** expand-pob: inv2 level: 7 depth: 0 exprID: 4158 pobID: 1
+(and (= K10000 x) (> x y))
+
+** add-lemma: 7 exprID: 708 pobID: 328
+inv2
+(< x K10000)
+
+** expand-pob: query!0 level: 8 depth: 0 exprID: 1 pobID: none
+true
+
+** add-lemma: 8 exprID: 2 pobID: 1
+query!0
+false
+
+Propagating
+
+** add-lemma: 3 exprID: 2708 pobID: 2641
+inv2
+(< x (+ K10000 (- 4)))
+
+** add-lemma: 4 exprID: 3141 pobID: 3081
+inv2
+(< y (+ K10000 1))
+
+** add-lemma: 5 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 6 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: 7 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+
+* LEVEL 9
+
+** expand-pob: query!0 level: 9 depth: 0 exprID: 1 pobID: none
+true
+
+** expand-pob: inv2 level: 8 depth: 0 exprID: 4158 pobID: 1
+(and (= K10000 x) (> x y))
+
+** expand-pob: inv2 level: 7 depth: 0 exprID: 11781 pobID: 4158
+(and (= (+ x (* (- 1) K10000)) (- 1))
+     (>= x K5000)
+     (> x y))
+
+** expand-pob: inv2 level: 6 depth: 0 exprID: 12683 pobID: 11781
+(and (>= x K5000)
+     (= (+ x (* (- 1) K10000)) (- 2))
+     (>= x (+ K5000 (- 1)))
+     (> x y))
+
+** add-lemma: 6 exprID: 12726 pobID: 12683
+inv2
+(< x (+ y 1))
+
+** expand-pob: inv2 level: 7 depth: 0 exprID: 11781 pobID: 4158
+(and (= (+ x (* (- 1) K10000)) (- 1))
+     (>= x K5000)
+     (> x y))
+
+** add-lemma: 7 exprID: 12360 pobID: 11781
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (< x (+ y 1)))
+
+** expand-pob: inv2 level: 8 depth: 0 exprID: 4158 pobID: 1
+(and (= K10000 x) (> x y))
+
+** add-lemma: 9 exprID: 12726 pobID: 12683
+inv2
+(< x (+ y 1))
+
+** expand-pob: query!0 level: 9 depth: 0 exprID: 1 pobID: none
+true
+
+** expand-pob: inv2 level: 8 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** expand-pob: inv2 level: 7 depth: 0 exprID: 2040 pobID: 328
+(and (< x y)
+     (= (+ x (* (- 1) K10000)) (- 1))
+     (>= x K5000))
+
+** expand-pob: inv2 level: 6 depth: 0 exprID: 11127 pobID: 2040
+(and (< x y)
+     (>= x K5000)
+     (= (+ x (* (- 1) K10000)) (- 2))
+     (>= x (+ K5000 (- 1))))
+
+** expand-pob: inv2 level: 5 depth: 0 exprID: 11143 pobID: 11127
+(and (< x y)
+     (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (= (+ x (* (- 1) K10000)) (- 3))
+     (>= x (+ K5000 (- 2))))
+
+** expand-pob: inv2 level: 4 depth: 0 exprID: 11178 pobID: 11143
+(and (< x y)
+     (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (>= x (+ K5000 (- 3)))
+     (= (+ x (* (- 1) K10000)) (- 4)))
+
+** expand-pob: inv2 level: 3 depth: 0 exprID: 10753 pobID: 11178
+(and (< x (+ y (- 1)))
+     (< x K5000)
+     (>= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (>= x (+ K5000 (- 3)))
+     (= (+ x (* (- 1) K10000)) (- 5))
+     (>= x (+ K5000 (- 4))))
+
+** expand-pob: inv2 level: 2 depth: 0 exprID: 13090 pobID: 10753
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ y (- 2)))
+     (>= x (+ K5000 (- 2)))
+     (>= x (+ K5000 (- 3)))
+     (>= x (+ K5000 (- 4)))
+     (= (+ x (* (- 1) K10000)) (- 6))
+     (>= x (+ K5000 (- 5))))
+
+** add-lemma: 2 exprID: 13179 pobID: 13090
+inv2
+(< x (+ K5000 (- 4997)))
+
+** expand-pob: inv2 level: 0 depth: 0 exprID: 13269 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ y (- 2)))
+     (= (+ x (* (- 1) K10000)) (- 6)))
+
+** add-lemma: 2 exprID: 13258 pobID: 13269
+inv2
+(< x (+ K10000 (- 6)))
+
+** expand-pob: inv2 level: 1 depth: 1 exprID: 13269 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ y (- 2)))
+     (= (+ x (* (- 1) K10000)) (- 6)))
+
+** expand-pob: inv2 level: 2 depth: 2 exprID: 13269 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ y (- 2)))
+     (= (+ x (* (- 1) K10000)) (- 6)))
+
+** add-lemma: 2 exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** expand-pob: inv2 level: 3 depth: 0 exprID: 10753 pobID: 11178
+(and (< x (+ y (- 1)))
+     (< x K5000)
+     (>= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (>= x (+ K5000 (- 3)))
+     (= (+ x (* (- 1) K10000)) (- 5))
+     (>= x (+ K5000 (- 4))))
+
+** add-lemma: 3 exprID: 1271 pobID: 2105
+inv2
+(< x (+ K5000 (- 1)))
+
+** expand-pob: inv2 level: 0 depth: 0 exprID: 11367 pobID: 1
+(and (< x (+ y (- 1)))
+     (< x K5000)
+     (= (+ x (* (- 1) K10000)) (- 5)))
+
+** expand-pob: inv2 level: 1 depth: 1 exprID: 11367 pobID: 1
+(and (< x (+ y (- 1)))
+     (< x K5000)
+     (= (+ x (* (- 1) K10000)) (- 5)))
+
+** add-lemma: 1 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** expand-pob: inv2 level: 2 depth: 2 exprID: 11367 pobID: 1
+(and (< x (+ y (- 1)))
+     (< x K5000)
+     (= (+ x (* (- 1) K10000)) (- 5)))
+
+** add-lemma: 2 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** expand-pob: inv2 SUBS level: 1 depth: 2 exprID: 13605 pobID: 1
+(and (<= x (+ K10000 (- 5)))
+     (>= x (+ K10000 (- 6)))
+     (<= K10000 (+ K5000 4))
+     (>= y (+ K10000 (- 3))))
+
+** expand-pob: inv2 level: 1 depth: 2 exprID: 5201 pobID: 1
+(and (<= x (+ K10000 (- 5)))
+     (<= K10000 (+ K5000 4))
+     (>= y (+ K10000 (- 3))))
+
+** expand-pob: inv2 level: 0 depth: 2 exprID: 13705 pobID: 5201
+(and (< x K5000)
+     (<= x (+ K10000 (- 6)))
+     (<= K10000 (+ K5000 4))
+     (>= y (+ K10000 (- 3))))
+
+** add-lemma: 0 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** expand-pob: inv2 level: 1 depth: 2 exprID: 5201 pobID: 1
+(and (<= x (+ K10000 (- 5)))
+     (<= K10000 (+ K5000 4))
+     (>= y (+ K10000 (- 3))))
+
+** add-lemma: 1 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** expand-pob: inv2 SUBS level: 2 depth: 3 exprID: 13605 pobID: 1
+(and (<= x (+ K10000 (- 5)))
+     (>= x (+ K10000 (- 6)))
+     (<= K10000 (+ K5000 4))
+     (>= y (+ K10000 (- 3))))
+
+** add-lemma: 2 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** expand-pob: inv2 level: 3 depth: 3 exprID: 11367 pobID: 1
+(and (< x (+ y (- 1)))
+     (< x K5000)
+     (= (+ x (* (- 1) K10000)) (- 5)))
+
+** add-lemma: 3 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** expand-pob: inv2 SUBS level: 2 depth: 3 exprID: 13605 pobID: 1
+(and (<= x (+ K10000 (- 5)))
+     (>= x (+ K10000 (- 6)))
+     (<= K10000 (+ K5000 4))
+     (>= y (+ K10000 (- 3))))
+
+** expand-pob: inv2 SUBS level: 3 depth: 4 exprID: 13605 pobID: 1
+(and (<= x (+ K10000 (- 5)))
+     (>= x (+ K10000 (- 6)))
+     (<= K10000 (+ K5000 4))
+     (>= y (+ K10000 (- 3))))
+
+** add-lemma: 3 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** expand-pob: inv2 level: 4 depth: 0 exprID: 11178 pobID: 11143
+(and (< x y)
+     (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (>= x (+ K5000 (- 3)))
+     (= (+ x (* (- 1) K10000)) (- 4)))
+
+** add-lemma: 4 exprID: 14058 pobID: 11178
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 5 depth: 0 exprID: 11143 pobID: 11127
+(and (< x y)
+     (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (= (+ x (* (- 1) K10000)) (- 3))
+     (>= x (+ K5000 (- 2))))
+
+** expand-pob: inv2 level: 4 depth: 0 exprID: 13885 pobID: 11143
+(and (< x (+ y (- 1)))
+     (< x K5000)
+     (>= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (>= x (+ K5000 (- 3)))
+     (= (+ x (* (- 1) K10000)) (- 4)))
+
+** add-lemma: 4 exprID: 2708 pobID: 2641
+inv2
+(< x (+ K10000 (- 4)))
+
+** expand-pob: inv2 level: 5 depth: 0 exprID: 11143 pobID: 11127
+(and (< x y)
+     (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (= (+ x (* (- 1) K10000)) (- 3))
+     (>= x (+ K5000 (- 2))))
+
+** add-lemma: 5 exprID: 14221 pobID: 11143
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 4 depth: 0 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 5 depth: 1 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 level: 4 depth: 1 exprID: 13572 pobID: 14267
+(and (< x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 2)))
+     (>= x (+ K10000 (- 5))))
+
+** add-lemma: 4 exprID: 11355 pobID: 11367
+inv2
+(< x (+ K10000 (- 5)))
+
+** expand-pob: inv2 level: 2 depth: 1 exprID: 14398 pobID: 1
+(and (< x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 2))))
+
+** expand-pob: inv2 level: 0 depth: 1 exprID: 14371 pobID: 1
+(and (< x K5000)
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 2))))
+
+** expand-pob: inv2 level: 3 depth: 2 exprID: 14398 pobID: 1
+(and (< x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 2))))
+
+** add-lemma: 3 exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** expand-pob: inv2 level: 4 depth: 3 exprID: 14398 pobID: 1
+(and (< x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 2))))
+
+** expand-pob: inv2 level: 3 depth: 3 exprID: 14902 pobID: 14398
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 3)))
+     (<= x (+ y (- 3))))
+
+** add-lemma: 3 exprID: 1678 pobID: 14902
+inv2
+(< x (+ K5000 (- 2)))
+
+** expand-pob: inv2 level: 0 depth: 3 exprID: 15077 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 3)))
+     (<= x (+ y (- 3))))
+
+** expand-pob: inv2 level: 4 depth: 3 exprID: 14398 pobID: 1
+(and (< x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 2))))
+
+** add-lemma: 4 exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** expand-pob: inv2 SUBS level: 5 depth: 1 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** add-lemma: 5 exprID: 15134 pobID: 14267
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (< x (+ K10000 (- 4)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 6 depth: 0 exprID: 11127 pobID: 2040
+(and (< x y)
+     (>= x K5000)
+     (= (+ x (* (- 1) K10000)) (- 2))
+     (>= x (+ K5000 (- 1))))
+
+** expand-pob: inv2 level: 5 depth: 0 exprID: 15126 pobID: 11127
+(and (< x (+ y (- 1)))
+     (< x K5000)
+     (>= x (+ K5000 (- 1)))
+     (= (+ x (* (- 1) K10000)) (- 3))
+     (>= x (+ K5000 (- 2))))
+
+** add-lemma: 5 exprID: 1719 pobID: 1636
+inv2
+(< x (+ K10000 (- 3)))
+
+** expand-pob: inv2 level: 6 depth: 0 exprID: 11127 pobID: 2040
+(and (< x y)
+     (>= x K5000)
+     (= (+ x (* (- 1) K10000)) (- 2))
+     (>= x (+ K5000 (- 1))))
+
+** add-lemma: 6 exprID: 15266 pobID: 11127
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 4 depth: 0 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 5 depth: 1 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 6 depth: 2 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 level: 5 depth: 2 exprID: 13572 pobID: 14267
+(and (< x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 2)))
+     (>= x (+ K10000 (- 5))))
+
+** expand-pob: inv2 level: 4 depth: 2 exprID: 15263 pobID: 13572
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 3)))
+     (<= x (+ y (- 3)))
+     (>= x (+ K10000 (- 6))))
+
+** expand-pob: inv2 level: 3 depth: 2 exprID: 15314 pobID: 15263
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (>= x (+ K5000 (- 3)))
+     (<= x (+ K10000 (- 4)))
+     (<= x (+ y (- 4)))
+     (>= x (+ K10000 (- 7))))
+
+** add-lemma: 3 exprID: 15284 pobID: 15314
+inv2
+(< x (+ K5000 (- 4)))
+
+** expand-pob: inv2 level: 0 depth: 2 exprID: 15479 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 4)))
+     (<= x (+ y (- 4)))
+     (>= x (+ K10000 (- 7))))
+
+** add-lemma: 0 exprID: 3502 pobID: 15479
+inv2
+(< x (+ K10000 (- 9999)))
+
+** expand-pob: inv2 level: 0 depth: 2 exprID: 15448 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 4)))
+     (<= x (+ y (- 4))))
+
+** expand-pob: inv2 level: 1 depth: 3 exprID: 15479 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 4)))
+     (<= x (+ y (- 4)))
+     (>= x (+ K10000 (- 7))))
+
+** add-lemma: 1 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** expand-pob: inv2 level: 2 depth: 4 exprID: 15479 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 4)))
+     (<= x (+ y (- 4)))
+     (>= x (+ K10000 (- 7))))
+
+** add-lemma: 2 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** expand-pob: inv2 level: 3 depth: 5 exprID: 15479 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 4)))
+     (<= x (+ y (- 4)))
+     (>= x (+ K10000 (- 7))))
+
+** add-lemma: 3 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** expand-pob: inv2 level: 4 depth: 2 exprID: 15263 pobID: 13572
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 3)))
+     (<= x (+ y (- 3)))
+     (>= x (+ K10000 (- 6))))
+
+** add-lemma: 4 exprID: 13258 pobID: 13269
+inv2
+(< x (+ K10000 (- 6)))
+
+** expand-pob: inv2 level: 0 depth: 2 exprID: 14902 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 3)))
+     (<= x (+ y (- 3))))
+
+** expand-pob: inv2 level: 1 depth: 3 exprID: 14902 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 3)))
+     (<= x (+ y (- 3))))
+
+** add-lemma: 1 exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** expand-pob: inv2 level: 2 depth: 4 exprID: 14902 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 3)))
+     (<= x (+ y (- 3))))
+
+** add-lemma: 2 exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** expand-pob: inv2 SUBS level: 1 depth: 4 exprID: 16028 pobID: 1
+(and (>= x (+ K5000 (- 2)))
+     (<= x (+ K5000 (- 1)))
+     (>= y (+ K5000 1))
+     (>= K10000 (+ K5000 1)))
+
+** expand-pob: inv2 level: 0 depth: 4 exprID: 14288 pobID: 1
+(and (<= x (+ K5000 (- 1)))
+     (>= y (+ K5000 1))
+     (>= K10000 (+ K5000 1)))
+
+** add-lemma: 0 exprID: 15995 pobID: 14288
+inv2
+(< y (+ K5000 1))
+
+** expand-pob: inv2 level: 1 depth: 5 exprID: 14288 pobID: 1
+(and (<= x (+ K5000 (- 1)))
+     (>= y (+ K5000 1))
+     (>= K10000 (+ K5000 1)))
+
+** add-lemma: 1 exprID: 15995 pobID: 14288
+inv2
+(< y (+ K5000 1))
+
+** expand-pob: inv2 SUBS level: 2 depth: 5 exprID: 16028 pobID: 1
+(and (>= x (+ K5000 (- 2)))
+     (<= x (+ K5000 (- 1)))
+     (>= y (+ K5000 1))
+     (>= K10000 (+ K5000 1)))
+
+** add-lemma: 2 exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** expand-pob: inv2 level: 3 depth: 5 exprID: 14902 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 3)))
+     (<= x (+ y (- 3))))
+
+** add-lemma: 3 exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** expand-pob: inv2 SUBS level: 2 depth: 5 exprID: 16028 pobID: 1
+(and (>= x (+ K5000 (- 2)))
+     (<= x (+ K5000 (- 1)))
+     (>= y (+ K5000 1))
+     (>= K10000 (+ K5000 1)))
+
+** expand-pob: inv2 SUBS level: 3 depth: 6 exprID: 16028 pobID: 1
+(and (>= x (+ K5000 (- 2)))
+     (<= x (+ K5000 (- 1)))
+     (>= y (+ K5000 1))
+     (>= K10000 (+ K5000 1)))
+
+** add-lemma: 3 exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** expand-pob: inv2 level: 4 depth: 6 exprID: 14902 pobID: 1
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 3)))
+     (<= x (+ y (- 3))))
+
+** add-lemma: 4 exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** expand-pob: inv2 SUBS level: 3 depth: 6 exprID: 16028 pobID: 1
+(and (>= x (+ K5000 (- 2)))
+     (<= x (+ K5000 (- 1)))
+     (>= y (+ K5000 1))
+     (>= K10000 (+ K5000 1)))
+
+** expand-pob: inv2 SUBS level: 4 depth: 7 exprID: 16028 pobID: 1
+(and (>= x (+ K5000 (- 2)))
+     (<= x (+ K5000 (- 1)))
+     (>= y (+ K5000 1))
+     (>= K10000 (+ K5000 1)))
+
+** add-lemma: 4 exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** expand-pob: inv2 level: 5 depth: 2 exprID: 13572 pobID: 14267
+(and (< x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 2)))
+     (>= x (+ K10000 (- 5))))
+
+** add-lemma: 5 exprID: 16516 pobID: 13572
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (< x (+ K10000 (- 5)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** expand-pob: inv2 SUBS level: 6 depth: 2 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 level: 5 depth: 2 exprID: 16546 pobID: 14267
+(and (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 5))))
+
+** add-lemma: 5 exprID: 11355 pobID: 11367
+inv2
+(< x (+ K10000 (- 5)))
+
+** expand-pob: inv2 level: 0 depth: 2 exprID: 16595 pobID: 1
+(and (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 level: 0 depth: 2 exprID: 16617 pobID: 1
+(and (<= x (+ K10000 (- 2))) (<= x (+ y (- 1))))
+
+** expand-pob: inv2 level: 1 depth: 3 exprID: 16595 pobID: 1
+(and (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 1))))
+
+** add-lemma: 1 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 2 depth: 4 exprID: 16595 pobID: 1
+(and (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 1))))
+
+** add-lemma: 2 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 3 depth: 5 exprID: 16595 pobID: 1
+(and (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 1))))
+
+** add-lemma: 3 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 4 depth: 6 exprID: 16595 pobID: 1
+(and (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 1))))
+
+** add-lemma: 4 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 5 depth: 7 exprID: 16595 pobID: 1
+(and (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 1))))
+
+** add-lemma: 5 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 6 depth: 2 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** add-lemma: 6 exprID: 15134 pobID: 14267
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (< x (+ K10000 (- 4)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 7 depth: 0 exprID: 2040 pobID: 328
+(and (< x y)
+     (= (+ x (* (- 1) K10000)) (- 1))
+     (>= x K5000))
+
+** expand-pob: inv2 level: 6 depth: 0 exprID: 17337 pobID: 2040
+(and (< x (+ y (- 1)))
+     (< x K5000)
+     (= (+ x (* (- 1) K10000)) (- 2))
+     (>= x (+ K5000 (- 1))))
+
+** add-lemma: 6 exprID: 1314 pobID: 1265
+inv2
+(< x (+ K10000 (- 2)))
+
+** expand-pob: inv2 level: 7 depth: 0 exprID: 2040 pobID: 328
+(and (< x y)
+     (= (+ x (* (- 1) K10000)) (- 1))
+     (>= x K5000))
+
+** add-lemma: 7 exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 4 depth: 0 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 5 depth: 1 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 6 depth: 2 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 7 depth: 3 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 level: 6 depth: 3 exprID: 13572 pobID: 14267
+(and (< x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 2)))
+     (>= x (+ K10000 (- 5))))
+
+** expand-pob: inv2 level: 5 depth: 3 exprID: 15263 pobID: 13572
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 3)))
+     (<= x (+ y (- 3)))
+     (>= x (+ K10000 (- 6))))
+
+** expand-pob: inv2 level: 4 depth: 3 exprID: 15314 pobID: 15263
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (>= x (+ K5000 (- 3)))
+     (<= x (+ K10000 (- 4)))
+     (<= x (+ y (- 4)))
+     (>= x (+ K10000 (- 7))))
+
+** add-lemma: 4 exprID: 15956 pobID: 15314
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (< x (+ K10000 (- 7)))
+    (not (= (+ x (* (- 1) K5000)) (- 3))))
+
+** expand-pob: inv2 level: 5 depth: 3 exprID: 15263 pobID: 13572
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 3)))
+     (<= x (+ y (- 3)))
+     (>= x (+ K10000 (- 6))))
+
+** add-lemma: 5 exprID: 17633 pobID: 15263
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (< x (+ K10000 (- 6)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** expand-pob: inv2 SUBS level: 4 depth: 3 exprID: 17760 pobID: 1
+(and (<= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 3)))
+     (<= K10000 (+ K5000 4))
+     (>= y (+ K5000 1))
+     (>= K10000 (+ K5000 1)))
+
+** add-lemma: 4 exprID: 15995 pobID: 14288
+inv2
+(< y (+ K5000 1))
+
+** expand-pob: inv2 SUBS level: 5 depth: 4 exprID: 17760 pobID: 1
+(and (<= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 3)))
+     (<= K10000 (+ K5000 4))
+     (>= y (+ K5000 1))
+     (>= K10000 (+ K5000 1)))
+
+** add-lemma: 5 exprID: 15995 pobID: 14288
+inv2
+(< y (+ K5000 1))
+
+** expand-pob: inv2 level: 6 depth: 3 exprID: 13572 pobID: 14267
+(and (< x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 2)))
+     (>= x (+ K10000 (- 5))))
+
+** add-lemma: 6 exprID: 16516 pobID: 13572
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (< x (+ K10000 (- 5)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** expand-pob: inv2 SUBS level: 4 depth: 3 exprID: 17760 pobID: 1
+(and (<= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 3)))
+     (<= K10000 (+ K5000 4))
+     (>= y (+ K5000 1))
+     (>= K10000 (+ K5000 1)))
+
+** expand-pob: inv2 SUBS level: 5 depth: 4 exprID: 17760 pobID: 1
+(and (<= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 3)))
+     (<= K10000 (+ K5000 4))
+     (>= y (+ K5000 1))
+     (>= K10000 (+ K5000 1)))
+
+** expand-pob: inv2 SUBS level: 6 depth: 5 exprID: 17760 pobID: 1
+(and (<= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 3)))
+     (<= K10000 (+ K5000 4))
+     (>= y (+ K5000 1))
+     (>= K10000 (+ K5000 1)))
+
+** add-lemma: 6 exprID: 15995 pobID: 14288
+inv2
+(< y (+ K5000 1))
+
+** expand-pob: inv2 SUBS level: 7 depth: 3 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** add-lemma: 7 exprID: 15134 pobID: 14267
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (< x (+ K10000 (- 4)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 8 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** add-lemma: 8 exprID: 3946 pobID: 328
+inv2
+(or (< x K10000) (> x (+ y (- 1))))
+
+** expand-pob: query!0 level: 9 depth: 0 exprID: 1 pobID: none
+true
+
+** add-lemma: 9 exprID: 2 pobID: 1
+query!0
+false
+
+Propagating
+
+** add-lemma: 2 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 3 exprID: 2439 pobID: 4425
+inv2
+(< x (+ y (- 4)))
+
+** add-lemma: 4 exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** add-lemma: 3 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 4 exprID: 895 pobID: 11178
+inv2
+(< x K5000)
+
+** add-lemma: 4 exprID: 1271 pobID: 2105
+inv2
+(< x (+ K5000 (- 1)))
+
+** add-lemma: 4 exprID: 1678 pobID: 14902
+inv2
+(< x (+ K5000 (- 2)))
+
+** add-lemma: 4 exprID: 1685 pobID: 5280
+inv2
+(< x (+ y (- 3)))
+
+** add-lemma: 4 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 4 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** add-lemma: 4 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 4 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** add-lemma: 4 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** add-lemma: 5 exprID: 895 pobID: 11178
+inv2
+(< x K5000)
+
+** add-lemma: 5 exprID: 1271 pobID: 2105
+inv2
+(< x (+ K5000 (- 1)))
+
+** add-lemma: 5 exprID: 1274 pobID: 4314
+inv2
+(< x (+ y (- 2)))
+
+** add-lemma: 5 exprID: 1678 pobID: 14902
+inv2
+(< x (+ K5000 (- 2)))
+
+** add-lemma: 5 exprID: 2708 pobID: 2641
+inv2
+(< x (+ K10000 (- 4)))
+
+** add-lemma: 5 exprID: 3141 pobID: 3081
+inv2
+(< y (+ K10000 1))
+
+** add-lemma: 5 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 5 exprID: 13258 pobID: 13269
+inv2
+(< x (+ K10000 (- 6)))
+
+** add-lemma: 5 exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** add-lemma: 5 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** add-lemma: 5 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 5 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** add-lemma: 5 exprID: 14058 pobID: 11178
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 5 exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 5 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** add-lemma: 5 exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 5 exprID: 15956 pobID: 15314
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (< x (+ K10000 (- 7)))
+    (not (= (+ x (* (- 1) K5000)) (- 3))))
+
+** add-lemma: 5 exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** add-lemma: 6 exprID: 892 pobID: 4984
+inv2
+(< x (+ y (- 1)))
+
+** add-lemma: 6 exprID: 895 pobID: 11178
+inv2
+(< x K5000)
+
+** add-lemma: 6 exprID: 1271 pobID: 2105
+inv2
+(< x (+ K5000 (- 1)))
+
+** add-lemma: 6 exprID: 1719 pobID: 1636
+inv2
+(< x (+ K10000 (- 3)))
+
+** add-lemma: 6 exprID: 2708 pobID: 2641
+inv2
+(< x (+ K10000 (- 4)))
+
+** add-lemma: 6 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 6 exprID: 3141 pobID: 3081
+inv2
+(< y (+ K10000 1))
+
+** add-lemma: 6 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 6 exprID: 11355 pobID: 11367
+inv2
+(< x (+ K10000 (- 5)))
+
+** add-lemma: 6 exprID: 13258 pobID: 13269
+inv2
+(< x (+ K10000 (- 6)))
+
+** add-lemma: 6 exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** add-lemma: 6 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** add-lemma: 6 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 6 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** add-lemma: 6 exprID: 14058 pobID: 11178
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 6 exprID: 14221 pobID: 11143
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 6 exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 6 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** add-lemma: 6 exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 6 exprID: 15956 pobID: 15314
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (< x (+ K10000 (- 7)))
+    (not (= (+ x (* (- 1) K5000)) (- 3))))
+
+** add-lemma: 6 exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** add-lemma: 6 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 6 exprID: 17633 pobID: 15263
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (< x (+ K10000 (- 6)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 7 exprID: 895 pobID: 11178
+inv2
+(< x K5000)
+
+** add-lemma: 7 exprID: 957 pobID: 904
+inv2
+(< x (+ K10000 (- 1)))
+
+** add-lemma: 7 exprID: 1314 pobID: 1265
+inv2
+(< x (+ K10000 (- 2)))
+
+** add-lemma: 7 exprID: 1719 pobID: 1636
+inv2
+(< x (+ K10000 (- 3)))
+
+** add-lemma: 7 exprID: 2708 pobID: 2641
+inv2
+(< x (+ K10000 (- 4)))
+
+** add-lemma: 7 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 7 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: 7 exprID: 3141 pobID: 3081
+inv2
+(< y (+ K10000 1))
+
+** add-lemma: 7 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 7 exprID: 11355 pobID: 11367
+inv2
+(< x (+ K10000 (- 5)))
+
+** add-lemma: 7 exprID: 13258 pobID: 13269
+inv2
+(< x (+ K10000 (- 6)))
+
+** add-lemma: 7 exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** add-lemma: 7 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** add-lemma: 7 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 7 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** add-lemma: 7 exprID: 14058 pobID: 11178
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 7 exprID: 14221 pobID: 11143
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 7 exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 7 exprID: 15266 pobID: 11127
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 7 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** add-lemma: 7 exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 7 exprID: 15956 pobID: 15314
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (< x (+ K10000 (- 7)))
+    (not (= (+ x (* (- 1) K5000)) (- 3))))
+
+** add-lemma: 7 exprID: 15995 pobID: 14288
+inv2
+(< y (+ K5000 1))
+
+** add-lemma: 7 exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** add-lemma: 7 exprID: 16516 pobID: 13572
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (< x (+ K10000 (- 5)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 7 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 7 exprID: 17633 pobID: 15263
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (< x (+ K10000 (- 6)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 8 exprID: 708 pobID: 328
+inv2
+(< x K10000)
+
+** add-lemma: 8 exprID: 957 pobID: 904
+inv2
+(< x (+ K10000 (- 1)))
+
+** add-lemma: 8 exprID: 1314 pobID: 1265
+inv2
+(< x (+ K10000 (- 2)))
+
+** add-lemma: 8 exprID: 1719 pobID: 1636
+inv2
+(< x (+ K10000 (- 3)))
+
+** add-lemma: 8 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** add-lemma: 8 exprID: 2708 pobID: 2641
+inv2
+(< x (+ K10000 (- 4)))
+
+** add-lemma: 8 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 8 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: 8 exprID: 3141 pobID: 3081
+inv2
+(< y (+ K10000 1))
+
+** add-lemma: 8 exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** add-lemma: 8 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 8 exprID: 11355 pobID: 11367
+inv2
+(< x (+ K10000 (- 5)))
+
+** add-lemma: 9 exprID: 12360 pobID: 11781
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (< x (+ y 1)))
+
+** add-lemma: 8 exprID: 13258 pobID: 13269
+inv2
+(< x (+ K10000 (- 6)))
+
+** add-lemma: 8 exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** add-lemma: 8 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** add-lemma: 8 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 8 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** add-lemma: 8 exprID: 14058 pobID: 11178
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 8 exprID: 14221 pobID: 11143
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 8 exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 8 exprID: 15134 pobID: 14267
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (< x (+ K10000 (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 8 exprID: 15266 pobID: 11127
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 8 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** add-lemma: 8 exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 8 exprID: 15956 pobID: 15314
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (< x (+ K10000 (- 7)))
+    (not (= (+ x (* (- 1) K5000)) (- 3))))
+
+** add-lemma: 8 exprID: 15995 pobID: 14288
+inv2
+(< y (+ K5000 1))
+
+** add-lemma: 8 exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** add-lemma: 8 exprID: 16516 pobID: 13572
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (< x (+ K10000 (- 5)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 8 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 8 exprID: 17633 pobID: 15263
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (< x (+ K10000 (- 6)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 9 exprID: 708 pobID: 328
+inv2
+(< x K10000)
+
+** add-lemma: 9 exprID: 957 pobID: 904
+inv2
+(< x (+ K10000 (- 1)))
+
+** add-lemma: 9 exprID: 1314 pobID: 1265
+inv2
+(< x (+ K10000 (- 2)))
+
+** add-lemma: 9 exprID: 1719 pobID: 1636
+inv2
+(< x (+ K10000 (- 3)))
+
+** add-lemma: 9 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** add-lemma: 9 exprID: 2708 pobID: 2641
+inv2
+(< x (+ K10000 (- 4)))
+
+** add-lemma: 9 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 9 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: 9 exprID: 3141 pobID: 3081
+inv2
+(< y (+ K10000 1))
+
+** add-lemma: 9 exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** add-lemma: 9 exprID: 3946 pobID: 328
+inv2
+(or (< x K10000) (> x (+ y (- 1))))
+
+** add-lemma: 9 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 9 exprID: 11355 pobID: 11367
+inv2
+(< x (+ K10000 (- 5)))
+
+** add-lemma: 9 exprID: 13258 pobID: 13269
+inv2
+(< x (+ K10000 (- 6)))
+
+** add-lemma: 9 exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** add-lemma: 9 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** add-lemma: 9 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 9 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** add-lemma: 9 exprID: 14058 pobID: 11178
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 9 exprID: 14221 pobID: 11143
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 9 exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 9 exprID: 15134 pobID: 14267
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (< x (+ K10000 (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 9 exprID: 15266 pobID: 11127
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 9 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** add-lemma: 9 exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 9 exprID: 15956 pobID: 15314
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (< x (+ K10000 (- 7)))
+    (not (= (+ x (* (- 1) K5000)) (- 3))))
+
+** add-lemma: 9 exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** add-lemma: 9 exprID: 16516 pobID: 13572
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (< x (+ K10000 (- 5)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 9 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 9 exprID: 17633 pobID: 15263
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (< x (+ K10000 (- 6)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 10 exprID: 708 pobID: 328
+inv2
+(< x K10000)
+
+** add-lemma: 10 exprID: 957 pobID: 904
+inv2
+(< x (+ K10000 (- 1)))
+
+** add-lemma: 10 exprID: 1314 pobID: 1265
+inv2
+(< x (+ K10000 (- 2)))
+
+** add-lemma: 10 exprID: 1719 pobID: 1636
+inv2
+(< x (+ K10000 (- 3)))
+
+** add-lemma: 10 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** add-lemma: 10 exprID: 2708 pobID: 2641
+inv2
+(< x (+ K10000 (- 4)))
+
+** add-lemma: 10 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 10 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: 10 exprID: 3141 pobID: 3081
+inv2
+(< y (+ K10000 1))
+
+** add-lemma: 10 exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** add-lemma: 10 exprID: 3946 pobID: 328
+inv2
+(or (< x K10000) (> x (+ y (- 1))))
+
+** add-lemma: 10 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 10 exprID: 11355 pobID: 11367
+inv2
+(< x (+ K10000 (- 5)))
+
+** add-lemma: 10 exprID: 12360 pobID: 11781
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (< x (+ y 1)))
+
+** add-lemma: 10 exprID: 12726 pobID: 12683
+inv2
+(< x (+ y 1))
+
+** add-lemma: 10 exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** add-lemma: 10 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** add-lemma: 10 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 10 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** add-lemma: 10 exprID: 14058 pobID: 11178
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 10 exprID: 14221 pobID: 11143
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 10 exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 10 exprID: 15134 pobID: 14267
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (< x (+ K10000 (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 10 exprID: 15266 pobID: 11127
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 10 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** add-lemma: 10 exprID: 15956 pobID: 15314
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (< x (+ K10000 (- 7)))
+    (not (= (+ x (* (- 1) K5000)) (- 3))))
+
+** add-lemma: 10 exprID: 16516 pobID: 13572
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (< x (+ K10000 (- 5)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 10 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 10 exprID: 17633 pobID: 15263
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (< x (+ K10000 (- 6)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 10 exprID: 2 pobID: 1
+query!0
+false
+
+** add-lemma: 11 exprID: 708 pobID: 328
+inv2
+(< x K10000)
+
+** add-lemma: 11 exprID: 957 pobID: 904
+inv2
+(< x (+ K10000 (- 1)))
+
+** add-lemma: 11 exprID: 1314 pobID: 1265
+inv2
+(< x (+ K10000 (- 2)))
+
+** add-lemma: 11 exprID: 1719 pobID: 1636
+inv2
+(< x (+ K10000 (- 3)))
+
+** add-lemma: 11 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** add-lemma: 11 exprID: 2708 pobID: 2641
+inv2
+(< x (+ K10000 (- 4)))
+
+** add-lemma: 11 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 11 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: 11 exprID: 3141 pobID: 3081
+inv2
+(< y (+ K10000 1))
+
+** add-lemma: 11 exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** add-lemma: 11 exprID: 3946 pobID: 328
+inv2
+(or (< x K10000) (> x (+ y (- 1))))
+
+** add-lemma: 11 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 11 exprID: 12360 pobID: 11781
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (< x (+ y 1)))
+
+** add-lemma: 11 exprID: 12726 pobID: 12683
+inv2
+(< x (+ y 1))
+
+** add-lemma: 11 exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** add-lemma: 11 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** add-lemma: 11 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 11 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** add-lemma: 11 exprID: 14058 pobID: 11178
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 11 exprID: 14221 pobID: 11143
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 11 exprID: 15134 pobID: 14267
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (< x (+ K10000 (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 11 exprID: 15266 pobID: 11127
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 11 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** add-lemma: 11 exprID: 15956 pobID: 15314
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (< x (+ K10000 (- 7)))
+    (not (= (+ x (* (- 1) K5000)) (- 3))))
+
+** add-lemma: 11 exprID: 16516 pobID: 13572
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (< x (+ K10000 (- 5)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 11 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 11 exprID: 17633 pobID: 15263
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (< x (+ K10000 (- 6)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 11 exprID: 2 pobID: 1
+query!0
+false
+
+** add-lemma: 12 exprID: 708 pobID: 328
+inv2
+(< x K10000)
+
+** add-lemma: 12 exprID: 957 pobID: 904
+inv2
+(< x (+ K10000 (- 1)))
+
+** add-lemma: 12 exprID: 1314 pobID: 1265
+inv2
+(< x (+ K10000 (- 2)))
+
+** add-lemma: 12 exprID: 1719 pobID: 1636
+inv2
+(< x (+ K10000 (- 3)))
+
+** add-lemma: 12 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** add-lemma: 12 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 12 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: 12 exprID: 3141 pobID: 3081
+inv2
+(< y (+ K10000 1))
+
+** add-lemma: 12 exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** add-lemma: 12 exprID: 3946 pobID: 328
+inv2
+(or (< x K10000) (> x (+ y (- 1))))
+
+** add-lemma: 12 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 12 exprID: 12360 pobID: 11781
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (< x (+ y 1)))
+
+** add-lemma: 12 exprID: 12726 pobID: 12683
+inv2
+(< x (+ y 1))
+
+** add-lemma: 12 exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** add-lemma: 12 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** add-lemma: 12 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 12 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** add-lemma: 12 exprID: 14058 pobID: 11178
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 12 exprID: 14221 pobID: 11143
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 12 exprID: 15134 pobID: 14267
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (< x (+ K10000 (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 12 exprID: 15266 pobID: 11127
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 12 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** add-lemma: 12 exprID: 15956 pobID: 15314
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (< x (+ K10000 (- 7)))
+    (not (= (+ x (* (- 1) K5000)) (- 3))))
+
+** add-lemma: 12 exprID: 16516 pobID: 13572
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (< x (+ K10000 (- 5)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 12 exprID: 17633 pobID: 15263
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (< x (+ K10000 (- 6)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 12 exprID: 2 pobID: 1
+query!0
+false
+
+** add-lemma: 13 exprID: 708 pobID: 328
+inv2
+(< x K10000)
+
+** add-lemma: 13 exprID: 957 pobID: 904
+inv2
+(< x (+ K10000 (- 1)))
+
+** add-lemma: 13 exprID: 1314 pobID: 1265
+inv2
+(< x (+ K10000 (- 2)))
+
+** add-lemma: 13 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** add-lemma: 13 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 13 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: 13 exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** add-lemma: 13 exprID: 3946 pobID: 328
+inv2
+(or (< x K10000) (> x (+ y (- 1))))
+
+** add-lemma: 13 exprID: 12360 pobID: 11781
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (< x (+ y 1)))
+
+** add-lemma: 13 exprID: 12726 pobID: 12683
+inv2
+(< x (+ y 1))
+
+** add-lemma: 13 exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** add-lemma: 13 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** add-lemma: 13 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 13 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** add-lemma: 13 exprID: 14221 pobID: 11143
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 13 exprID: 15266 pobID: 11127
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 13 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** add-lemma: 13 exprID: 15956 pobID: 15314
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (< x (+ K10000 (- 7)))
+    (not (= (+ x (* (- 1) K5000)) (- 3))))
+
+** add-lemma: 13 exprID: 16516 pobID: 13572
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (< x (+ K10000 (- 5)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 13 exprID: 17633 pobID: 15263
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (< x (+ K10000 (- 6)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 13 exprID: 2 pobID: 1
+query!0
+false
+
+** add-lemma: 14 exprID: 708 pobID: 328
+inv2
+(< x K10000)
+
+** add-lemma: 14 exprID: 957 pobID: 904
+inv2
+(< x (+ K10000 (- 1)))
+
+** add-lemma: 14 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** add-lemma: 14 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 14 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: 14 exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** add-lemma: 14 exprID: 3946 pobID: 328
+inv2
+(or (< x K10000) (> x (+ y (- 1))))
+
+** add-lemma: 14 exprID: 12360 pobID: 11781
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (< x (+ y 1)))
+
+** add-lemma: 14 exprID: 12726 pobID: 12683
+inv2
+(< x (+ y 1))
+
+** add-lemma: 14 exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** add-lemma: 14 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** add-lemma: 14 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 14 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** add-lemma: 14 exprID: 15266 pobID: 11127
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 14 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** add-lemma: 14 exprID: 15956 pobID: 15314
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (< x (+ K10000 (- 7)))
+    (not (= (+ x (* (- 1) K5000)) (- 3))))
+
+** add-lemma: 14 exprID: 16516 pobID: 13572
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (< x (+ K10000 (- 5)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 14 exprID: 17633 pobID: 15263
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (< x (+ K10000 (- 6)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 14 exprID: 2 pobID: 1
+query!0
+false
+
+** add-lemma: 15 exprID: 708 pobID: 328
+inv2
+(< x K10000)
+
+** add-lemma: 15 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** add-lemma: 15 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 15 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: 15 exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** add-lemma: 15 exprID: 3946 pobID: 328
+inv2
+(or (< x K10000) (> x (+ y (- 1))))
+
+** add-lemma: 15 exprID: 12360 pobID: 11781
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (< x (+ y 1)))
+
+** add-lemma: 15 exprID: 12726 pobID: 12683
+inv2
+(< x (+ y 1))
+
+** add-lemma: 15 exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** add-lemma: 15 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** add-lemma: 15 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 15 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** add-lemma: 15 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** add-lemma: 15 exprID: 15956 pobID: 15314
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (< x (+ K10000 (- 7)))
+    (not (= (+ x (* (- 1) K5000)) (- 3))))
+
+** add-lemma: 15 exprID: 16516 pobID: 13572
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (< x (+ K10000 (- 5)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 15 exprID: 17633 pobID: 15263
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (< x (+ K10000 (- 6)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 15 exprID: 2 pobID: 1
+query!0
+false
+
+** add-lemma: 16 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** add-lemma: 16 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 16 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: 16 exprID: 3946 pobID: 328
+inv2
+(or (< x K10000) (> x (+ y (- 1))))
+
+** add-lemma: 16 exprID: 12360 pobID: 11781
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (< x (+ y 1)))
+
+** add-lemma: 16 exprID: 12726 pobID: 12683
+inv2
+(< x (+ y 1))
+
+** add-lemma: 16 exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** add-lemma: 16 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** add-lemma: 16 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 16 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** add-lemma: 16 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** add-lemma: 16 exprID: 15956 pobID: 15314
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (< x (+ K10000 (- 7)))
+    (not (= (+ x (* (- 1) K5000)) (- 3))))
+
+** add-lemma: 16 exprID: 16516 pobID: 13572
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (< x (+ K10000 (- 5)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 16 exprID: 17633 pobID: 15263
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (< x (+ K10000 (- 6)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 16 exprID: 2 pobID: 1
+query!0
+false
+
+** add-lemma: 17 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** add-lemma: 17 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 17 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: 17 exprID: 12360 pobID: 11781
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (< x (+ y 1)))
+
+** add-lemma: 17 exprID: 12726 pobID: 12683
+inv2
+(< x (+ y 1))
+
+** add-lemma: 17 exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** add-lemma: 17 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** add-lemma: 17 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 17 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** add-lemma: 17 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** add-lemma: 17 exprID: 15956 pobID: 15314
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (< x (+ K10000 (- 7)))
+    (not (= (+ x (* (- 1) K5000)) (- 3))))
+
+** add-lemma: 17 exprID: 16516 pobID: 13572
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (< x (+ K10000 (- 5)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 17 exprID: 17633 pobID: 15263
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (< x (+ K10000 (- 6)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 17 exprID: 2 pobID: 1
+query!0
+false
+
+** add-lemma: 18 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** add-lemma: 18 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 18 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: 18 exprID: 12360 pobID: 11781
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (< x (+ y 1)))
+
+** add-lemma: 18 exprID: 12726 pobID: 12683
+inv2
+(< x (+ y 1))
+
+** add-lemma: 18 exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** add-lemma: 18 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** add-lemma: 18 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 18 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** add-lemma: 18 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** add-lemma: 18 exprID: 15956 pobID: 15314
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (< x (+ K10000 (- 7)))
+    (not (= (+ x (* (- 1) K5000)) (- 3))))
+
+** add-lemma: 18 exprID: 16516 pobID: 13572
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (< x (+ K10000 (- 5)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 18 exprID: 17633 pobID: 15263
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (< x (+ K10000 (- 6)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 19 exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** add-lemma: 19 exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: 19 exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: 19 exprID: 12360 pobID: 11781
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (< x (+ y 1)))
+
+** add-lemma: 19 exprID: 12726 pobID: 12683
+inv2
+(< x (+ y 1))
+
+** add-lemma: 19 exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** add-lemma: 19 exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** add-lemma: 19 exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: 19 exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** add-lemma: 19 exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** add-lemma: 19 exprID: 15956 pobID: 15314
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (< x (+ K10000 (- 7)))
+    (not (= (+ x (* (- 1) K5000)) (- 3))))
+
+** add-lemma: 19 exprID: 16516 pobID: 13572
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (< x (+ K10000 (- 5)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 19 exprID: 17633 pobID: 15263
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (< x (+ K10000 (- 6)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: oo exprID: 1990 pobID: 904
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2))))
+
+** add-lemma: oo exprID: 2895 pobID: 1636
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3))))
+
+** add-lemma: oo exprID: 3072 pobID: 1265
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2))))
+
+** add-lemma: oo exprID: 12360 pobID: 11781
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (< x (+ y 1)))
+
+** add-lemma: oo exprID: 12726 pobID: 12683
+inv2
+(< x (+ y 1))
+
+** add-lemma: oo exprID: 13266 pobID: 13269
+inv2
+(or (> x (+ y (- 3)))
+    (> x (+ K5000 (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 6))))
+
+** add-lemma: oo exprID: 13357 pobID: 11367
+inv2
+(or (> x (+ K5000 (- 1)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K10000)) (- 5))))
+
+** add-lemma: oo exprID: 13691 pobID: 13705
+inv2
+(> K10000 (+ K5000 4999))
+
+** add-lemma: oo exprID: 13815 pobID: 13605
+inv2
+(or (> x (+ K10000 (- 5)))
+    (< x (+ K10000 (- 6)))
+    (> K10000 (+ K5000 4))
+    (< y (+ K10000 (- 3))))
+
+** add-lemma: oo exprID: 15631 pobID: 15479
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (> x (+ K5000 (- 3)))
+    (< x (+ K10000 (- 7))))
+
+** add-lemma: oo exprID: 15956 pobID: 15314
+inv2
+(or (> x (+ K10000 (- 4)))
+    (> x (+ y (- 4)))
+    (< x (+ K10000 (- 7)))
+    (not (= (+ x (* (- 1) K5000)) (- 3))))
+
+** add-lemma: oo exprID: 16516 pobID: 13572
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (< x (+ K10000 (- 5)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: oo exprID: 17633 pobID: 15263
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (< x (+ K10000 (- 6)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+
+* LEVEL 10
+
+** expand-pob: query!0 level: 10 depth: 0 exprID: 1 pobID: none
+true
+
+Propagating
+
+
+* LEVEL 11
+
+** expand-pob: query!0 level: 11 depth: 0 exprID: 1 pobID: none
+true
+
+Propagating
+
+
+* LEVEL 12
+
+** expand-pob: query!0 level: 12 depth: 0 exprID: 1 pobID: none
+true
+
+Propagating
+
+
+* LEVEL 13
+
+** expand-pob: query!0 level: 13 depth: 0 exprID: 1 pobID: none
+true
+
+Propagating
+
+
+* LEVEL 14
+
+** expand-pob: query!0 level: 14 depth: 0 exprID: 1 pobID: none
+true
+
+Propagating
+
+
+* LEVEL 15
+
+** expand-pob: query!0 level: 15 depth: 0 exprID: 1 pobID: none
+true
+
+Propagating
+
+
+* LEVEL 16
+
+** expand-pob: query!0 level: 16 depth: 0 exprID: 1 pobID: none
+true
+
+Propagating
+
+
+* LEVEL 17
+
+** expand-pob: query!0 level: 17 depth: 0 exprID: 1 pobID: none
+true
+
+Propagating
+
+
+* LEVEL 18
+
+** expand-pob: query!0 level: 18 depth: 0 exprID: 1 pobID: none
+true
+
+** expand-pob: inv2 level: 17 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** expand-pob: inv2 level: 16 depth: 0 exprID: 2040 pobID: 328
+(and (< x y)
+     (= (+ x (* (- 1) K10000)) (- 1))
+     (>= x K5000))
+
+** expand-pob: inv2 level: 15 depth: 0 exprID: 11127 pobID: 2040
+(and (< x y)
+     (>= x K5000)
+     (= (+ x (* (- 1) K10000)) (- 2))
+     (>= x (+ K5000 (- 1))))
+
+** expand-pob: inv2 level: 14 depth: 0 exprID: 11143 pobID: 11127
+(and (< x y)
+     (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (= (+ x (* (- 1) K10000)) (- 3))
+     (>= x (+ K5000 (- 2))))
+
+** expand-pob: inv2 level: 13 depth: 0 exprID: 11178 pobID: 11143
+(and (< x y)
+     (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (>= x (+ K5000 (- 3)))
+     (= (+ x (* (- 1) K10000)) (- 4)))
+
+** expand-pob: inv2 level: 12 depth: 0 exprID: 43386 pobID: 11178
+(and (< x y)
+     (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (>= x (+ K5000 (- 3)))
+     (= (+ x (* (- 1) K10000)) (- 5))
+     (>= x (+ K5000 (- 4))))
+
+** add-lemma: 12 exprID: 44630 pobID: 43386
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 5))))
+
+** expand-pob: inv2 level: 13 depth: 0 exprID: 11178 pobID: 11143
+(and (< x y)
+     (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (>= x (+ K5000 (- 3)))
+     (= (+ x (* (- 1) K10000)) (- 4)))
+
+** add-lemma: 13 exprID: 14058 pobID: 11178
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 12 depth: 0 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 13 depth: 1 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** add-lemma: 13 exprID: 15134 pobID: 14267
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (< x (+ K10000 (- 4)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 14 depth: 0 exprID: 11143 pobID: 11127
+(and (< x y)
+     (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (= (+ x (* (- 1) K10000)) (- 3))
+     (>= x (+ K5000 (- 2))))
+
+** add-lemma: 14 exprID: 14221 pobID: 11143
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 13 depth: 0 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 14 depth: 1 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 level: 13 depth: 1 exprID: 16546 pobID: 14267
+(and (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 5))))
+
+** expand-pob: inv2 level: 12 depth: 1 exprID: 17539 pobID: 16546
+(and (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 3)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 6))))
+
+** add-lemma: 12 exprID: 17701 pobID: 17539
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 7))))
+
+** expand-pob: inv2 level: 13 depth: 1 exprID: 16546 pobID: 14267
+(and (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 5))))
+
+** add-lemma: 13 exprID: 44960 pobID: 16546
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1)))
+    (< x (+ K10000 (- 5))))
+
+** expand-pob: inv2 SUBS level: 14 depth: 1 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** add-lemma: 14 exprID: 15134 pobID: 14267
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (< x (+ K10000 (- 4)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 13 depth: 1 exprID: 44974 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 5))))
+
+** add-lemma: 13 exprID: 44630 pobID: 43386
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 5))))
+
+** expand-pob: inv2 SUBS level: 14 depth: 2 exprID: 44974 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 5))))
+
+** expand-pob: inv2 level: 13 depth: 2 exprID: 45148 pobID: 44974
+(and (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 6))))
+
+** add-lemma: 13 exprID: 45280 pobID: 45148
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 6))))
+
+** expand-pob: inv2 level: 12 depth: 2 exprID: 16595 pobID: 1
+(and (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 level: 11 depth: 2 exprID: 45345 pobID: 16595
+(and (< x K5000)
+     (>= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 3)))
+     (<= x (+ y (- 2))))
+
+** expand-pob: inv2 level: 10 depth: 2 exprID: 45306 pobID: 45345
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (>= x (+ K5000 (- 3)))
+     (<= x (+ K10000 (- 4)))
+     (<= x (+ y (- 3))))
+
+** expand-pob: inv2 level: 9 depth: 2 exprID: 45374 pobID: 45306
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (< x (+ K5000 (- 2)))
+     (>= x (+ K5000 (- 3)))
+     (<= x (+ y (- 4)))
+     (<= x (+ K10000 (- 5)))
+     (>= x (+ K5000 (- 4))))
+
+** add-lemma: 9 exprID: 45336 pobID: 45374
+inv2
+(or (> x (+ K5000 (- 1))) (< y (+ K5000 1)))
+
+** expand-pob: inv2 level: 10 depth: 2 exprID: 45306 pobID: 45345
+(and (< x K5000)
+     (< x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (>= x (+ K5000 (- 3)))
+     (<= x (+ K10000 (- 4)))
+     (<= x (+ y (- 3))))
+
+** add-lemma: 10 exprID: 45632 pobID: 45306
+inv2
+(or (> x K5000) (< y (+ K5000 1)))
+
+** expand-pob: inv2 level: 11 depth: 2 exprID: 45345 pobID: 16595
+(and (< x K5000)
+     (>= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 3)))
+     (<= x (+ y (- 2))))
+
+** add-lemma: 11 exprID: 45414 pobID: 45345
+inv2
+(or (> x (+ y (- 1))) (< y (+ K5000 1)))
+
+** expand-pob: inv2 level: 12 depth: 2 exprID: 16595 pobID: 1
+(and (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 1))))
+
+** add-lemma: 12 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 13 depth: 3 exprID: 16595 pobID: 1
+(and (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 level: 12 depth: 3 exprID: 45345 pobID: 16595
+(and (< x K5000)
+     (>= x (+ K5000 (- 1)))
+     (>= x (+ K5000 (- 2)))
+     (<= x (+ K10000 (- 3)))
+     (<= x (+ y (- 2))))
+
+** add-lemma: 12 exprID: 45414 pobID: 45345
+inv2
+(or (> x (+ y (- 1))) (< y (+ K5000 1)))
+
+** expand-pob: inv2 level: 13 depth: 3 exprID: 16595 pobID: 1
+(and (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 1))))
+
+** add-lemma: 13 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 14 depth: 2 exprID: 44974 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 5))))
+
+** add-lemma: 14 exprID: 45280 pobID: 45148
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 6))))
+
+** expand-pob: inv2 level: 12 depth: 2 exprID: 45991 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (<= x (+ y (- 1))))
+
+** add-lemma: 12 exprID: 46186 pobID: 45991
+inv2
+(or (< x K5000) (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 13 depth: 3 exprID: 45991 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (<= x (+ y (- 1))))
+
+** add-lemma: 13 exprID: 46186 pobID: 45991
+inv2
+(or (< x K5000) (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 14 depth: 4 exprID: 45991 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 level: 13 depth: 4 exprID: 14398 pobID: 45991
+(and (< x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 2))))
+
+** add-lemma: 13 exprID: 45414 pobID: 45345
+inv2
+(or (> x (+ y (- 1))) (< y (+ K5000 1)))
+
+** expand-pob: inv2 level: 14 depth: 4 exprID: 45991 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (<= x (+ y (- 1))))
+
+** add-lemma: 14 exprID: 45414 pobID: 45345
+inv2
+(or (> x (+ y (- 1))) (< y (+ K5000 1)))
+
+** expand-pob: inv2 level: 15 depth: 0 exprID: 11127 pobID: 2040
+(and (< x y)
+     (>= x K5000)
+     (= (+ x (* (- 1) K10000)) (- 2))
+     (>= x (+ K5000 (- 1))))
+
+** add-lemma: 15 exprID: 15266 pobID: 11127
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 13 depth: 0 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 13 depth: 0 exprID: 44974 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 5))))
+
+** add-lemma: 13 exprID: 46361 pobID: 44974
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (> x (+ y (- 1)))
+    (< x (+ K10000 (- 5))))
+
+** expand-pob: inv2 SUBS level: 14 depth: 1 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 14 depth: 1 exprID: 44974 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 5))))
+
+** add-lemma: 14 exprID: 46361 pobID: 44974
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (> x (+ y (- 1)))
+    (< x (+ K10000 (- 5))))
+
+** expand-pob: inv2 SUBS level: 14 depth: 2 exprID: 44974 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 5))))
+
+** expand-pob: inv2 SUBS level: 14 depth: 3 exprID: 44974 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 5))))
+
+** expand-pob: inv2 SUBS level: 14 depth: 4 exprID: 44974 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 5))))
+
+** expand-pob: inv2 SUBS level: 14 depth: 5 exprID: 44974 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 5))))
+
+** expand-pob: inv2 SUBS level: 14 depth: 6 exprID: 44974 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 5))))
+
+** expand-pob: inv2 SUBS level: 14 depth: 7 exprID: 44974 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 5))))
+
+** expand-pob: inv2 SUBS level: 14 depth: 8 exprID: 44974 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 5))))
+
+** expand-pob: inv2 SUBS level: 15 depth: 2 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** add-lemma: 15 exprID: 15134 pobID: 14267
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (< x (+ K10000 (- 4)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 16 depth: 0 exprID: 2040 pobID: 328
+(and (< x y)
+     (= (+ x (* (- 1) K10000)) (- 1))
+     (>= x K5000))
+
+** add-lemma: 16 exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 13 depth: 0 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 14 depth: 1 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 15 depth: 2 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 SUBS level: 16 depth: 3 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** expand-pob: inv2 level: 15 depth: 3 exprID: 16546 pobID: 14267
+(and (>= x K5000)
+     (>= x (+ K5000 (- 1)))
+     (<= x (+ K10000 (- 2)))
+     (<= x (+ y (- 1)))
+     (>= x (+ K10000 (- 5))))
+
+** add-lemma: 15 exprID: 44960 pobID: 16546
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1)))
+    (< x (+ K10000 (- 5))))
+
+** expand-pob: inv2 SUBS level: 16 depth: 3 exprID: 14267 pobID: 1
+(and (>= x K5000)
+     (<= x (+ K10000 (- 1)))
+     (>= x (+ K10000 (- 4)))
+     (<= x (+ y (- 1))))
+
+** add-lemma: 16 exprID: 15134 pobID: 14267
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (< x (+ K10000 (- 4)))
+    (> x (+ y (- 1))))
+
+** expand-pob: inv2 level: 17 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** add-lemma: 17 exprID: 3946 pobID: 328
+inv2
+(or (< x K10000) (> x (+ y (- 1))))
+
+** expand-pob: query!0 level: 18 depth: 0 exprID: 1 pobID: none
+true
+
+** add-lemma: 18 exprID: 2 pobID: 1
+query!0
+false
+
+Propagating
+
+** add-lemma: 11 exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 10 exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** add-lemma: 10 exprID: 45336 pobID: 45374
+inv2
+(or (> x (+ K5000 (- 1))) (< y (+ K5000 1)))
+
+** add-lemma: 11 exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 11 exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** add-lemma: 11 exprID: 45336 pobID: 45374
+inv2
+(or (> x (+ K5000 (- 1))) (< y (+ K5000 1)))
+
+** add-lemma: 11 exprID: 45632 pobID: 45306
+inv2
+(or (> x K5000) (< y (+ K5000 1)))
+
+** add-lemma: 12 exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 12 exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 12 exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** add-lemma: 12 exprID: 45336 pobID: 45374
+inv2
+(or (> x (+ K5000 (- 1))) (< y (+ K5000 1)))
+
+** add-lemma: 12 exprID: 45632 pobID: 45306
+inv2
+(or (> x K5000) (< y (+ K5000 1)))
+
+** add-lemma: 13 exprID: 3141 pobID: 3081
+inv2
+(< y (+ K10000 1))
+
+** add-lemma: 13 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 13 exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 13 exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 13 exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** add-lemma: 13 exprID: 17701 pobID: 17539
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 7))))
+
+** add-lemma: 13 exprID: 45336 pobID: 45374
+inv2
+(or (> x (+ K5000 (- 1))) (< y (+ K5000 1)))
+
+** add-lemma: 13 exprID: 45632 pobID: 45306
+inv2
+(or (> x K5000) (< y (+ K5000 1)))
+
+** add-lemma: 14 exprID: 3141 pobID: 3081
+inv2
+(< y (+ K10000 1))
+
+** add-lemma: 14 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 14 exprID: 14058 pobID: 11178
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 14 exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 14 exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 14 exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** add-lemma: 14 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 14 exprID: 17701 pobID: 17539
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 7))))
+
+** add-lemma: 14 exprID: 44630 pobID: 43386
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 5))))
+
+** add-lemma: 14 exprID: 45336 pobID: 45374
+inv2
+(or (> x (+ K5000 (- 1))) (< y (+ K5000 1)))
+
+** add-lemma: 14 exprID: 45632 pobID: 45306
+inv2
+(or (> x K5000) (< y (+ K5000 1)))
+
+** add-lemma: 14 exprID: 46186 pobID: 45991
+inv2
+(or (< x K5000) (> x (+ y (- 1))))
+
+** add-lemma: 15 exprID: 3141 pobID: 3081
+inv2
+(< y (+ K10000 1))
+
+** add-lemma: 15 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 15 exprID: 14058 pobID: 11178
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 15 exprID: 14221 pobID: 11143
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 15 exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 15 exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 15 exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** add-lemma: 15 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 15 exprID: 17701 pobID: 17539
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 7))))
+
+** add-lemma: 15 exprID: 44630 pobID: 43386
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 5))))
+
+** add-lemma: 15 exprID: 45280 pobID: 45148
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 6))))
+
+** add-lemma: 15 exprID: 45336 pobID: 45374
+inv2
+(or (> x (+ K5000 (- 1))) (< y (+ K5000 1)))
+
+** add-lemma: 15 exprID: 45414 pobID: 45345
+inv2
+(or (> x (+ y (- 1))) (< y (+ K5000 1)))
+
+** add-lemma: 15 exprID: 45632 pobID: 45306
+inv2
+(or (> x K5000) (< y (+ K5000 1)))
+
+** add-lemma: 15 exprID: 46186 pobID: 45991
+inv2
+(or (< x K5000) (> x (+ y (- 1))))
+
+** add-lemma: 15 exprID: 46361 pobID: 44974
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (> x (+ y (- 1)))
+    (< x (+ K10000 (- 5))))
+
+** add-lemma: 16 exprID: 3141 pobID: 3081
+inv2
+(< y (+ K10000 1))
+
+** add-lemma: 16 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 16 exprID: 14058 pobID: 11178
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 16 exprID: 14221 pobID: 11143
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 16 exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 16 exprID: 15266 pobID: 11127
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 16 exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 16 exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** add-lemma: 16 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 16 exprID: 17701 pobID: 17539
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 7))))
+
+** add-lemma: 16 exprID: 44630 pobID: 43386
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 5))))
+
+** add-lemma: 16 exprID: 44960 pobID: 16546
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1)))
+    (< x (+ K10000 (- 5))))
+
+** add-lemma: 16 exprID: 45280 pobID: 45148
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 6))))
+
+** add-lemma: 16 exprID: 45336 pobID: 45374
+inv2
+(or (> x (+ K5000 (- 1))) (< y (+ K5000 1)))
+
+** add-lemma: 16 exprID: 45414 pobID: 45345
+inv2
+(or (> x (+ y (- 1))) (< y (+ K5000 1)))
+
+** add-lemma: 16 exprID: 45632 pobID: 45306
+inv2
+(or (> x K5000) (< y (+ K5000 1)))
+
+** add-lemma: 16 exprID: 46186 pobID: 45991
+inv2
+(or (< x K5000) (> x (+ y (- 1))))
+
+** add-lemma: 16 exprID: 46361 pobID: 44974
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (> x (+ y (- 1)))
+    (< x (+ K10000 (- 5))))
+
+** add-lemma: 17 exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** add-lemma: 17 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 17 exprID: 14058 pobID: 11178
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 17 exprID: 14221 pobID: 11143
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 17 exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 17 exprID: 15134 pobID: 14267
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (< x (+ K10000 (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 17 exprID: 15266 pobID: 11127
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 17 exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 17 exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** add-lemma: 17 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 17 exprID: 17701 pobID: 17539
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 7))))
+
+** add-lemma: 17 exprID: 44630 pobID: 43386
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 5))))
+
+** add-lemma: 17 exprID: 44960 pobID: 16546
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1)))
+    (< x (+ K10000 (- 5))))
+
+** add-lemma: 17 exprID: 45280 pobID: 45148
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 6))))
+
+** add-lemma: 17 exprID: 45336 pobID: 45374
+inv2
+(or (> x (+ K5000 (- 1))) (< y (+ K5000 1)))
+
+** add-lemma: 17 exprID: 45414 pobID: 45345
+inv2
+(or (> x (+ y (- 1))) (< y (+ K5000 1)))
+
+** add-lemma: 17 exprID: 45632 pobID: 45306
+inv2
+(or (> x K5000) (< y (+ K5000 1)))
+
+** add-lemma: 17 exprID: 46186 pobID: 45991
+inv2
+(or (< x K5000) (> x (+ y (- 1))))
+
+** add-lemma: 17 exprID: 46361 pobID: 44974
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (> x (+ y (- 1)))
+    (< x (+ K10000 (- 5))))
+
+** add-lemma: 18 exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** add-lemma: 18 exprID: 3946 pobID: 328
+inv2
+(or (< x K10000) (> x (+ y (- 1))))
+
+** add-lemma: 18 exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 18 exprID: 14058 pobID: 11178
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 18 exprID: 14221 pobID: 11143
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 18 exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: 18 exprID: 15134 pobID: 14267
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (< x (+ K10000 (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 18 exprID: 15266 pobID: 11127
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 18 exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: 18 exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** add-lemma: 18 exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: 18 exprID: 17701 pobID: 17539
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 7))))
+
+** add-lemma: 18 exprID: 44630 pobID: 43386
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 5))))
+
+** add-lemma: 18 exprID: 44960 pobID: 16546
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1)))
+    (< x (+ K10000 (- 5))))
+
+** add-lemma: 18 exprID: 45280 pobID: 45148
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 6))))
+
+** add-lemma: 18 exprID: 45336 pobID: 45374
+inv2
+(or (> x (+ K5000 (- 1))) (< y (+ K5000 1)))
+
+** add-lemma: 18 exprID: 45414 pobID: 45345
+inv2
+(or (> x (+ y (- 1))) (< y (+ K5000 1)))
+
+** add-lemma: 18 exprID: 45632 pobID: 45306
+inv2
+(or (> x K5000) (< y (+ K5000 1)))
+
+** add-lemma: 18 exprID: 46186 pobID: 45991
+inv2
+(or (< x K5000) (> x (+ y (- 1))))
+
+** add-lemma: 18 exprID: 46361 pobID: 44974
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (> x (+ y (- 1)))
+    (< x (+ K10000 (- 5))))
+
+** add-lemma: oo exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** add-lemma: oo exprID: 3946 pobID: 328
+inv2
+(or (< x K10000) (> x (+ y (- 1))))
+
+** add-lemma: oo exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: oo exprID: 14058 pobID: 11178
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: oo exprID: 14221 pobID: 11143
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 1))))
+
+** add-lemma: oo exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: oo exprID: 15134 pobID: 14267
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (< x (+ K10000 (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: oo exprID: 15266 pobID: 11127
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: oo exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: oo exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** add-lemma: oo exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: oo exprID: 17701 pobID: 17539
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 7))))
+
+** add-lemma: oo exprID: 44630 pobID: 43386
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 5))))
+
+** add-lemma: oo exprID: 44960 pobID: 16546
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1)))
+    (< x (+ K10000 (- 5))))
+
+** add-lemma: oo exprID: 45280 pobID: 45148
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 6))))
+
+** add-lemma: oo exprID: 45336 pobID: 45374
+inv2
+(or (> x (+ K5000 (- 1))) (< y (+ K5000 1)))
+
+** add-lemma: oo exprID: 45414 pobID: 45345
+inv2
+(or (> x (+ y (- 1))) (< y (+ K5000 1)))
+
+** add-lemma: oo exprID: 45632 pobID: 45306
+inv2
+(or (> x K5000) (< y (+ K5000 1)))
+
+** add-lemma: oo exprID: 46186 pobID: 45991
+inv2
+(or (< x K5000) (> x (+ y (- 1))))
+
+** add-lemma: oo exprID: 46361 pobID: 44974
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (> x (+ y (- 1)))
+    (< x (+ K10000 (- 5))))
+
+** add-lemma: oo exprID: 2 pobID: 1
+query!0
+false
+
