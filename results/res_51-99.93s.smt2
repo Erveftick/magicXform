@@ -11,7 +11,7 @@
 (declare-var H Int)
 (declare-var I Int)
 (rule (=> (= B 3333) (inv B)))
-(rule (=> (and (= 3333 B) (= G 0) (= D 3333) (= I 6666) (= (* 3 B) C) (= (* 2 B) A))
+(rule (=> (and (inv B) (= 3333 B) (= G 0) (= D 3333) (= I 6666) (= (* 3 B) C) (= (* 2 B) A))
     (inv2 G D I C B A)))
 (rule (let ((a!1 (and (inv B) (inv2 G D I C B A)
                 (= E (+ G 1))

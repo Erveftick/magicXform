@@ -131,7 +131,6 @@ def find_magic_values(rules):
 def prepare_substitution(values):
     values_consts = [z3.IntVal(val) for val in values]
     values_vars = [z3.Int(f"K{val}") for val in values]
-    values_vars = list(reversed(values_vars))
     return values_vars, [*zip(values_consts, values_vars)]
 
 def apply_substitution(rules, substitutions):
@@ -159,8 +158,15 @@ def substitute_with_exceptions(rule, substitutions):
     return substituted_rule
 
 def apply_custom_substitution(rules, substitutions):
-    subs_rules = apply_substitution(rules, substitutions)
-    return [substitute_with_exceptions(rule, substitutions) for rule in subs_rules]
+    first_rule = [rules[0]]
+    subs_rules = apply_substitution(rules[1:], substitutions)
+    new_rules = [substitute_with_exceptions(rule, substitutions) for rule in subs_rules]
+    return first_rule + new_rules
+
+# def apply_custom_substitution(rules, substitutions):
+#     subs_rules = apply_substitution(rules, substitutions)
+#     return [substitute_with_exceptions(rule, substitutions) for rule in subs_rules]
+
 
 def generate_additional_conditions(substitutions):
     return [(sub_var == sub_val) for sub_val, sub_var in substitutions]
