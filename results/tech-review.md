@@ -243,11 +243,15 @@ To summarize, this part of the review highlighted how Spacer struggles with 'mag
 
 ---
 
+### So what has changed?
+
+The first thing that came to my sight was the disappearance of numbers from the trace file. Instead of 5 and 10 thousand, it uses variables x and y (the original log contains inv2_0_n and similar naming but was renamed for convenience).
+
+###### Look over trace file located in results/logs/sat_split_1.log
 ```
 * LEVEL 1
 
-** expand-pob: query!0 level: 1 depth: 0 exprID: 1 pobID: none
-true
+...
 
 ** expand-pob: inv2 level: 0 depth: 0 exprID: 328 pobID: 1
 (and (= K10000 x) (< x y))
@@ -255,4 +259,156 @@ true
 ** add-lemma: 0 exprID: 708 pobID: 328
 inv2
 (< x K10000)
+
+...
 ```
+
+As mentioned earlier, Spacer tried to find relationships between numbers and somehow abstract them by adding or removing 1 from them. At the second level, we already see that the method with variables works as it should: the numbers do not really change, it only provides relationships , which Spacer may use in the future.
+
+###### Look over trace file located in results/logs/sat_split_1.log
+```
+* LEVEL 2
+
+** expand-pob: inv2 level: 1 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** expand-pob: inv2 level: 0 depth: 0 exprID: 904 pobID: 328
+(and (= (+ x (* (- 1) K10000)) (- 1))
+     (< x (+ y (- 1)))
+     (< x K5000))
+
+** add-lemma: 0 exprID: 957 pobID: 904
+inv2
+(< x (+ K10000 (- 1)))
+
+** expand-pob: inv2 level: 1 depth: 0 exprID: 328 pobID: 1
+(and (= K10000 x) (< x y))
+
+** add-lemma: 1 exprID: 708 pobID: 328
+inv2
+(< x K10000)
+
+...
+```
+
+If we go further, for example, to level 9, we will see that Spacer, as usual, tries to find relationships between numbers and variables by kinda brute force.
+
+###### Look over trace file located in results/logs/sat_split_1.log
+```
+...
+
+** add-lemma: 18 exprID: 45632 pobID: 45306
+inv2
+(or (> x K5000) (< y (+ K5000 1)))
+
+** add-lemma: 18 exprID: 46186 pobID: 45991
+inv2
+(or (< x K5000) (> x (+ y (- 1))))
+
+** add-lemma: 18 exprID: 46361 pobID: 44974
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (> x (+ y (- 1)))
+    (< x (+ K10000 (- 5))))
+
+** add-lemma: oo exprID: 3571 pobID: 2040
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 1)))
+    (< x K5000)
+    (> x (+ y (- 1))))
+
+** add-lemma: oo exprID: 3946 pobID: 328
+inv2
+(or (< x K10000) (> x (+ y (- 1))))
+
+** add-lemma: oo exprID: 11159 pobID: 11209
+inv2
+(or (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: oo exprID: 14058 pobID: 11178
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: oo exprID: 14221 pobID: 11143
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 3)))
+    (> x (+ y (- 1))))
+
+** add-lemma: oo exprID: 14402 pobID: 14398
+inv2
+(or (> x (+ K10000 (- 2)))
+    (> x (+ y (- 2)))
+    (not (= (+ x (* (- 1) K5000)) (- 1))))
+
+** add-lemma: oo exprID: 15134 pobID: 14267
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 1)))
+    (< x (+ K10000 (- 4)))
+    (> x (+ y (- 1))))
+
+** add-lemma: oo exprID: 15266 pobID: 11127
+inv2
+(or (< x K5000)
+    (not (= (+ x (* (- 1) K10000)) (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: oo exprID: 15712 pobID: 14902
+inv2
+(or (> x (+ K10000 (- 3)))
+    (> x (+ y (- 3)))
+    (not (= (+ x (* (- 1) K5000)) (- 2))))
+
+** add-lemma: oo exprID: 16110 pobID: 16028
+inv2
+(or (< x (+ K5000 (- 2)))
+    (> x (+ K5000 (- 1)))
+    (< y (+ K5000 1))
+    (< K10000 (+ K5000 1)))
+
+** add-lemma: oo exprID: 16600 pobID: 16595
+inv2
+(or (< x K5000)
+    (> x (+ K10000 (- 2)))
+    (> x (+ y (- 1))))
+
+** add-lemma: oo exprID: 17701 pobID: 17539
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 7))))
+
+** add-lemma: oo exprID: 44630 pobID: 43386
+inv2
+(or (> x (+ y (- 1))) (< x (+ K10000 (- 5))))
+
+...
+```
+
+In the case of the swapped numbers, Spacer was able to find a solution after 18 levels, given the propagation from levels 10 to 17. Speaking about the original file, then the spacer could not provide an answer after 91 levels, after which it was decided to stop the process. I believe that the above problems with finding the "right and correct" number for a ratio by adding or removing a certain constant prevents the tool from effectively finding interdependencies and invariants. Perhaps there are other factors that I could not notice when viewing and analyzing the log files in detail. It is recommended to go through the log files to make sure that the above reasons are really detrimental and harmful to the Spacer and probably find something new.
+
+### Invariant itself
+
+The invariant found by the tools is not ideal and requires little processing by a person or other tool, but the general idea shows that Speiser uses variables for the invariant, not numbers. It is worth noting that the answer contains a number quite close to one of the variables (namely K5000), this is the number 4998. Of course, the algorithm for finding the invariant finds a way to find out what number is hidden behind the variable and this gives it the opportunity to present an answer that depends on the found number , however, most of the restrictions have variables in them.
+
+```
+(define-fun inv2 ((x Int) (y Int) (K10000 Int) (K5000 Int)) Bool
+  (let ((a!1 (not (<= (+ x (* (- 1) y)) (- 1))))
+        (a!2 (not (>= (+ y (* (- 1) K5000)) 1)))
+        (a!3 (not (<= (+ y (* (- 1) K5000)) (- 1))))
+        (a!4 (not (>= (+ x (* (- 1) y)) 1)))
+        (a!5 (not (<= (+ K10000 (* (- 1) K5000)) 4998))))
+    (and (or a!1 a!2) a!3 a!4 a!5)))
+
+Which can be represented as:
+
+(∧ (∨ (> (- x y) -1) (< (- y K5000) 1))
+   (> (- y K5000) -1)
+   (< (- x y) 1)
+   (> (- K10000 K5000) 4998))
+
+```
+
