@@ -1,6 +1,7 @@
 import sys
 from secrets import z3_path, z3_eval_path
 from spinner import Loader
+from gcd import param_finder
 sys.path.append(z3_path)
 
 import argparse, subprocess, z3, time
@@ -128,9 +129,9 @@ def find_magic_values(rules):
 
 #---- Problem rewrite functions -----------
 
-def prepare_substitution(values):
+def prepare_substitution(values, prefix):
     values_consts = [z3.IntVal(val) for val in values]
-    values_vars = [z3.Int(f"K{val}") for val in values]
+    values_vars = [z3.Int(f"{prefix}{val}") for val in values]
     return values_vars, [*zip(values_consts, values_vars)]
 
 def apply_substitution(rules, substitutions):
@@ -157,16 +158,16 @@ def substitute_with_exceptions(rule, substitutions):
     substituted_rule = rule_quant(rule_args, substituted_rule_body)
     return substituted_rule
 
+def int_2_var(rules, substitutions):
+    subs_rules = apply_substitution(rules, substitutions)
+    new_rules = [substitute_with_exceptions(rule, substitutions) for rule in subs_rules]
+    return new_rules
+    
+
 def apply_custom_substitution(rules, substitutions):
     first_rule = [rules[0]]
-    subs_rules = apply_substitution(rules[1:], substitutions)
-    new_rules = [substitute_with_exceptions(rule, substitutions) for rule in subs_rules]
+    new_rules = int_2_var(rules[1:], substitutions)
     return first_rule + new_rules
-
-# def apply_custom_substitution(rules, substitutions):
-#     subs_rules = apply_substitution(rules, substitutions)
-#     return [substitute_with_exceptions(rule, substitutions) for rule in subs_rules]
-
 
 def generate_additional_conditions(substitutions):
     return [(sub_var == sub_val) for sub_val, sub_var in substitutions]
@@ -194,12 +195,13 @@ def construct_first_rule(rule_body, additional_conditions):
         return rule_body, clear_inv_way(additional_conditions)
 
 
-def process_first_rule(rules, substitutions):
+def process_first_rule(rules, add_rules, substitutions):
     _, _, rule_body = expand_quant(rules[0])
-    additional_conditions = generate_additional_conditions(substitutions)    
+    # additional_conditions = generate_additional_conditions(substitutions)   
+    additional_conditions = add_rules
+    t_log(f"additional_conditions: {additional_conditions}") 
     rule_head, rule_tail = construct_first_rule(rule_body, additional_conditions)
     rules[0] = z3.Implies(rule_tail, rule_head)
-
     return rules
 
 def create_new_rules(rules, magic_values_vars):
@@ -208,15 +210,38 @@ def create_new_rules(rules, magic_values_vars):
 def create_new_vars(rules):
     return list(set().union(*map(mk_rule_vars, rules)))
 
+#---- GCD based rules
+
+def gcd_based_rules(magic_values):
+    int_magic_values = [int(m_int.as_long()) for m_int in magic_values]
+    diff, magic_values, gcd_rules, gcd_range_rules, gcd_substitution = param_finder(int_magic_values)
+    upd_gcd_rules = int_2_var(gcd_rules, gcd_substitution)
+    t_log(f"upd_gcd_rules: {upd_gcd_rules + gcd_range_rules}")
+    return diff, magic_values, upd_gcd_rules + gcd_range_rules
+
+#----
+
 def process_rules_and_queries(code, max_depth):
     fp = setup_fixedpoint(max_depth)
     queries = parse_queries(fp, code)
     rules = extract_rules(fp)
     magic_values = find_magic_values(rules[1:])
-    magic_values_vars, substitutions = prepare_substitution(magic_values)
-    subs_rules = apply_custom_substitution(rules, substitutions)
 
-    new_rules = process_first_rule(subs_rules, substitutions)
+    diff, magic_values, gcd_rules = gcd_based_rules(magic_values)
+    magic_values_vars, substitutions = prepare_substitution(magic_values, "K")
+    # diff_values_vars, diff_substitutions = prepare_substitution(diff, "D")
+
+    t_log(f"magic_values_vars: {magic_values_vars}")
+    t_log(f"substitutions: {substitutions}")
+
+    subs_rules = apply_custom_substitution(rules, substitutions)
+    
+    gcd_rules = int_2_var(gcd_rules, substitutions)
+    
+    t_log(f"subs_rules: {subs_rules}")
+    t_log(f"gcd_rules: {gcd_rules}")
+
+    new_rules = process_first_rule(subs_rules, gcd_rules, substitutions)
     return new_rules, queries, magic_values_vars
 
 #---- New invariant creation -----------
@@ -402,7 +427,6 @@ def main():
     write_to_file(fp_new, queries, result_file)
     
     if is_solving_on:
-        print(code)
         output, _ = push_subprocess(problem_file, max_depth)
         result_file = (f"../r/{output}-{problem_file}")
         out_time = time.time() - start_time
