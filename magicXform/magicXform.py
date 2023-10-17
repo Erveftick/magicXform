@@ -1,7 +1,8 @@
 import sys
+import os
 from secrets import z3_path, z3_eval_path
 from spinner import Loader
-from gcd import param_finder
+from gcd import *
 sys.path.append(z3_path)
 
 import argparse, subprocess, z3, time
@@ -199,7 +200,7 @@ def process_first_rule(rules, add_rules, substitutions):
     _, _, rule_body = expand_quant(rules[0])
     # additional_conditions = generate_additional_conditions(substitutions)   
     additional_conditions = add_rules
-    t_log(f"additional_conditions: {additional_conditions}") 
+    # t_log(f"additional_conditions: {additional_conditions}") 
     rule_head, rule_tail = construct_first_rule(rule_body, additional_conditions)
     rules[0] = z3.Implies(rule_tail, rule_head)
     return rules
@@ -214,10 +215,12 @@ def create_new_vars(rules):
 
 def gcd_based_rules(magic_values):
     int_magic_values = [int(m_int.as_long()) for m_int in magic_values]
-    diff, magic_values, gcd_rules, gcd_range_rules, gcd_substitution = param_finder(int_magic_values)
-    upd_gcd_rules = int_2_var(gcd_rules, gcd_substitution)
-    t_log(f"upd_gcd_rules: {upd_gcd_rules + gcd_range_rules}")
-    return diff, magic_values, upd_gcd_rules + gcd_range_rules
+    gcd, diff, magic_values, gcd_rules = param_finder(int_magic_values)
+    gcd_range_rules, gcd_z3_var = gcd_substituition(gcd)
+    # upd_gcd_rules = int_2_var(gcd_rules, gcd_substitution)
+    # gcd_rules = gcd_range_rules + gcd_rules
+    # t_log(f"upd_gcd_rules: {gcd_rules}")
+    return diff, magic_values, gcd_rules, gcd_range_rules, gcd_z3_var
 
 #----
 
@@ -227,19 +230,14 @@ def process_rules_and_queries(code, max_depth):
     rules = extract_rules(fp)
     magic_values = find_magic_values(rules[1:])
 
-    diff, magic_values, gcd_rules = gcd_based_rules(magic_values)
-    magic_values_vars, substitutions = prepare_substitution(magic_values, "K")
-    # diff_values_vars, diff_substitutions = prepare_substitution(diff, "D")
+    diff, magic_values, gcd_rules, gcd_range_rules, gcd_z3_var = gcd_based_rules(magic_values)
+    magic_values_vars, substitutions = prepare_substitution(magic_values+diff, "K")
+    magic_values_vars = magic_values_vars + [gcd_z3_var]
 
-    t_log(f"magic_values_vars: {magic_values_vars}")
-    t_log(f"substitutions: {substitutions}")
-
-    subs_rules = apply_custom_substitution(rules, substitutions)
+    subs_rules = int_2_var(rules, substitutions)
     
     gcd_rules = int_2_var(gcd_rules, substitutions)
-    
-    t_log(f"subs_rules: {subs_rules}")
-    t_log(f"gcd_rules: {gcd_rules}")
+    gcd_rules = gcd_range_rules+gcd_rules
 
     new_rules = process_first_rule(subs_rules, gcd_rules, substitutions)
     return new_rules, queries, magic_values_vars
@@ -408,8 +406,12 @@ def parse_cmd_args():
 
     return problem_file, result_file, max_depth, is_solving_on
 
+def extract_name_from_path(path):
+    return os.path.basename(path)
+
 def main():
     problem_file, result_file, max_depth, is_solving_on = parse_cmd_args()
+    result_file = f"/home/ekvashyn/Code/magicXform/magicXform/tmp/{result_file}"
 
     code = read_file(problem_file)
 
@@ -427,10 +429,12 @@ def main():
     write_to_file(fp_new, queries, result_file)
     
     if is_solving_on:
-        output, _ = push_subprocess(problem_file, max_depth)
-        result_file = (f"../r/{output}-{problem_file}")
+        output, _ = push_subprocess(result_file, max_depth)
+        result_file_name = extract_name_from_path(problem_file)
         out_time = time.time() - start_time
         out_time = round(out_time, 2)
+        result_file = f"../results/{output}/{out_time}-{result_file_name}"
+        
 
         write_to_file(fp_new, queries, result_file)
         t_log(f"Program took {out_time}s to run")

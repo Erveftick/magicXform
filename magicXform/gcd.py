@@ -34,16 +34,18 @@ def find_gcd_and_combination(magic_values):
     # If no suitable combination is found, return initial values and 1
     return magic_values, 1
 
-def get_rules(magic_values, gcd_num):
+def get_rules(magic_values, gcd):
     """
     Calculate coefficients for each element in 
     the list based on the given GCD.
     """
     coefficients = []
     for number in magic_values:
-        coefficient = number // gcd_num
+        coefficient = number // gcd
         if (coefficient > 1):
-            coefficients.append((z3.IntVal(number) == z3.IntVal(coefficient) * z3.IntVal(gcd_num)))
+            coefficients.append((z3.IntVal(number) == z3.IntVal(coefficient) * z3.Int(f"GCD{gcd}")))
+        else:
+            coefficients.append((z3.IntVal(number) == z3.Int(f"GCD{gcd}")))
     return coefficients
 
 def param_finder(magic_values):
@@ -55,14 +57,17 @@ def param_finder(magic_values):
     magic_set = set(magic_values)
     diff = list(magic_set.difference(combination))
     rules = get_rules(combination, gcd)
+    return gcd, diff, magic_values, rules
+
+def gcd_substituition(gcd):
     gcd_z3_var = z3.Int(f"GCD{gcd}")
     gcd_z3_int = z3.IntVal(gcd)
-    substitution_pair = [(gcd_z3_int, gcd_z3_var)]
     gcd_range_rules = [(gcd_z3_var > 0), (gcd_z3_var <= gcd_z3_int)]
-    return diff, magic_values, rules, gcd_range_rules, substitution_pair
+    # gcd_range_rules = [(gcd_z3_var == gcd_z3_int)]
+    return gcd_range_rules, gcd_z3_var
 
 
 # Example usage
-arr = [52, 97, 76, 80914] #[10, 15, 25, 30]
-result = find_gcd_and_combination(arr)
-print("param_finder:", param_finder(arr))
+# arr = [333,666,999]#[52, 97, 76, 80914] #[10, 15, 25, 30]
+# result = find_gcd_and_combination(arr)
+# print("param_finder:", param_finder(arr))

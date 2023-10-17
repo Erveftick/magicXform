@@ -44,24 +44,6 @@ To get following table run *analytics.py*
 Problematic tasks that don't contain div or mod operations: 19, 30, 45, 47, 48, 49, 51, 52, 57
 Problems located in **challenges/review** folder
 
-<!-- s_split_19.smt
-
-s_split_30.smt
-
-s_split_45.smt
-
-s_split_47.smt
-
-s_split_48.smt
-
-s_split_49.smt
-
-s_split_51.smt
-
-s_split_52.smt
-
-s_split_57.smt -->
-
 Here represented a table with my attempts to find a universal approach for each of the problems but failed
 
 In the path cell represented amount of time taken for getting the solution
@@ -78,3 +60,55 @@ In the path cell represented amount of time taken for getting the solution
 \* GCD idea - Main idea is to find a GCD number among all the magic numbers. Then this value I put into the additional rule and implied invariant I conjoin to the rules where it's necessary (where this variable is used)
 
 \** with options means *fp.xform.inline_eager=false* and *fp.xform.inline_linear=false*
+
+## **version 0.1.1**
+
+The version provides a magicXform with parametrization idea. We ran script among all challenges that we have and got following results:
+
+|     Problem     |   Time   |
+|-----------------|----------|
+| s_split_01.smt2 | 0.62s |
+| s_split_02.smt2 | 0.18s |
+| s_split_06.smt2 | 0.48s |
+| s_split_07.smt2 | 0.23s |
+| s_split_08.smt2 | 0.60s |
+| s_split_10.smt2 | 14.75s |
+| s_split_11.smt2 | 0.61s |
+| s_split_17.smt2 | 0.21s |
+| s_split_19.smt2 | 0.18s |
+| s_split_24.smt2 | 0.62s |
+| s_split_37.smt2 | 0.27s |
+| s_split_38.smt2 | 0.23s |
+| s_split_39.smt2 | 0.20s |
+| s_split_42.smt2 | 1.30s |
+| s_split_43.smt2 | 0.57s |
+| s_split_44.smt2 | 2.14s |
+| s_split_46.smt2 | 2.01s |
+| s_split_48.smt2 | 147.06s |
+| s_split_49.smt2 | 10.67s |
+| s_split_51.smt2 | 1.59s |
+| s_split_54.smt2 | 3.13s |
+| s_split_57.smt2 | 10.11s |
+
+
+However we had a problem with correct transformation, because some of the instances returned UNSAT, which means that transformed program has bug so
+couldn't find the invariant. Below locates table with such problems:
+
+|     Problem     |
+|-----------------|
+| s_split_32.smt2 |
+| s_split_16.smt2 |
+| s_split_41.smt2 |
+| s_split_55.smt2 |
+| s_split_30.smt2 |
+| s_split_40.smt2 |
+| s_split_25.smt2 |
+| s_split_12.smt2 |
+| s_split_20.smt2 |
+| s_split_22.smt2 |
+| s_split_29.smt2 |
+| s_split_04.smt2 |
+| s_split_18.smt2 |
+| s_split_34.smt2 |
+
+Anyways, if we will apply both techniques from the version 0.1.0 and 0.1.0 we will have 41/58 solved chanllenges. The res ult shows us that this ideas can improve Spacer effectiveness in 2.15 times than it was before.
