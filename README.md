@@ -61,6 +61,9 @@ The main functionality of MagicXform includes:
 - Writing the result to console and to the output file
 - Optionally processing Horn clauses if present
 
+### Utils
+Find results and benchmarks in the [utils repository](https://github.com/Erveftick/magicXform-utils)
+
 ### Contributing
 Contributions, issues, and feature requests are welcome. Please feel free to check issues page if you want to contribute.
 
