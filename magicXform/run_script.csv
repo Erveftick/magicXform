@@ -1,59 +1,58 @@
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/s_split_11.smt2" --rf="s_split_11.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/s_split_39.smt2" --rf="s_split_39.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/s_split_15.smt2" --rf="s_split_15.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/s_split_10.smt2" --rf="s_split_10.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/s_split_14.smt2" --rf="s_split_14.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/s_split_58.smt2" --rf="s_split_58.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/s_split_53.smt2" --rf="s_split_53.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/s_split_16.smt2" --rf="s_split_16.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/s_split_40.smt2" --rf="s_split_40.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/s_split_25.smt2" --rf="s_split_25.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/s_split_27.smt2" --rf="s_split_27.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/s_split_09.smt2" --rf="s_split_09.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/s_split_33.smt2" --rf="s_split_33.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/s_split_22.smt2" --rf="s_split_22.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/s_split_24.smt2" --rf="s_split_24.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/s_split_50.smt2" --rf="s_split_50.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/s_split_20.smt2" --rf="s_split_20.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/review/s_split_30.smt2" --rf="s_split_30.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/review/s_split_51.smt2" --rf="s_split_51.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/review/s_split_45.smt2" --rf="s_split_45.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/review/s_split_19.smt2" --rf="s_split_19.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/review/s_split_48.smt2" --rf="s_split_48.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/review/s_split_49.smt2" --rf="s_split_49.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/review/s_split_52.smt2" --rf="s_split_52.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/review/s_split_57.smt2" --rf="s_split_57.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/challenges/review/s_split_47.smt2" --rf="s_split_47.smt2" --max_depth=300
-
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_18.smt2" --rf="s_split_18.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_08.smt2" --rf="s_split_08.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_38.smt2" --rf="s_split_38.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_56.smt2" --rf="s_split_56.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_02.smt2" --rf="s_split_02.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_43.smt2" --rf="s_split_43.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_35.smt2" --rf="s_split_35.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_21.smt2" --rf="s_split_21.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_54.smt2" --rf="s_split_54.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_23.smt2" --rf="s_split_23.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_06.smt2" --rf="s_split_06.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_31.smt2" --rf="s_split_31.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_37.smt2" --rf="s_split_37.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_36.smt2" --rf="s_split_36.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_34.smt2" --rf="s_split_34.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_44.smt2" --rf="s_split_44.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_41.smt2" --rf="s_split_41.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_32.smt2" --rf="s_split_32.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_01.smt2" --rf="s_split_01.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_55.smt2" --rf="s_split_55.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_05.smt2" --rf="s_split_05.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_28.smt2" --rf="s_split_28.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_17.smt2" --rf="s_split_17.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_07.smt2" --rf="s_split_07.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_42.smt2" --rf="s_split_42.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_03.smt2" --rf="s_split_03.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_26.smt2" --rf="s_split_26.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_04.smt2" --rf="s_split_04.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_46.smt2" --rf="s_split_46.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_29.smt2" --rf="s_split_29.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_12.smt2" --rf="s_split_12.smt2" --max_depth=300
-python3 magicXform.py --pf="/home/ekvashyn/Code/magicXform/passed-challenges/s_split_13.smt2" --rf="s_split_13.smt2" --max_depth=300
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_37.smt2" --rf="s_split_37.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_21.smt2" --rf="s_split_21.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_56.smt2" --rf="s_split_56.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_01.smt2" --rf="s_split_01.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_17.smt2" --rf="s_split_17.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_40.smt2" --rf="s_split_40.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_41.smt2" --rf="s_split_41.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_16.smt2" --rf="s_split_16.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_57.smt2" --rf="s_split_57.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_20.smt2" --rf="s_split_20.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_36.smt2" --rf="s_split_36.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_50.smt2" --rf="s_split_50.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_07.smt2" --rf="s_split_07.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_11.smt2" --rf="s_split_11.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_46.smt2" --rf="s_split_46.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_31.smt2" --rf="s_split_31.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_27.smt2" --rf="s_split_27.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_26.smt2" --rf="s_split_26.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_30.smt2" --rf="s_split_30.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_47.smt2" --rf="s_split_47.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_10.smt2" --rf="s_split_10.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_06.smt2" --rf="s_split_06.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_51.smt2" --rf="s_split_51.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_29.smt2" --rf="s_split_29.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_44.smt2" --rf="s_split_44.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_13.smt2" --rf="s_split_13.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_05.smt2" --rf="s_split_05.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_52.smt2" --rf="s_split_52.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_25.smt2" --rf="s_split_25.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_33.smt2" --rf="s_split_33.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_48.smt2" --rf="s_split_48.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_09.smt2" --rf="s_split_09.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_08.smt2" --rf="s_split_08.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_49.smt2" --rf="s_split_49.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_32.smt2" --rf="s_split_32.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_24.smt2" --rf="s_split_24.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_53.smt2" --rf="s_split_53.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_04.smt2" --rf="s_split_04.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_12.smt2" --rf="s_split_12.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_45.smt2" --rf="s_split_45.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_28.smt2" --rf="s_split_28.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_23.smt2" --rf="s_split_23.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_35.smt2" --rf="s_split_35.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_19.smt2" --rf="s_split_19.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_58.smt2" --rf="s_split_58.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_39.smt2" --rf="s_split_39.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_42.smt2" --rf="s_split_42.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_15.smt2" --rf="s_split_15.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_03.smt2" --rf="s_split_03.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_54.smt2" --rf="s_split_54.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_55.smt2" --rf="s_split_55.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_02.smt2" --rf="s_split_02.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_14.smt2" --rf="s_split_14.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_43.smt2" --rf="s_split_43.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_38.smt2" --rf="s_split_38.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_18.smt2" --rf="s_split_18.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_34.smt2" --rf="s_split_34.smt2" --max_depth=300 --ver=1
+python3 magicXform.py --pf="/Users/ekvashyn/Code/mXf/magicXform/all-ch/s_split_22.smt2" --rf="s_split_22.smt2" --max_depth=300 --ver=1

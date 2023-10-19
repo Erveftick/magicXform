@@ -20,6 +20,7 @@ parser.add_argument('--pf', default='problem.smt2', help='Path to the problem fi
 parser.add_argument('--rf', default='result.smt2', help='Path to the result file')
 parser.add_argument('--max_depth', default=100, help='Amount of iteration for SPACER to find the invariant')
 parser.add_argument('--s', default=True, help='Indicate whether SPACER will find solution for rewrittencode')
+parser.add_argument('--ver', default="1", help="Indicate version of the tool: 1 - substitution technique; 2 - parametrization ")
 
 
 ascii_art = r"""
@@ -161,9 +162,7 @@ def substitute_with_exceptions(rule, substitutions):
 
 def int_2_var(rules, substitutions):
     subs_rules = apply_substitution(rules, substitutions)
-    new_rules = [substitute_with_exceptions(rule, substitutions) for rule in subs_rules]
-    return new_rules
-    
+    return [substitute_with_exceptions(rule, substitutions) for rule in subs_rules]
 
 def apply_custom_substitution(rules, substitutions):
     first_rule = [rules[0]]
@@ -196,11 +195,8 @@ def construct_first_rule(rule_body, additional_conditions):
         return rule_body, clear_inv_way(additional_conditions)
 
 
-def process_first_rule(rules, add_rules, substitutions):
-    _, _, rule_body = expand_quant(rules[0])
-    # additional_conditions = generate_additional_conditions(substitutions)   
-    additional_conditions = add_rules
-    # t_log(f"additional_conditions: {additional_conditions}") 
+def process_first_rule(rules, additional_conditions):
+    _, _, rule_body = expand_quant(rules[0])   
     rule_head, rule_tail = construct_first_rule(rule_body, additional_conditions)
     rules[0] = z3.Implies(rule_tail, rule_head)
     return rules
@@ -224,22 +220,28 @@ def gcd_based_rules(magic_values):
 
 #----
 
-def process_rules_and_queries(code, max_depth):
+def process_rules_and_queries(code, max_depth, version="1"):
     fp = setup_fixedpoint(max_depth)
     queries = parse_queries(fp, code)
     rules = extract_rules(fp)
     magic_values = find_magic_values(rules[1:])
 
-    diff, magic_values, gcd_rules, gcd_range_rules, gcd_z3_var = gcd_based_rules(magic_values)
-    magic_values_vars, substitutions = prepare_substitution(magic_values+diff, "K")
-    magic_values_vars = magic_values_vars + [gcd_z3_var]
-
-    subs_rules = int_2_var(rules, substitutions)
+    if version=="2":
+        # second version that relates to parametrization and finding the parameter itself 
+        diff, magic_values, gcd_rules, gcd_range_rules, gcd_z3_var = gcd_based_rules(magic_values)
+        magic_values_vars, substitutions = prepare_substitution(magic_values+diff, "K")
+        magic_values_vars = magic_values_vars + [gcd_z3_var]
+        subs_rules = int_2_var(rules, substitutions)
+        gcd_rules = int_2_var(gcd_rules, substitutions)
+        additional_conditions = gcd_range_rules+gcd_rules
     
-    gcd_rules = int_2_var(gcd_rules, substitutions)
-    gcd_rules = gcd_range_rules+gcd_rules
+    else:
+        # first version relates to substitution technique only
+        magic_values_vars, substitutions = prepare_substitution(magic_values, "K")
+        subs_rules = apply_custom_substitution(rules, substitutions)
+        additional_conditions = generate_additional_conditions(substitutions)
 
-    new_rules = process_first_rule(subs_rules, gcd_rules, substitutions)
+    new_rules = process_first_rule(subs_rules, additional_conditions)
     return new_rules, queries, magic_values_vars
 
 #---- New invariant creation -----------
@@ -357,10 +359,7 @@ def push_subprocess(result_file, max_depth):
         "fp.spacer.max_level="+ str(max_depth),
         "fp.spacer.global=true",
         result_file,
-        "-v:1"
-        # fp.xform.inline_eager=false 
-        # fp.xform.inline_linear=false
-    ]
+        "-v:1"]
 
     loader = Loader("Finding an invariant for the rewritten code...", "\n").start()
 
@@ -384,38 +383,30 @@ def push_subprocess(result_file, max_depth):
         print(f"Logs: \n{logs}")
         return result, logs        
     else:
+        result = "UNBOUND"
         print(f"Output: {output}")
         print(f"Errors: \n{logs}")
         return output, logs        
 
 def dummy_bool_parser(s):
-    if s == 'False':
-        return False
-    else:
-        return True
+    value = s.strip().lower()
+    return not (value == 'false' or value == '0')
 
 def parse_cmd_args():
     program_args = parser.parse_args()
-
-    problem_file = str(program_args.pf)
-    result_file = str(program_args.rf)
-    is_solving_on = dummy_bool_parser(program_args.s)
-    max_depth = int(program_args.max_depth)
-
     t_log(f"CMD params: {vars(program_args)}")
-
-    return problem_file, result_file, max_depth, is_solving_on
+    return str(program_args.pf), str(program_args.rf), int(program_args.max_depth), dummy_bool_parser(str(program_args.s)), str(program_args.ver)
 
 def extract_name_from_path(path):
     return os.path.basename(path)
 
 def main():
-    problem_file, result_file, max_depth, is_solving_on = parse_cmd_args()
-    result_file = f"/home/ekvashyn/Code/magicXform/magicXform/tmp/{result_file}"
+    problem_file, result_file, max_depth, is_solving_on, version = parse_cmd_args()
+    result_file = f"./tmp/{result_file}"
 
     code = read_file(problem_file)
 
-    rules, queries, magic_values_vars = process_rules_and_queries(code, max_depth)
+    rules, queries, magic_values_vars = process_rules_and_queries(code, max_depth, version)
 
     new_rules = create_new_rules(rules, magic_values_vars)
     new_vars = create_new_vars(rules)
@@ -433,9 +424,7 @@ def main():
         result_file_name = extract_name_from_path(problem_file)
         out_time = time.time() - start_time
         out_time = round(out_time, 2)
-        result_file = f"../results/{output}/{out_time}-{result_file_name}"
-        
-
+        result_file = f"../results/time_tracker/ver_{version}/{output}/{out_time}-{result_file_name}"
         write_to_file(fp_new, queries, result_file)
         t_log(f"Program took {out_time}s to run")
     
