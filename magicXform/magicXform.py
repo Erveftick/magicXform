@@ -227,7 +227,7 @@ def process_rules_and_queries(code, max_depth, version="1"):
     magic_values = find_magic_values(rules[1:])
     t_log(f"!!!magic_values!!!: {magic_values}")
 
-    if version=="2" and len(magic_values) > 0:
+    if version=="2" and len(magic_values) > 1:
         # second version that relates to parametrization and finding the parameter itself 
         diff, magic_values, gcd_rules, gcd_range_rules, gcd_z3_var = gcd_based_rules(magic_values)
         magic_values_vars, substitutions = prepare_substitution(magic_values+diff, "K")
@@ -403,10 +403,15 @@ def dummy_bool_parser(s):
     value = s.strip().lower()
     return not (value == 'false' or value == '0')
 
+def clr_arg(arg):
+    arg = str(arg)
+    return arg.replace('\n','').replace('\r','')
+    
+
 def parse_cmd_args():
     program_args = parser.parse_args()
     t_log(f"CMD params: {vars(program_args)}")
-    return str(program_args.pf), str(program_args.rf), int(program_args.max_depth), dummy_bool_parser(str(program_args.s)), str(program_args.ver)
+    return clr_arg(program_args.pf), clr_arg(program_args.rf), int(program_args.max_depth), dummy_bool_parser(clr_arg(program_args.s)), clr_arg(program_args.ver)
 
 def extract_name_from_path(path):
     return os.path.basename(path)
@@ -435,7 +440,7 @@ def main():
         result_file_name = extract_name_from_path(problem_file)
         out_time = time.time() - start_time
         out_time = round(out_time, 2)
-        answer_file = f"/Users/ekvashyn/Code/mXf/magicXform-utils/results/time_tracker_cls/ver_{version}/{output}/"
+        answer_file = f"/Users/ekvashyn/Code/mXf/magicXform-utils/results/time_tracker_upd/ver_1/{output}/"
         result_file = f"{answer_file}{out_time}-{result_file_name}"
         if output == "SAT":
             simple_write_to_file(inv, f"{answer_file}INV-{result_file_name}")

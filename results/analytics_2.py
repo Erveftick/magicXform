@@ -41,7 +41,7 @@ def calculate_average_for_groups(grouped_files):
     return averages
 
 # Example folder path
-folder_path = "/home/ekvashyn/Code/mXf/magicXform-utils/results/time_tracker/ver_2/SAT"
+folder_path = "/Users/ekvashyn/Code/mXf/magicXform/magicXform/tmp"
 
 # Group filenames by second part and calculate averages
 grouped_files = group_filenames_by_second_part(folder_path)
@@ -64,6 +64,6 @@ for second_part, average in sorted_averages:
 number_list = set([str(i).zfill(2) for i in range(1, 59)])
 print(list(number_list.difference(set(nums))))
 
-for i in list(number_list.difference(set(nums))):
-    print("python3 magicXform.py --pf=\"/home/ekvashyn/Code/mXf/magicXform/challenges/s_split_52.smt2\" --rf=\"s_split_52.smt2\" --max_depth=300 --ver=2"
-)
+# for i in list(number_list.difference(set(nums))):
+#     print("python3 magicXform.py --pf=\"/home/ekvashyn/Code/mXf/magicXform/challenges/s_split_52.smt2\" --rf=\"s_split_52.smt2\" --max_depth=300 --ver=2"
+# )
