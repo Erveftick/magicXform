@@ -226,7 +226,7 @@ def process_rules_and_queries(code, max_depth, version="1"):
     rules = extract_rules(fp)
     magic_values = find_magic_values(rules[1:])
 
-    if version=="2":
+    if version=="2" and len(magic_values) > 1:
         # second version that relates to parametrization and finding the parameter itself 
         diff, magic_values, gcd_rules, gcd_range_rules, gcd_z3_var = gcd_based_rules(magic_values)
         magic_values_vars, substitutions = prepare_substitution(magic_values+diff, "K")
@@ -362,13 +362,19 @@ def push_subprocess(result_file, max_depth):
         "-v:1"]
 
     loader = Loader("Finding an invariant for the rewritten code...", "\n").start()
-
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    output, logs = proc.communicate()
-    output = output.decode('utf-8').upper()
-    logs = logs.decode('utf-8')
+        
 
-    loader.stop()
+    try:
+        output, logs = proc.communicate(timeout=300)
+        output = output.decode('utf-8').upper()
+        logs = logs.decode('utf-8')
+        loader.stop()    
+    except subprocess.TimeoutExpired:
+        proc.kill()
+        output, logs = proc.communicate()
+        output = "UNBOUND"
+    
     t_log("Result section")
     
     if "UNSAT" in output:
@@ -424,7 +430,8 @@ def main():
         result_file_name = extract_name_from_path(problem_file)
         out_time = time.time() - start_time
         out_time = round(out_time, 2)
-        result_file = f"../results/time_tracker/ver_{version}/{output}/{out_time}-{result_file_name}"
+        print(f"version = {version}")
+        result_file = f"/home/ekvashyn/Code/mXf/magicXform-utils/results/time_tracker_cls/ver_2/{output}/{out_time}-{result_file_name}"
         write_to_file(fp_new, queries, result_file)
         t_log(f"Program took {out_time}s to run")
     
