@@ -13,6 +13,10 @@ def find_gcd_and_combination(magic_values):
     """
     # Calculate the GCD of the entire list
     current_gcd = magic_values[0]
+
+    if len(magic_values) == 1:
+        return magic_values, 1
+
     for i in range(1, len(magic_values)):
         current_gcd = gcd(current_gcd, magic_values[i])
     

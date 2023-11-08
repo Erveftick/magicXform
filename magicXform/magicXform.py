@@ -225,8 +225,9 @@ def process_rules_and_queries(code, max_depth, version="1"):
     queries = parse_queries(fp, code)
     rules = extract_rules(fp)
     magic_values = find_magic_values(rules[1:])
+    t_log(f"!!!magic_values!!!: {magic_values}")
 
-    if version=="2":
+    if version=="2" and len(magic_values) > 0:
         # second version that relates to parametrization and finding the parameter itself 
         diff, magic_values, gcd_rules, gcd_range_rules, gcd_z3_var = gcd_based_rules(magic_values)
         magic_values_vars, substitutions = prepare_substitution(magic_values+diff, "K")
@@ -338,6 +339,10 @@ def write_to_file(fp_new, queries, filename='res.smt2'):
     with open(filename, 'w') as f:
         print(rewritten_result(fp_new, queries), file=f)
 
+def simple_write_to_file(content, filename):
+    with open(filename, 'w') as f:
+        print(content, file=f)
+
 # Result section
 
 def extract_required_parts(logs):
@@ -420,11 +425,17 @@ def main():
     write_to_file(fp_new, queries, result_file)
     
     if is_solving_on:
-        output, _ = push_subprocess(result_file, max_depth)
+        output, inv = push_subprocess(result_file, max_depth)
         result_file_name = extract_name_from_path(problem_file)
         out_time = time.time() - start_time
         out_time = round(out_time, 2)
-        result_file = f"../results/time_tracker/ver_{version}/{output}/{out_time}-{result_file_name}"
+        answer_file = f"/Users/ekvashyn/Code/mXf/magicXform-utils/results/time_tracker_cls/ver_{version}/{output}/"
+        result_file = f"{answer_file}{out_time}-{result_file_name}"
+        if output == "SAT":
+            simple_write_to_file(inv, f"{answer_file}INV-{result_file_name}")
+        else:
+            simple_write_to_file(inv, f"{answer_file}LOG-{result_file_name}")
+       
         write_to_file(fp_new, queries, result_file)
         t_log(f"Program took {out_time}s to run")
     

@@ -5,7 +5,6 @@ magicXform/__pycache__/
 magicXform/.z3-trace
 magicXform/res_*.smt2
 challenges/
-passed-challenges/
 results/logs
 results/refactoring_attempts
 results/SAT
