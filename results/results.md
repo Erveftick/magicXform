@@ -112,3 +112,103 @@ couldn't find the invariant. Below locates table with such problems:
 | s_split_34.smt2 |
 
 Anyways, if we will apply both techniques from the version 0.1.0 and 0.1.0 we will have 41/58 solved chanllenges. The res ult shows us that this ideas can improve Spacer effectiveness in 2.15 times than it was before.
+
+## Comparative tables
+
+### Version 0.1.0
+
+|     Problem     |   Time   |
+|-----------------|----------|
+| s_split_01.smt2 | 1.81s |
+| s_split_02.smt2 | 0.43s |
+| s_split_03.smt2 | 0.39s |
+| s_split_04.smt2 | 0.51s |
+| s_split_05.smt2 | 0.42s |
+| s_split_07.smt2 | 0.55s |
+| s_split_08.smt2 | 3.29s |
+| s_split_12.smt2 | 6.31s |
+| s_split_13.smt2 | 0.35s |
+| s_split_17.smt2 | 0.38s |
+| s_split_18.smt2 | 7.74s |
+| s_split_21.smt2 | 0.57s |
+| s_split_23.smt2 | 0.23s |
+| s_split_26.smt2 | 260.44s |
+| s_split_28.smt2 | 218.21s |
+| s_split_29.smt2 | 164.11s |
+| s_split_31.smt2 | 0.38s |
+| s_split_32.smt2 | 69.53s |
+| s_split_34.smt2 | 0.35s |
+| s_split_35.smt2 | 0.27s |
+| s_split_36.smt2 | 0.14s |
+| s_split_37.smt2 | 0.90s |
+| s_split_38.smt2 | 0.30s |
+| s_split_41.smt2 | 56.40s |
+| s_split_42.smt2 | 0.54s |
+| s_split_43.smt2 | 7.19s |
+| s_split_46.smt2 | 76.94s |
+| s_split_54.smt2 | 278.44s |
+| s_split_55.smt2 | 4.95s |
+| s_split_56.smt2 | 0.35s |
+
+Total: 30
+
+### version 0.1.1
+
+#### SAT
+
+|     Problem     |   Time   |
+|-----------------|----------|
+| s_split_01.smt2 | 0.67s |
+| s_split_02.smt2 | 0.22s |
+| s_split_03.smt2 | 0.41s |
+| s_split_04.smt2 | 0.46s |
+| s_split_05.smt2 | 0.42s |
+| s_split_06.smt2 | 0.51s |
+| s_split_07.smt2 | 0.69s |
+| s_split_08.smt2 | 3.21s |
+| s_split_10.smt2 | 22.70s |
+| s_split_12.smt2 | 13.43s |
+| s_split_13.smt2 | 0.63s |
+| s_split_17.smt2 | 0.36s |
+| s_split_18.smt2 | 7.88s |
+| s_split_21.smt2 | 0.60s |
+| s_split_23.smt2 | 0.26s |
+| s_split_24.smt2 | 0.71s |
+| s_split_26.smt2 | 247.98s |
+| s_split_28.smt2 | 197.71s |
+| s_split_31.smt2 | 0.35s |
+| s_split_32.smt2 | 67.32s |
+| s_split_34.smt2 | 0.19s |
+| s_split_35.smt2 | 0.31s |
+| s_split_36.smt2 | 0.15s |
+| s_split_37.smt2 | 0.30s |
+| s_split_38.smt2 | 0.27s |
+| s_split_42.smt2 | 2.02s |
+| s_split_43.smt2 | 0.74s |
+| s_split_44.smt2 | 2.88s |
+| s_split_46.smt2 | 3.12s |
+| s_split_48.smt2 | 264.86s |
+| s_split_49.smt2 | 18.95s |
+| s_split_51.smt2 | 2.00s |
+| s_split_54.smt2 | 4.25s |
+| s_split_56.smt2 | 0.41s |
+| s_split_57.smt2 | 16.91s |
+
+Total: 35
+
+
+#### UNSAT
+
+|     Problem     |   Time   |
+|-----------------|----------|
+| s_split_16.smt2 | 0.19s |
+| s_split_20.smt2 | 0.21s |
+| s_split_22.smt2 | 0.14s |
+| s_split_25.smt2 | 0.17s |
+| s_split_29.smt2 | 0.20s |
+| s_split_30.smt2 | 0.16s |
+| s_split_40.smt2 | 1.15s |
+| s_split_41.smt2 | 0.20s |
+| s_split_55.smt2 | 0.21s |
+
+Total: 9

@@ -45,11 +45,19 @@ def get_rules(magic_values, gcd):
     """
     coefficients = []
     for number in magic_values:
+        print(f"number = {number}")
         coefficient = number // gcd
+        print(f"coefficient = {coefficient}")
+        print(f"z3.IntVal(number) = {z3.IntVal(number)}")
         if (coefficient > 1):
             coefficients.append((z3.IntVal(number) == z3.IntVal(coefficient) * z3.Int(f"GCD{gcd}")))
+        elif (coefficient < -1):
+            coefficients.append((z3.IntVal(number) == z3.IntVal(coefficient) * -z3.Int(f"GCD{gcd}")))
+        elif (coefficient == -1):
+            coefficients.append((z3.IntVal(number) == -z3.Int(f"GCD{gcd}")))
         else:
             coefficients.append((z3.IntVal(number) == z3.Int(f"GCD{gcd}")))
+    print(f"coefficients = {coefficients}")
     return coefficients
 
 def param_finder(magic_values):
@@ -57,10 +65,15 @@ def param_finder(magic_values):
     Find parameters including GCD, coefficients, 
     and the remaining elements in the list.
     """
+    print(f"magic_values = {magic_values}")
     combination, gcd = find_gcd_and_combination(magic_values)
+    print(f"combination = {combination}, gcd = {gcd}")
     magic_set = set(magic_values)
+    print(f"magic_set = {magic_set}")
     diff = list(magic_set.difference(combination))
+    print(f"diff = {diff}")
     rules = get_rules(combination, gcd)
+    print(f"rules = {rules}")
     return gcd, diff, magic_values, rules
 
 def gcd_substituition(gcd):
