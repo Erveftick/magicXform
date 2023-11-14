@@ -74,15 +74,7 @@ def param_finder(magic_values):
     print(f"diff = {diff}")
     rules = get_rules(combination, gcd)
     print(f"rules = {rules}")
-    return gcd, diff, magic_values, rules
-
-def gcd_substituition(gcd):
-    gcd_z3_var = z3.Int(f"GCD{gcd}")
-    gcd_z3_int = z3.IntVal(gcd)
-    gcd_range_rules = [(gcd_z3_var > 0), (gcd_z3_var <= gcd_z3_int)]
-    # gcd_range_rules = [(gcd_z3_var == gcd_z3_int)]
-    return gcd_range_rules, gcd_z3_var
-
+    return gcd, diff, combination, rules
 
 # Example usage
 # arr = [333,666,999]#[52, 97, 76, 80914] #[10, 15, 25, 30]

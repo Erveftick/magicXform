@@ -207,40 +207,103 @@ def create_new_rules(rules, magic_values_vars):
 def create_new_vars(rules):
     return list(set().union(*map(mk_rule_vars, rules)))
 
+def generate_range_rules(num_list):
+    """
+    Generates range conditions for a given list of integers. 
+    The conditions are that the Z3 integer variable is greater
+    than zero and less than or equal to the input value. 
+
+    Params:
+    list of integers: numbers for which range conditions are needed.
+
+    Returns:
+    a list of Z3 conditions for the variable to be in the desired range
+    """
+    rules_list = []
+    for num in num_list:
+        z3_var = z3.Int(f"K{num}")
+        z3_int = z3.IntVal(num)
+        range_rule = [(z3_var > 0), (z3_var <= z3_int)]
+        rules_list.append(range_rule)
+    return flatten(rules_list)
+
+
 #---- GCD based rules
 
 def gcd_based_rules(magic_values):
     int_magic_values = [int(m_int.as_long()) for m_int in magic_values]
     gcd, diff, magic_values, gcd_rules = param_finder(int_magic_values)
-    gcd_range_rules, gcd_z3_var = gcd_substituition(gcd)
+    # gcd_range_rules, gcd_z3_var = generate_range_rules(gcd)
+    gcd_z3_var = z3.Int(f"GCD{gcd}")
+    t_log(f"diff = {diff}")
+    t_log(f"gcd = {gcd}")
+    t_log(f"magic_values = {magic_values}")
+    t_log(f"gcd_rules = {gcd_rules}")
+    diff = diff + [gcd]
+    t_log(f"diff = {diff}")
     # upd_gcd_rules = int_2_var(gcd_rules, gcd_substitution)
     # gcd_rules = gcd_range_rules + gcd_rules
-    # t_log(f"upd_gcd_rules: {gcd_rules}")
-    return diff, magic_values, gcd_rules, gcd_range_rules, gcd_z3_var
+    return diff, magic_values, gcd_rules, gcd_z3_var
 
 #----
+
+def process_first_version(rules):
+    """First version relates to substitution technique only"""
+    magic_values = find_magic_values(rules[1:])
+    magic_values_vars, substitutions = prepare_substitution(magic_values, "K")
+    subs_rules = apply_custom_substitution(rules, substitutions)
+    additional_conditions = generate_additional_conditions(substitutions)
+    return magic_values_vars, subs_rules, additional_conditions
+
+def process_second_version(rules):
+    """Second version relates to substitution numbers with ranges"""
+    magic_values = find_magic_values(rules[1:])
+    range_rules = generate_range_rules(magic_values)
+    magic_values_vars, substitutions = prepare_substitution(magic_values, "K")
+    subs_rules = apply_custom_substitution(rules, substitutions)
+    # additional_conditions = generate_additional_conditions(substitutions)
+    return magic_values_vars, subs_rules, range_rules
+
+
+
+def process_lists(A, B):
+    return B if all(bit in {0, 1} for bit in A) else A + B
+
+def process_third_version(rules):
+    """Second version algo for tool that relates to parametrization 
+    and finding the parameter itself
+    """    
+    core_magic_values = find_magic_values(rules[1:])
+    init_magic_values = find_magic_values([rules[0]])
+    magic_values = process_lists(init_magic_values, core_magic_values)
+    diff, magic_values, gcd_rules, gcd_z3_var = gcd_based_rules(magic_values)
+    magic_values_vars, substitutions = prepare_substitution(magic_values, "K")
+    diff_magic_values_vars, diff_subs = prepare_substitution(diff, "GCD")
+    magic_values_vars = magic_values_vars + [gcd_z3_var] + diff_magic_values_vars
+    subs_rules = int_2_var(int_2_var(rules, substitutions), diff_subs)
+    gcd_rules = int_2_var(int_2_var(gcd_rules, substitutions), diff_subs)
+    diff_additional_conditions = generate_additional_conditions(diff_subs)
+    additional_conditions = gcd_rules+diff_additional_conditions
+    return magic_values_vars, subs_rules, additional_conditions
+    
 
 def process_rules_and_queries(code, max_depth, version="1"):
     fp = setup_fixedpoint(max_depth)
     queries = parse_queries(fp, code)
     rules = extract_rules(fp)
-    magic_values = find_magic_values(rules[1:])
-    t_log(f"!!!magic_values!!!: {magic_values}")
 
-    if version=="2" and len(magic_values) > 1:
-        # second version that relates to parametrization and finding the parameter itself 
-        diff, magic_values, gcd_rules, gcd_range_rules, gcd_z3_var = gcd_based_rules(magic_values)
-        magic_values_vars, substitutions = prepare_substitution(magic_values+diff, "K")
-        magic_values_vars = magic_values_vars + [gcd_z3_var]
-        subs_rules = int_2_var(rules, substitutions)
-        gcd_rules = int_2_var(gcd_rules, substitutions)
-        additional_conditions = gcd_range_rules+gcd_rules
-    
+    magic_values = find_magic_values(rules)
+    t_log(f"magic_values = {magic_values}")
+
+    if version == "2":
+        # second version that relates to range providing 
+        magic_values_vars, subs_rules, additional_conditions = process_second_version(rules)
+    elif version == "3":
+        # third version that relates to parametrization and finding the parameter itself 
+        magic_values_vars, subs_rules, additional_conditions = process_third_version(rules)
     else:
         # first version relates to substitution technique only
-        magic_values_vars, substitutions = prepare_substitution(magic_values, "K")
-        subs_rules = apply_custom_substitution(rules, substitutions)
-        additional_conditions = generate_additional_conditions(substitutions)
+        magic_values_vars, subs_rules, additional_conditions = process_first_version(rules)
 
     new_rules = process_first_rule(subs_rules, additional_conditions)
     return new_rules, queries, magic_values_vars
@@ -369,7 +432,6 @@ def push_subprocess(result_file, max_depth):
     loader = Loader("Finding an invariant for the rewritten code...", "\n").start()
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         
-
     try:
         output, logs = proc.communicate(timeout=300)
         output = output.decode('utf-8').upper()
@@ -378,7 +440,7 @@ def push_subprocess(result_file, max_depth):
     except subprocess.TimeoutExpired:
         proc.kill()
         output, logs = proc.communicate()
-        output = "UNBOUND"
+        output = "TIMEOUT"
     
     t_log("Result section")
     
@@ -393,8 +455,12 @@ def push_subprocess(result_file, max_depth):
         print(f"Output: {result}")
         print(f"Logs: \n{logs}")
         return result, logs        
+    elif "TIMEOUT" in output:
+        print(f"Output: {output}")
+        print(f"Errors: \n{logs}")
+        return output, logs  
     else:
-        result = "UNBOUND"
+        result = "FAILED"
         print(f"Output: {output}")
         print(f"Errors: \n{logs}")
         return output, logs        
@@ -440,7 +506,7 @@ def main():
         result_file_name = extract_name_from_path(problem_file)
         out_time = time.time() - start_time
         out_time = round(out_time, 2)
-        answer_file = f"/Users/ekvashyn/Code/mXf/magicXform-utils/results/time_tracker_upd/ver_1/{output}/"
+        answer_file = f"/Users/ekvashyn/Code/mXf/magicXform-utils/results/time_tracker_last/ver_{version}/{output}/"
         result_file = f"{answer_file}{out_time}-{result_file_name}"
         if output == "SAT":
             simple_write_to_file(inv, f"{answer_file}INV-{result_file_name}")
