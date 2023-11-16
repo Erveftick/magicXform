@@ -49,20 +49,21 @@ averages = calculate_average_for_groups(grouped_files)
 
 # Print the calculated averages for each group
 sorted_averages = sorted(averages.items(), key=lambda x: x[0])  # Sort by problem name
-# print("|     Problem     |   Time   |")
-# print("|-----------------|----------|")
-# for second_part, average in sorted_averages:
-#     print(f"| {second_part} | {average}s |")
-# print("")
-# print(f"Total: {len(averages.items())}")
-nums = []
+print("|     Problem     |   Time   |")
+print("|-----------------|----------|")
 for second_part, average in sorted_averages:
-    _, _, num = second_part.split("_", 2)
-    num, _ = num.split(".", 1)
-    nums.append(num)
-# print(nums)
-number_list = set([str(i).zfill(2) for i in range(1, 59)])
-print(list(number_list.difference(set(nums))))
+    print(f"| {second_part} | {average}s |")
+print("")
+print(f"Total: {len(averages.items())}")
+
+# nums = []
+# for second_part, average in sorted_averages:
+#     _, _, num = second_part.split("_", 2)
+#     num, _ = num.split(".", 1)
+#     nums.append(num)
+# # print(nums)
+# number_list = set([str(i).zfill(2) for i in range(1, 59)])
+# print(list(number_list.difference(set(nums))))
 
 # for i in list(number_list.difference(set(nums))):
 #     print("python3 magicXform.py --pf=\"/home/ekvashyn/Code/mXf/magicXform/challenges/s_split_52.smt2\" --rf=\"s_split_52.smt2\" --max_depth=300 --ver=2"

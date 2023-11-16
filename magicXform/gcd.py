@@ -11,11 +11,14 @@ def find_gcd_and_combination(magic_values):
     find a combination of elements that yields a GCD greater than or 
     equal to 2. If there is GCD < 2 - returns initial list and 1 as GCD
     """
-    # Calculate the GCD of the entire list
-    current_gcd = magic_values[0]
-
-    if len(magic_values) == 1:
+    
+    if len(magic_values) == 0:
         return magic_values, 1
+    
+    if len(magic_values) == 1:
+        return magic_values, magic_values[0]
+
+    current_gcd = magic_values[0]
 
     for i in range(1, len(magic_values)):
         current_gcd = gcd(current_gcd, magic_values[i])
@@ -49,10 +52,8 @@ def get_rules(magic_values, gcd):
         coefficient = number // gcd
         print(f"coefficient = {coefficient}")
         print(f"z3.IntVal(number) = {z3.IntVal(number)}")
-        if (coefficient > 1):
+        if (coefficient > 1 or coefficient < -1):
             coefficients.append((z3.IntVal(number) == z3.IntVal(coefficient) * z3.Int(f"GCD{gcd}")))
-        elif (coefficient < -1):
-            coefficients.append((z3.IntVal(number) == z3.IntVal(coefficient) * -z3.Int(f"GCD{gcd}")))
         elif (coefficient == -1):
             coefficients.append((z3.IntVal(number) == -z3.Int(f"GCD{gcd}")))
         else:
@@ -65,18 +66,8 @@ def param_finder(magic_values):
     Find parameters including GCD, coefficients, 
     and the remaining elements in the list.
     """
-    print(f"magic_values = {magic_values}")
     combination, gcd = find_gcd_and_combination(magic_values)
-    print(f"combination = {combination}, gcd = {gcd}")
     magic_set = set(magic_values)
-    print(f"magic_set = {magic_set}")
     diff = list(magic_set.difference(combination))
-    print(f"diff = {diff}")
     rules = get_rules(combination, gcd)
-    print(f"rules = {rules}")
     return gcd, diff, combination, rules
-
-# Example usage
-# arr = [333,666,999]#[52, 97, 76, 80914] #[10, 15, 25, 30]
-# result = find_gcd_and_combination(arr)
-# print("param_finder:", param_finder(arr))
