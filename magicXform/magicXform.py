@@ -221,7 +221,7 @@ def generate_range_rules(num_list):
     """
     rules_list = []
     for num in num_list:
-        z3_var = z3.Int(f"K{num}")
+        z3_var = z3.Int(f"GCD{num}")
         z3_int = z3.IntVal(num)
         range_rule = [(z3_var > 0), (z3_var <= z3_int)]
         rules_list.append(range_rule)
@@ -233,20 +233,13 @@ def generate_range_rules(num_list):
 def gcd_based_rules(magic_values):
     if len(magic_values) > 0:
         int_magic_values = [int(m_int.as_long()) for m_int in magic_values]
-        gcd, diff, magic_values, gcd_rules = param_finder(int_magic_values)
-        # gcd_range_rules, gcd_z3_var = generate_range_rules(gcd)
+        gcd, diff, magic_values, gcd_rules = param_finder(int_magic_values) 
         gcd_z3_var = z3.Int(f"GCD{gcd}")
-        t_log(f"diff = {diff}")
-        t_log(f"gcd = {gcd}")
-        t_log(f"magic_values = {magic_values}")
-        t_log(f"gcd_rules = {gcd_rules}")
-        diff = diff + [gcd]
-        t_log(f"diff = {diff}")
         # upd_gcd_rules = int_2_var(gcd_rules, gcd_substitution)
         # gcd_rules = gcd_range_rules + gcd_rules
-        return diff, magic_values, gcd_rules, gcd_z3_var
+        return diff, gcd, magic_values, gcd_rules, gcd_z3_var
     else:
-        return [], [], [], None
+        return [], None, [], [], None
 #----
 
 def process_first_version(rules):
@@ -261,8 +254,10 @@ def process_second_version(rules):
     """Second version relates to substitution numbers with ranges"""
     magic_values = find_magic_values(rules[1:])
     range_rules = generate_range_rules(magic_values)
+    print(f"range_rules = {range_rules}")
     magic_values_vars, substitutions = prepare_substitution(magic_values, "K")
     subs_rules = apply_custom_substitution(rules, substitutions)
+    print(f"subs_rules = {subs_rules}")
     # additional_conditions = generate_additional_conditions(substitutions)
     return magic_values_vars, subs_rules, range_rules
 
@@ -278,8 +273,9 @@ def process_third_version(rules):
     core_magic_values = find_magic_values(rules[1:])
     init_magic_values = find_magic_values([rules[0]])
     magic_values = process_lists(init_magic_values, core_magic_values)
-    diff, magic_values, gcd_rules, gcd_z3_var = gcd_based_rules(magic_values)
+    diff, gcd, magic_values, gcd_rules, gcd_z3_var = gcd_based_rules(magic_values)
     magic_values_vars, substitutions = prepare_substitution(magic_values, "K")
+    diff += [gcd]
     diff_magic_values_vars, diff_subs = prepare_substitution(diff, "GCD")
 
     if gcd_z3_var is not None:
@@ -295,29 +291,31 @@ def process_third_version(rules):
     additional_conditions = gcd_rules+diff_additional_conditions
     return magic_values_vars, subs_rules, additional_conditions
 
-# def process_4_version(rules):
-#     """Third version algo for tool that relates to parametrization 
-#     and finding the parameter itself
-#     """    
-#     core_magic_values = find_magic_values(rules[1:])
-#     init_magic_values = find_magic_values([rules[0]])
-#     magic_values = process_lists(init_magic_values, core_magic_values)
-#     diff, magic_values, gcd_rules, gcd_z3_var = gcd_based_rules(magic_values)
-#     magic_values_vars, substitutions = prepare_substitution(magic_values, "K")
-#     diff_magic_values_vars, diff_subs = prepare_substitution(diff, "GCD")
+def process_4_version(rules):
+    """Fourth version relates to parametrization 
+    and providing the parameter as range
+    """    
+    core_magic_values = find_magic_values(rules[1:])
+    init_magic_values = find_magic_values([rules[0]])
+    magic_values = process_lists(init_magic_values, core_magic_values)
+    diff, gcd, magic_values, gcd_rules, gcd_z3_var = gcd_based_rules(magic_values)
+    magic_values_vars, substitutions = prepare_substitution(magic_values, "K")
+    diff_magic_values_vars, diff_subs = prepare_substitution(diff, "GCD")
 
-#     if gcd_z3_var is not None:
-#         magic_values_vars += [gcd_z3_var] + diff_magic_values_vars
-#     else:
-#         magic_values_vars += diff_magic_values_vars
+    if gcd_z3_var is not None:
+        magic_values_vars += [gcd_z3_var] + diff_magic_values_vars
+    else:
+        magic_values_vars += diff_magic_values_vars
 
-#     magic_values_vars = list(set(magic_values_vars))
+    magic_values_vars = list(set(magic_values_vars))
     
-#     subs_rules = int_2_var(int_2_var(rules, substitutions), diff_subs)
-#     gcd_rules = int_2_var(int_2_var(gcd_rules, substitutions), diff_subs)
-#     diff_additional_conditions = generate_additional_conditions(diff_subs)
-#     additional_conditions = gcd_rules+diff_additional_conditions
-#     return magic_values_vars, subs_rules, additional_conditions
+    subs_rules = int_2_var(int_2_var(rules, substitutions), diff_subs)
+    gcd_rules = int_2_var(int_2_var(gcd_rules, substitutions), diff_subs)
+    gcd_range_rules = generate_range_rules([gcd]) if gcd is not None else []
+            
+    diff_additional_conditions = generate_additional_conditions(diff_subs)
+    additional_conditions = gcd_rules+diff_additional_conditions+gcd_range_rules
+    return magic_values_vars, subs_rules, additional_conditions
     
 
 def process_rules_and_queries(code, max_depth, version="1"):
@@ -325,8 +323,7 @@ def process_rules_and_queries(code, max_depth, version="1"):
     queries = parse_queries(fp, code)
     rules = extract_rules(fp)
 
-    magic_values = find_magic_values(rules)
-    t_log(f"magic_values = {magic_values}")
+    magic_values = [x for x in find_magic_values(rules) if x not in [0, 1]]
 
     if version == "2":
         # second version that relates to range providing 
@@ -334,9 +331,12 @@ def process_rules_and_queries(code, max_depth, version="1"):
     elif version == "3":
         # third version that relates to parametrization and finding the parameter itself 
         magic_values_vars, subs_rules, additional_conditions = process_third_version(rules)
-    # elif version == "4":
-    #     # fourth version is combo of parametrization and putting parameter in a range 
-    #     magic_values_vars, subs_rules, additional_conditions = process_4_version(rules)
+    elif version == "4":
+        # fourth version is combo of parametrization and putting parameter in a range 
+        magic_values_vars, subs_rules, additional_conditions = process_4_version(rules)
+    elif version == "5" and len(magic_values) > 1:
+        # fourth version is combo of parametrization and putting parameter in a range 
+        magic_values_vars, subs_rules, additional_conditions = process_4_version(rules)
     else:
         # first version relates to substitution technique only
         magic_values_vars, subs_rules, additional_conditions = process_first_version(rules)
@@ -523,7 +523,8 @@ def main():
     result_file = f"./tmp/{result_file}"
 
     code = read_file(problem_file)
-
+    t_log(f"Code")
+    print(code)
     rules, queries, magic_values_vars = process_rules_and_queries(code, max_depth, version)
 
     new_rules = create_new_rules(rules, magic_values_vars)
