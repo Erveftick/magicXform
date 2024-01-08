@@ -7986,32 +7986,26 @@ Inv1(x,y)[5000-&gt;a, 10000-&gt;b] = ((y ≥ 5001 =&gt; x≥y) ∧ y ≥ a ∧ x
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">z3</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="c1"># Create Z3 variables</span>
 <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_prime</span><span class="p">,</span> <span class="n">y_prime</span> <span class="o">=</span> <span class="n">Ints</span><span class="p">(</span><span class="s1">'a b x y x_prime y_prime'</span><span class="p">)</span>
 
-<span class="c1"># Create a Z3 solver</span>
 <span class="n">solver</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
 
-<span class="c1"># Initial conditions</span>
 <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="n">a</span><span class="p">)</span>
 
-<span class="c1"># Transition relation constraints</span>
 <span class="n">transition_constraints</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span>
     <span class="n">x_prime</span> <span class="o">==</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
     <span class="n">y_prime</span> <span class="o">==</span> <span class="n">If</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="p">)</span>
 
-<span class="c1"># Invariant constraints</span>
 <span class="n">invariant_constraints</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span>
     <span class="n">Implies</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">5001</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">y</span><span class="p">),</span>
     <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">,</span>
     <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">y</span>
 <span class="p">)</span>
 
-<span class="c1"># Add transition relation and invariant constraints to the solver</span>
 <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">transition_constraints</span><span class="p">)</span>
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">invariant_constraints</span><span class="p">))</span>  <span class="c1"># Adding negation of the invariant for checking</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">invariant_constraints</span><span class="p">))</span>
 
 <span class="c1"># Check for satisfiability</span>
 <span class="k">if</span> <span class="n">solver</span><span class="o">.</span><span class="n">check</span><span class="p">()</span> <span class="o">==</span> <span class="n">unsat</span><span class="p">:</span>
@@ -8053,6 +8047,11 @@ a = 5002
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="2.-Prove-the-statement:">2. Prove the statement:<a class="anchor-link" href="#2.-Prove-the-statement:">¶</a></h3><p>inv2(x,y,a,b) = inv(x,y) ∧ a = 5000 ∧ b = 10000</p>
+<ul>
+<li>Ts0: <code>I0=Inv(x,y)</code></li>
+<li>Ts1: <code>I2=Inv2(x,y,a,b)</code></li>
+</ul>
+<p>We aim to prove that (<code>I0</code>∧(a=5000)∧(b=10000)) ≡ <code>I2</code></p>
 </div>
 </div>
 </div>
@@ -8073,22 +8072,23 @@ a = 5002
 <span class="n">solver</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
 
 <span class="c1"># Define the invariants for Ts0 and Ts1</span>
-<span class="n">I0</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span>
-    <span class="n">Implies</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">y</span><span class="p">),</span>
-    <span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">5000</span><span class="p">,</span>
-    <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">y</span>
-<span class="p">)</span>
-<span class="n">I1</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span> <span class="n">a1</span> <span class="o">==</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">b1</span> <span class="o">==</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">Implies</span><span class="p">(</span><span class="n">y1</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">,</span> <span class="n">x1</span> <span class="o">&gt;=</span> <span class="n">y1</span><span class="p">),</span> <span class="n">x1</span> <span class="o">&lt;=</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">&gt;=</span> <span class="n">a1</span><span class="p">)</span>
+<span class="n">I0</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">y</span><span class="p">),</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">I2</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span> <span class="n">a1</span> <span class="o">==</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">b1</span> <span class="o">==</span> <span class="mi">10000</span><span class="p">,</span> 
+         <span class="n">Implies</span><span class="p">(</span><span class="n">y1</span> <span class="o">&gt;=</span> <span class="n">a1</span><span class="p">,</span> <span class="n">x1</span> <span class="o">&gt;=</span> <span class="n">y1</span><span class="p">),</span> <span class="n">x1</span> <span class="o">&lt;=</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">&gt;=</span> <span class="n">a1</span><span class="p">)</span>
+
 
 <span class="c1"># Check if (I0 and (a = 5000) and (b = 10000)) is equivalent to I1</span>
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">And</span><span class="p">(</span><span class="n">I0</span><span class="p">,</span> <span class="n">a1</span> <span class="o">==</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">b1</span> <span class="o">==</span> <span class="mi">10000</span><span class="p">),</span> <span class="n">I1</span><span class="p">)))</span>
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">I1</span><span class="p">,</span> <span class="n">And</span><span class="p">(</span><span class="n">I0</span><span class="p">,</span> <span class="n">a1</span> <span class="o">==</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">b1</span> <span class="o">==</span> <span class="mi">10000</span><span class="p">))))</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">And</span><span class="p">(</span><span class="n">I0</span><span class="p">,</span> <span class="n">a1</span> <span class="o">==</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">b1</span> <span class="o">==</span> <span class="mi">10000</span><span class="p">),</span> <span class="n">I2</span><span class="p">)))</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">I2</span><span class="p">,</span> <span class="n">And</span><span class="p">(</span><span class="n">I0</span><span class="p">,</span> <span class="n">a1</span> <span class="o">==</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">b1</span> <span class="o">==</span> <span class="mi">10000</span><span class="p">))))</span>
+
 
 <span class="c1"># Check for satisfiability (unsat implies equivalence)</span>
 <span class="k">if</span> <span class="n">solver</span><span class="o">.</span><span class="n">check</span><span class="p">()</span> <span class="o">==</span> <span class="n">unsat</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"Invariant equivalency holds."</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"Invariant equivalency does not hold."</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
