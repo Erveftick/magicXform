@@ -7482,7 +7482,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="1.-Provide-cx-for-the-statement:">1. Provide cx for the statement:<a class="anchor-link" href="#1.-Provide-cx-for-the-statement:">¶</a></h3><p>inv2(x,y,a,b) = inv(x,y)[5000-&gt;a, 10000-&gt;b]</p>
+<h2 id="Proofs-for-equisat/non-equisat-for-variable-substitution-technique-used-in-magicXform">Proofs for equisat/non-equisat for variable substitution technique used in magicXform<a class="anchor-link" href="#Proofs-for-equisat/non-equisat-for-variable-substitution-technique-used-in-magicXform">¶</a></h2><p>In the file represented original transition system (ts0) and transformed transition system (ts1)</p>
 </div>
 </div>
 </div>
@@ -7669,6 +7669,17 @@ Transition System: Ts1<br/>	Init: a = 5000 ∧ b = 10000 ∧ x = 0 ∧ y = a<br/
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 ∀x, y, a, b, x', y', a', b' :<br/> a = 5000 ∧ b = 10000 ∧ x = 0 ∧ y = a ⇒ Inv(x, y, a, b) <br/><br/>∀x, y, a, b, x', y', a', b' :<br/> Inv(x, y, a, b) ∧<br/> x' = x + 1 ∧<br/> y' = If(x ≥ a, y + 1, y) ∧<br/> a' = a ∧<br/> b' = b ⇒<br/> Inv(x', y', a', b') <br/><br/>∀x, y, a, b, x', y', a', b' :<br/> Inv(x, y, a, b) ∧ x = b ∧ x ≠ y ⇒ False <br/><br/>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Invariants-for-those-2-systems-locates-below">Invariants for those 2 systems locates below<a class="anchor-link" href="#Invariants-for-those-2-systems-locates-below">¶</a></h4>
 </div>
 </div>
 </div>
@@ -7935,20 +7946,33 @@ Inv(x, y, a, b)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Invariant for the original benchmark is: <br/>
-Inv1(x,y) =</p>
+<h3 id="1.-Provide-cx-for-the-statement:-inv2(x,y,a,b)-=-inv(x,y)%5B5000-%3Ea,-10000-%3Eb%5D">1. Provide cx for the statement: inv2(x,y,a,b) = inv(x,y)[5000-&gt;a, 10000-&gt;b]<a class="anchor-link" href="#1.-Provide-cx-for-the-statement:-inv2(x,y,a,b)-=-inv(x,y)%5B5000-%3Ea,-10000-%3Eb%5D">¶</a></h3><ul>
+<li>Invariant for the original benchmark is: <br/>
+Inv1(x,y) =</li>
+</ul>
 <p> (¬(y ≥ 5001) ∨ ¬(y + -1·x ≥ 1)) ∧ ¬(y + -1·x ≤ -1) ∧ ¬(y ≤ 4999) =</p>
 <p> (y ≥ 5001) =&gt; (y ≥ x + 1) ∧ y ≥ x ∧ y &gt; 4999</p>
-<p>Invariant for the transformed benchmark is: <br/>
-Inv2(x,y,a,b) =</p>
+<ul>
+<li>Invariant for the transformed benchmark is: <br/>
+Inv2(x,y,a,b) =</li>
+</ul>
 <p> (¬(y ≥ 5001) ∨ x ≥ y) ∧ y ≥ a ∧ x ≤ y =</p>
 <p>  (y &gt; a =&gt; x ≥ y) ∧ y ≥ a ∧ x ≤ y</p>
-<p>We need to prove that
-Inv1(x,y)[5000-&gt;a, 10000-&gt;b] != Inv2(x,y,a,b)</p>
-<p>Let's rewrite Inv1(x,y) in such way: <br/>
-Inv1(x,y) = ((y &gt;= 5001 =&gt; x&gt;=y) &amp;&amp; y &gt;= 5000 &amp;&amp; x &lt;= y)
+<h4 id="We-need-to-prove-that-Inv1(x,y)%5B5000-%3Ea,-10000-%3Eb%5D-!=-Inv2(x,y,a,b)-and-provide-a-cx">We need to prove that Inv1(x,y)[5000-&gt;a, 10000-&gt;b] != Inv2(x,y,a,b) and provide a cx<a class="anchor-link" href="#We-need-to-prove-that-Inv1(x,y)%5B5000-%3Ea,-10000-%3Eb%5D-!=-Inv2(x,y,a,b)-and-provide-a-cx">¶</a></h4><p>Let's rewrite Inv1(x,y) in such way: <br/>
+Inv1(x,y) = ((y ≥ 5001 =&gt; x&gt;=y) ∧ y ≥ 5000 ∧ x ≤ y)
 <br/>
-Inv1(x,y)[5000-&gt;a, 10000-&gt;b] = ((y &gt;= 5001 =&gt; x&gt;=y) &amp;&amp; y &gt;= a &amp;&amp; x &lt;= y)</p>
+Inv1(x,y)[5000-&gt;a, 10000-&gt;b] = ((y ≥ 5001 =&gt; x≥y) ∧ y ≥ a ∧ x ≤ y)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Let's-to-find-a-cx-using-z3:">Let's to find a cx using z3:<a class="anchor-link" href="#Let's-to-find-a-cx-using-z3:">¶</a></h4>
 </div>
 </div>
 </div>
