@@ -7482,6 +7482,18 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p style="font-size: 12px">Prerequisite: During last weeks of summer I tried to show my technique to my advisor's collegue. During the conversation I got a task to prove 2 statement that will prove my technique. The picture of notes from this conversation I attach here. Everything on the blackboard was duplicated to this file. As an example was taken the file <a href="../challenges/s_split_01.smt2"><code>s_split_01.smt2</code></a></p>
+<p><img alt="drawing" src="proof_tasks.jpg" width="300"/></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Proofs-for-equisat/non-equisat-for-variable-substitution-technique-used-in-magicXform">Proofs for equisat/non-equisat for variable substitution technique used in magicXform<a class="anchor-link" href="#Proofs-for-equisat/non-equisat-for-variable-substitution-technique-used-in-magicXform">¶</a></h2><p>In the file represented original transition system (ts0) and transformed transition system (ts1)</p>
 </div>
 </div>
@@ -8070,6 +8082,7 @@ a = 5002
 <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">b1</span> <span class="o">=</span> <span class="n">Ints</span><span class="p">(</span><span class="s1">'x1 y1 a1 b1'</span><span class="p">)</span>
 
 <span class="n">solver</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
+<span class="n">solver2</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
 
 <span class="c1"># Define the invariants for Ts0 and Ts1</span>
 <span class="n">I0</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">y</span><span class="p">),</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">y</span><span class="p">)</span>
@@ -8081,14 +8094,32 @@ a = 5002
 <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">And</span><span class="p">(</span><span class="n">I0</span><span class="p">,</span> <span class="n">a1</span> <span class="o">==</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">b1</span> <span class="o">==</span> <span class="mi">10000</span><span class="p">),</span> <span class="n">I2</span><span class="p">)))</span>
 <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">I2</span><span class="p">,</span> <span class="n">And</span><span class="p">(</span><span class="n">I0</span><span class="p">,</span> <span class="n">a1</span> <span class="o">==</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">b1</span> <span class="o">==</span> <span class="mi">10000</span><span class="p">))))</span>
 
+<span class="c1"># NOTE: solver work above is the main here, but when I thought about </span>
+<span class="c1"># the thing that we are trying to prove, I realized that adding constrains </span>
+<span class="c1"># to I0 makes no sense, because I didn't pass a or b somewhere in the </span>
+<span class="c1"># invariant. If I add `a` and `b` to I0 and substitute all 5000 and 1000 to</span>
+<span class="c1"># the variables I'll get the I2 statement. So I think I can try to check</span>
+<span class="c1"># equisat for</span>
+<span class="c1"># inv2(x,y,a,b) = inv(x,y)</span>
+<span class="c1">#</span>
+<span class="n">solver2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">I0</span><span class="p">,</span> <span class="n">I2</span><span class="p">)))</span>
+<span class="n">solver2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">I2</span><span class="p">,</span> <span class="n">I0</span><span class="p">)))</span>
+
 
 <span class="c1"># Check for satisfiability (unsat implies equivalence)</span>
-<span class="k">if</span> <span class="n">solver</span><span class="o">.</span><span class="n">check</span><span class="p">()</span> <span class="o">==</span> <span class="n">unsat</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Invariant equivalency holds."</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Invariant equivalency does not hold."</span><span class="p">)</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">check_is_sat</span><span class="p">(</span><span class="n">solver</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">solver</span><span class="o">.</span><span class="n">check</span><span class="p">()</span> <span class="o">==</span> <span class="n">unsat</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Invariant equivalency holds."</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Invariant equivalency does not hold."</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"solver:"</span><span class="p">)</span>
+<span class="n">check_is_sat</span><span class="p">(</span><span class="n">solver</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"solver2:"</span><span class="p">)</span>
+<span class="n">check_is_sat</span><span class="p">(</span><span class="n">solver2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8101,7 +8132,11 @@ a = 5002
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Invariant equivalency holds.
+<pre>solver:
+Invariant equivalency holds.
+
+solver2:
+Invariant equivalency holds.
 </pre>
 </div>
 </div>
