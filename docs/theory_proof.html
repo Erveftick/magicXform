@@ -7695,6 +7695,17 @@ Transition System: Ts1<br/>	Init: a = 5000 ∧ b = 10000 ∧ x = 0 ∧ y = a<br/
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Invariant-1">Invariant 1<a class="anchor-link" href="#Invariant-1">¶</a></h4>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7729,61 +7740,8 @@ Inv(x, y)
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">HtmlStr</span><span class="p">(</span><span class="n">inv1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-Inv(x, y, a, b)
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">res0</span><span class="p">,</span> <span class="n">answer0</span> <span class="o">=</span> <span class="n">solve_horn</span><span class="p">(</span><span class="n">vc0</span><span class="p">,</span> <span class="n">max_unfold</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">res1</span><span class="p">,</span> <span class="n">answer1</span> <span class="o">=</span> <span class="n">solve_horn</span><span class="p">(</span><span class="n">vc1</span><span class="p">,</span> <span class="n">max_unfold</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">res0</span>
+<span class="n">res0</span>
 </pre></div>
 </div>
 </div>
@@ -7809,7 +7767,7 @@ Inv(x, y, a, b)
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">res1</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">res0</span>
 </pre></div>
 </div>
 </div>
@@ -7849,10 +7807,114 @@ Inv(x, y, a, b)
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 [Inv = [else →
-        (¬(ν<sub>0</sub> ≤ 5000) ∨ ¬(ν<sub>1</sub> ≥ 5001)) ∧
-        ¬(ν<sub>0</sub> + -1·ν<sub>1</sub> ≥ 1) ∧
-        (¬(ν<sub>0</sub> ≥ 5000) ∨ ¬(ν<sub>0</sub> + -1·ν<sub>1</sub> ≤ -1)) ∧
+        (¬(ν<sub>1</sub> ≥ 5001) ∨ ¬(ν<sub>1</sub> + -1·ν<sub>0</sub> ≥ 1)) ∧
+        ¬(ν<sub>1</sub> + -1·ν<sub>0</sub> ≤ -1) ∧
         ¬(ν<sub>1</sub> ≤ 4999)]]
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">answer0</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">inv0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+(¬(y ≥ 5001) ∨ ¬(y + -1·x ≥ 1)) ∧
+¬(y + -1·x ≤ -1) ∧
+¬(y ≤ 4999)
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Invariant-2">Invariant 2<a class="anchor-link" href="#Invariant-2">¶</a></h4>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">HtmlStr</span><span class="p">(</span><span class="n">inv1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+Inv(x, y, a, b)
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">res1</span><span class="p">,</span> <span class="n">answer1</span> <span class="o">=</span> <span class="n">solve_horn</span><span class="p">(</span><span class="n">vc1</span><span class="p">,</span> <span class="n">max_unfold</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">res1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<b>sat</b>
 </div>
 </div>
 </div>
@@ -7879,43 +7941,11 @@ Inv(x, y, a, b)
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 [Inv = [else →
-        (¬(ν<sub>1</sub> + -1·ν<sub>0</sub> ≤ -1) ∨ ¬(ν<sub>0</sub> + -1·ν<sub>3</sub> ≥ -3)) ∧
-        ¬(ν<sub>2</sub> + -1·ν<sub>3</sub> ≥ -4999) ∧
-        (¬(ν<sub>0</sub> + -1·ν<sub>2</sub> ≤ -1) ∨ ¬(ν<sub>1</sub> + -1·ν<sub>2</sub> ≥ 1)) ∧
-        (¬(ν<sub>1</sub> + -1·ν<sub>0</sub> ≤ -1) ∨
-         ¬(ν<sub>0</sub> + -1·ν<sub>3</sub> ≤ -2) ∨
-         ¬(ν<sub>0</sub> + -1·ν<sub>2</sub> ≥ 0)) ∧
-        ¬(ν<sub>1</sub> + -1·ν<sub>2</sub> ≤ -1) ∧
-        (¬(ν<sub>0</sub> + -1·ν<sub>2</sub> ≥ 0) ∨ ¬(ν<sub>1</sub> + -1·ν<sub>0</sub> ≥ 1))]]
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">answer0</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">inv0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-(¬(x ≤ 5000) ∨ ¬(y ≥ 5001)) ∧
-¬(x + -1·y ≥ 1) ∧
-(¬(x ≥ 5000) ∨ ¬(x + -1·y ≤ -1)) ∧
-¬(y ≤ 4999)
+        (¬(ν<sub>0</sub> + -1·ν<sub>1</sub> ≤ -1) ∨ ¬(ν<sub>0</sub> + -1·ν<sub>2</sub> ≥ 0)) ∧
+        ¬(ν<sub>2</sub> + -1·ν<sub>1</sub> ≥ 1) ∧
+        ¬(ν<sub>2</sub> + -1·ν<sub>3</sub> ≥ 0) ∧
+        ¬(ν<sub>0</sub> + -1·ν<sub>1</sub> ≥ 1) ∧
+        (¬(ν<sub>0</sub> + -1·ν<sub>2</sub> ≤ -1) ∨ ¬(ν<sub>2</sub> + -1·ν<sub>1</sub> ≤ -1))]]
 </div>
 </div>
 </div>
@@ -7941,12 +7971,11 @@ Inv(x, y, a, b)
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-(¬(y + -1·x ≤ -1) ∨ ¬(x + -1·b ≥ -3)) ∧
-¬(a + -1·b ≥ -4999) ∧
-(¬(x + -1·a ≤ -1) ∨ ¬(y + -1·a ≥ 1)) ∧
-(¬(y + -1·x ≤ -1) ∨ ¬(x + -1·a ≥ 0) ∨ ¬(x + -1·b ≤ -2)) ∧
-¬(y + -1·a ≤ -1) ∧
-(¬(x + -1·a ≥ 0) ∨ ¬(y + -1·x ≥ 1))
+(¬(x + -1·y ≤ -1) ∨ ¬(x + -1·a ≥ 0)) ∧
+¬(a + -1·y ≥ 1) ∧
+¬(a + -1·b ≥ 0) ∧
+¬(x + -1·y ≥ 1) ∧
+(¬(x + -1·a ≤ -1) ∨ ¬(a + -1·y ≤ -1))
 </div>
 </div>
 </div>
@@ -7958,6 +7987,7 @@ Inv(x, y, a, b)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
 <h3 id="1.-Provide-cx-for-the-statement:-inv2(x,y,a,b)-=-inv(x,y)%5B5000-%3Ea,-10000-%3Eb%5D">1. Provide cx for the statement: inv2(x,y,a,b) = inv(x,y)[5000-&gt;a, 10000-&gt;b]<a class="anchor-link" href="#1.-Provide-cx-for-the-statement:-inv2(x,y,a,b)-=-inv(x,y)%5B5000-%3Ea,-10000-%3Eb%5D">¶</a></h3><ul>
 <li>Invariant for the original benchmark is: <br/>
 Inv1(x,y) =</li>
@@ -7988,7 +8018,7 @@ Inv1(x,y)[5000-&gt;a, 10000-&gt;b] = ((y ≥ 5001 =&gt; x≥y) ∧ y ≥ a ∧ x
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7998,37 +8028,69 @@ Inv1(x,y)[5000-&gt;a, 10000-&gt;b] = ((y ≥ 5001 =&gt; x≥y) ∧ y ≥ a ∧ x
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">z3</span> <span class="kn">import</span> <span class="o">*</span>
 
+<span class="k">def</span> <span class="nf">check_is_sat</span><span class="p">(</span><span class="n">solver</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">solver</span><span class="o">.</span><span class="n">check</span><span class="p">()</span> <span class="o">==</span> <span class="n">unsat</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Invariant equivalency holds."</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Invariant equivalency does not hold."</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">inv_gen</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">w</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">And</span><span class="p">(</span>
+    <span class="n">Implies</span><span class="p">(</span><span class="n">w</span> <span class="o">&gt;=</span> <span class="mi">5001</span><span class="p">,</span> <span class="n">u</span> <span class="o">&gt;=</span> <span class="n">w</span><span class="p">),</span>
+    <span class="n">w</span> <span class="o">&gt;</span> <span class="mi">4999</span><span class="p">,</span>
+    <span class="n">u</span> <span class="o">&lt;=</span> <span class="n">w</span><span class="p">)</span>
+
 <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_prime</span><span class="p">,</span> <span class="n">y_prime</span> <span class="o">=</span> <span class="n">Ints</span><span class="p">(</span><span class="s1">'a b x y x_prime y_prime'</span><span class="p">)</span>
 
-<span class="n">solver</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
-
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="n">a</span><span class="p">)</span>
+<span class="n">init_constraints</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">y</span> <span class="o">==</span> <span class="n">a</span>  <span class="c1"># If we will put y == 5000 (or a == 5000 before) the first solver will be valid</span>
+<span class="p">)</span>
 
 <span class="n">transition_constraints</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span>
     <span class="n">x_prime</span> <span class="o">==</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="n">y_prime</span> <span class="o">==</span> <span class="n">If</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">y_prime</span> <span class="o">==</span> <span class="n">If</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="c1">#y_prime == If(x &gt;= 5000, y + 1, y) works</span>
 <span class="p">)</span>
+<span class="n">bad_state</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">b</span><span class="p">,</span> <span class="n">x_prime</span> <span class="o">!=</span> <span class="n">y_prime</span><span class="p">)</span> <span class="c1">#x == 10000 works</span>
 
-<span class="n">invariant_constraints</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span>
-    <span class="n">Implies</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">5001</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">y</span><span class="p">),</span>
-    <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">,</span>
-    <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">y</span>
-<span class="p">)</span>
+<span class="n">invariant_constraints</span> <span class="o">=</span> <span class="n">inv_gen</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">invariant_prime_constraints</span> <span class="o">=</span> <span class="n">inv_gen</span><span class="p">(</span><span class="n">x_prime</span><span class="p">,</span> <span class="n">y_prime</span><span class="p">)</span>
 
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">transition_constraints</span><span class="p">)</span>
+
+<span class="n">solver</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">init_constraints</span><span class="p">)</span>
 <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">invariant_constraints</span><span class="p">))</span>
 
-<span class="c1"># Check for satisfiability</span>
-<span class="k">if</span> <span class="n">solver</span><span class="o">.</span><span class="n">check</span><span class="p">()</span> <span class="o">==</span> <span class="n">unsat</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Invariant holds for the transition system."</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Invariant does not hold for the transition system."</span><span class="p">)</span>
-    <span class="n">counterexample</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Counterexample found:"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"x ="</span><span class="p">,</span> <span class="n">counterexample</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"y ="</span><span class="p">,</span> <span class="n">counterexample</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"a ="</span><span class="p">,</span> <span class="n">counterexample</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Check the initialization condition Init =&gt; Inv is valid:"</span><span class="p">)</span>
+<span class="n">check_is_sat</span><span class="p">(</span><span class="n">solver</span><span class="p">)</span>
+
+<span class="n">solver2</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
+<span class="n">solver2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">transition_constraints</span><span class="p">)</span>
+<span class="n">solver2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">invariant_constraints</span><span class="p">)</span>
+<span class="n">solver2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">invariant_prime_constraints</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Check the condition Inv ∧ Tr =&gt; Inv` is valid:"</span><span class="p">)</span>
+<span class="n">check_is_sat</span><span class="p">(</span><span class="n">solver2</span><span class="p">)</span>
+
+<span class="n">solver3</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
+<span class="n">solver3</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">invariant_constraints</span><span class="p">)</span>
+<span class="n">solver3</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bad_state</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Check the initialization condition Inv ∧ Bad =&gt; False` is valid:"</span><span class="p">)</span>
+<span class="n">check_is_sat</span><span class="p">(</span><span class="n">solver2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8041,11 +8103,19 @@ Inv1(x,y)[5000-&gt;a, 10000-&gt;b] = ((y ≥ 5001 =&gt; x≥y) ∧ y ≥ a ∧ x
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Invariant does not hold for the transition system.
-Counterexample found:
-x = 0
-y = 5002
-a = 5002
+<pre>Check the initialization condition Init =&gt; Inv is valid:
+Invariant equivalency does not hold.
+[x = 0, a = 5001, y = 5001]
+Check the condition Inv ∧ Tr =&gt; Inv` is valid:
+Invariant equivalency does not hold.
+[x = 5000,
+ y_prime = 5000,
+ x_prime = 5001,
+ a = 5001,
+ y = 5000]
+Check the initialization condition Inv ∧ Bad =&gt; False` is valid:
+Invariant equivalency does not hold.
+[x = 0, y_prime = 5001, x_prime = 1, y = 5000, a = 0]
 </pre>
 </div>
 </div>
@@ -8063,7 +8133,7 @@ a = 5002
 <li>Ts0: <code>I0=Inv(x,y)</code></li>
 <li>Ts1: <code>I2=Inv2(x,y,a,b)</code></li>
 </ul>
-<p>We aim to prove that (<code>I0</code>∧(a=5000)∧(b=10000)) ≡ <code>I2</code></p>
+<p>We aim to prove that <code>I0</code> ≡ <code>I2</code></p>
 </div>
 </div>
 </div>
@@ -8076,50 +8146,43 @@ a = 5002
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># vars for Ts0</span>
-<span class="n">x0</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="n">Ints</span><span class="p">(</span><span class="s1">'x0 y0'</span><span class="p">)</span>
+<span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x0_prime</span><span class="p">,</span> <span class="n">y0_prime</span> <span class="o">=</span> <span class="n">Ints</span><span class="p">(</span><span class="s1">'x0 y0 x0_prime y0_prime'</span><span class="p">)</span>
 
 <span class="c1"># vars for Ts1</span>
-<span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">b1</span> <span class="o">=</span> <span class="n">Ints</span><span class="p">(</span><span class="s1">'x1 y1 a1 b1'</span><span class="p">)</span>
+<span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">x1_prime</span><span class="p">,</span> <span class="n">y1_prime</span> <span class="o">=</span> <span class="n">Ints</span><span class="p">(</span><span class="s1">'x1 y1 a1 b1 x1_prime y1_prime'</span><span class="p">)</span>
+
+<span class="c1"># vars for Ts2</span>
+<span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">x2_prime</span><span class="p">,</span> <span class="n">y2_prime</span> <span class="o">=</span> <span class="n">Ints</span><span class="p">(</span><span class="s1">'x2 y2 a2 b2 x2_prime y2_prime'</span><span class="p">)</span>
 
 <span class="n">solver</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
 <span class="n">solver2</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
 
 <span class="c1"># Define the invariants for Ts0 and Ts1</span>
-<span class="n">I0</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">y</span><span class="p">),</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">I2</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span> <span class="n">a1</span> <span class="o">==</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">b1</span> <span class="o">==</span> <span class="mi">10000</span><span class="p">,</span> 
-         <span class="n">Implies</span><span class="p">(</span><span class="n">y1</span> <span class="o">&gt;=</span> <span class="n">a1</span><span class="p">,</span> <span class="n">x1</span> <span class="o">&gt;=</span> <span class="n">y1</span><span class="p">),</span> <span class="n">x1</span> <span class="o">&lt;=</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">&gt;=</span> <span class="n">a1</span><span class="p">)</span>
+<span class="n">I0_0</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">y0</span> <span class="o">&gt;</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">x0</span> <span class="o">&gt;=</span> <span class="n">y0</span><span class="p">),</span> <span class="n">y0</span> <span class="o">&gt;=</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">x0</span> <span class="o">&lt;=</span> <span class="n">y0</span><span class="p">)</span>
+<span class="n">I0</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">y0</span> <span class="o">&gt;</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">x0</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="n">y0</span><span class="p">),</span> <span class="n">y0</span> <span class="o">&gt;=</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">x0</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">y0</span><span class="p">)</span>
+<span class="n">I1</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">y1</span> <span class="o">&gt;=</span> <span class="n">a1</span><span class="p">,</span> <span class="n">x1</span> <span class="o">&gt;=</span> <span class="n">y1</span><span class="p">),</span> <span class="n">x1</span> <span class="o">&lt;=</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">&gt;=</span> <span class="n">a1</span><span class="p">)</span>
+<span class="n">I2</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">a2</span><span class="o">-</span><span class="n">y2</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">x2</span><span class="o">&gt;</span><span class="n">y2</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+        <span class="c1"># Not(And(a2 -y2 &lt;= -1, x2 - y2 &lt;= -1)), // this is another variant of the line above</span>
+         <span class="n">x2</span> <span class="o">&lt;</span> <span class="n">y2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> 
+         <span class="n">b2</span> <span class="o">-</span> <span class="n">a2</span> <span class="o">&gt;=</span> <span class="mi">5000</span><span class="p">,</span>
+         <span class="n">a2</span> <span class="o">&lt;</span> <span class="n">y2</span> <span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 
+<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">I0</span><span class="p">,</span> <span class="n">I1</span><span class="p">)))</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">I1</span><span class="p">,</span> <span class="n">I0</span><span class="p">)))</span>
 
-<span class="c1"># Check if (I0 and (a = 5000) and (b = 10000)) is equivalent to I1</span>
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">And</span><span class="p">(</span><span class="n">I0</span><span class="p">,</span> <span class="n">a1</span> <span class="o">==</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">b1</span> <span class="o">==</span> <span class="mi">10000</span><span class="p">),</span> <span class="n">I2</span><span class="p">)))</span>
-<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">I2</span><span class="p">,</span> <span class="n">And</span><span class="p">(</span><span class="n">I0</span><span class="p">,</span> <span class="n">a1</span> <span class="o">==</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">b1</span> <span class="o">==</span> <span class="mi">10000</span><span class="p">))))</span>
-
-<span class="c1"># NOTE: solver work above is the main here, but when I thought about </span>
-<span class="c1"># the thing that we are trying to prove, I realized that adding constrains </span>
-<span class="c1"># to I0 makes no sense, because I didn't pass a or b somewhere in the </span>
-<span class="c1"># invariant. If I add `a` and `b` to I0 and substitute all 5000 and 1000 to</span>
-<span class="c1"># the variables I'll get the I2 statement. So I think I can try to check</span>
-<span class="c1"># equisat for</span>
-<span class="c1"># inv2(x,y,a,b) = inv(x,y)</span>
-<span class="c1">#</span>
 <span class="n">solver2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">I0</span><span class="p">,</span> <span class="n">I2</span><span class="p">)))</span>
 <span class="n">solver2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">I2</span><span class="p">,</span> <span class="n">I0</span><span class="p">)))</span>
-
-
-<span class="c1"># Check for satisfiability (unsat implies equivalence)</span>
-<span class="k">def</span> <span class="nf">check_is_sat</span><span class="p">(</span><span class="n">solver</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">solver</span><span class="o">.</span><span class="n">check</span><span class="p">()</span> <span class="o">==</span> <span class="n">unsat</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Invariant equivalency holds."</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Invariant equivalency does not hold."</span><span class="p">)</span>
-        <span class="n">m</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"solver:"</span><span class="p">)</span>
 <span class="n">check_is_sat</span><span class="p">(</span><span class="n">solver</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"solver2:"</span><span class="p">)</span>
 <span class="n">check_is_sat</span><span class="p">(</span><span class="n">solver2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"I0 == I1"</span><span class="p">)</span>
+<span class="n">prove</span><span class="p">(</span><span class="n">I0</span> <span class="o">==</span> <span class="n">I1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"I0 == I2"</span><span class="p">)</span>
+<span class="n">prove</span><span class="p">(</span><span class="n">I0</span> <span class="o">==</span> <span class="n">I2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8137,6 +8200,140 @@ Invariant equivalency holds.
 
 solver2:
 Invariant equivalency holds.
+
+I0 == I1
+counterexample
+[x0 = 0, a1 = 0, y0 = 5001, y1 = 0, x1 = 0]
+I0 == I2
+counterexample
+[y2 = 0, x0 = 5001, y0 = 5001, a2 = -1, x2 = -1, b2 = 4999]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>There I tried 2 approaches to prove that invariants equisat, but got 2 different answers. I believe it's not.</p>
+<h4 id="Below-I-tried-to-fit-invariant-of-a-transformed-benchmark-to-initial-one-and-see-whether-it-will-take-it,-but-I-tried-3-different-invariants-(because-solve_horn-returned-me-%3E1-solution),-but-non-of-them-worked.-Probably-I-miss-something">Below I tried to fit invariant of a transformed benchmark to initial one and see whether it will take it, but I tried 3 different invariants (because solve_horn returned me &gt;1 solution), but non of them worked. Probably I miss something<a class="anchor-link" href="#Below-I-tried-to-fit-invariant-of-a-transformed-benchmark-to-initial-one-and-see-whether-it-will-take-it,-but-I-tried-3-different-invariants-(because-solve_horn-returned-me-%3E1-solution),-but-non-of-them-worked.-Probably-I-miss-something">¶</a></h4>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_prime</span><span class="p">,</span> <span class="n">y_prime</span> <span class="o">=</span> <span class="n">Ints</span><span class="p">(</span><span class="s1">'a b x y x_prime y_prime'</span><span class="p">)</span>
+
+<span class="n">init_constraints</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span>
+    <span class="c1"># a == 5000,</span>
+    <span class="c1"># b == 10000,</span>
+    <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">y</span> <span class="o">==</span> <span class="mi">5000</span> 
+<span class="p">)</span>
+
+<span class="n">transition_constraints</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span>
+    <span class="n">x_prime</span> <span class="o">==</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">y_prime</span> <span class="o">==</span> <span class="n">If</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">bad_state</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">x_prime</span> <span class="o">!=</span> <span class="n">y_prime</span><span class="p">)</span>
+
+<span class="n">I0</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">),</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">I0_prime</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">y_prime</span> <span class="o">&gt;</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">x_prime</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="n">y_prime</span><span class="p">),</span>
+                <span class="n">y_prime</span> <span class="o">&gt;=</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">x_prime</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">y_prime</span><span class="p">)</span>
+
+<span class="n">I1</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">y</span><span class="p">),</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">y</span><span class="p">,</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">)</span>
+<span class="n">I1_prime</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">y_prime</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">,</span> <span class="n">x_prime</span> <span class="o">&gt;=</span> <span class="n">y_prime</span><span class="p">),</span> <span class="n">x_prime</span> <span class="o">&lt;=</span> <span class="n">y_prime</span><span class="p">,</span> <span class="n">y_prime</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="n">I2</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">&gt;</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+        <span class="c1"># Not(And(a - y &lt;= -1, x - y &lt;= -1)),</span>
+         <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> 
+         <span class="n">b</span> <span class="o">-</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">4999</span><span class="p">,</span>
+         <span class="n">a</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">I2_prime</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span>
+    <span class="n">Implies</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">y_prime</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">x_prime</span><span class="o">&gt;</span><span class="n">y_prime</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+        <span class="c1"># Not(And(a -y_prime &lt;= -1, x_prime - y_prime &lt;= -1)),</span>
+         <span class="n">x_prime</span> <span class="o">&lt;</span> <span class="n">y_prime</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> 
+         <span class="n">b</span> <span class="o">-</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">4999</span><span class="p">,</span>
+         <span class="n">a</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">y_prime</span><span class="p">)</span>
+
+<span class="n">I3</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">Or</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">Not</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)),</span>
+         <span class="n">Not</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">),</span>
+         <span class="n">b</span> <span class="o">-</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">4999</span><span class="p">,</span>
+         <span class="n">Not</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">),</span>
+         <span class="n">Or</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">a</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">Not</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+
+<span class="n">I3_prime</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span><span class="n">Or</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">x_prime</span> <span class="o">-</span> <span class="n">y_prime</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">Not</span><span class="p">(</span><span class="n">x_prime</span> <span class="o">-</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)),</span>
+         <span class="n">Not</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">y_prime</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">),</span>
+         <span class="n">b</span> <span class="o">-</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">4999</span><span class="p">,</span>
+         <span class="n">Not</span><span class="p">(</span><span class="n">x_prime</span> <span class="o">-</span> <span class="n">y_prime</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">),</span>
+         <span class="n">Or</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">x_prime</span> <span class="o">-</span> <span class="n">a</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">Not</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">y_prime</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+
+<span class="c1"># (¬(x + -1·y ≤ -1) ∨ ¬(x + -1·a ≥ 0)) ∧</span>
+<span class="c1"># ¬(a + -1·y ≥ 1) ∧ ¬(a + -1·b ≥ 0) ∧ </span>
+<span class="c1"># ¬(x + -1·y ≥ 1) ∧ </span>
+<span class="c1"># (¬(x + -1·a ≤ -1) ∨ ¬(a + -1·y ≤ -1))</span>
+
+<span class="n">solver</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">init_constraints</span><span class="p">)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">I3</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Check the initialization condition Init =&gt; Inv is valid:"</span><span class="p">)</span>
+<span class="n">check_is_sat</span><span class="p">(</span><span class="n">solver</span><span class="p">)</span>
+
+<span class="n">solver2</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
+<span class="n">solver2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">transition_constraints</span><span class="p">)</span>
+<span class="n">solver2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">I3</span><span class="p">)</span>
+<span class="n">solver2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">I3_prime</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Check the condition Inv ∧ Tr =&gt; Inv` is valid:"</span><span class="p">)</span>
+<span class="n">check_is_sat</span><span class="p">(</span><span class="n">solver2</span><span class="p">)</span>
+
+<span class="n">solver3</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
+<span class="n">solver3</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">I3</span><span class="p">)</span>
+<span class="n">solver3</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bad_state</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Check the initialization condition Inv ∧ Bad =&gt; False` is valid:"</span><span class="p">)</span>
+<span class="n">check_is_sat</span><span class="p">(</span><span class="n">solver2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Check the initialization condition Init =&gt; Inv is valid:
+Invariant equivalency does not hold.
+[y = 5000, b = 5001, x = 0, a = 1]
+Check the condition Inv ∧ Tr =&gt; Inv` is valid:
+Invariant equivalency does not hold.
+[a = 5002,
+ x = 5000,
+ y_prime = 5003,
+ b = 10002,
+ x_prime = 5001,
+ y = 5002]
+Check the initialization condition Inv ∧ Bad =&gt; False` is valid:
+Invariant equivalency does not hold.
+[a = 5002,
+ x = 5000,
+ y_prime = 5003,
+ y = 5002,
+ x_prime = 5001,
+ b = 10002]
 </pre>
 </div>
 </div>
