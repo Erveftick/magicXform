@@ -24,6 +24,7 @@
   - [[#parametrization-technique][Parametrization technique]]
   - [[#paranga-technique][PaRanga technique]]
   - [[#combo][Combo]]
+  - [[#summary][Summary]]
 - [[#transformation][Transformation]]
   - [[#new-invariant-creation][New invariant creation]]
   - [[#main-rewriter-process][Main rewriter process]]
@@ -31,7 +32,7 @@
 - [[#main-function][Main function]]
 
 * Introduction
-This is an introduction to my Python code.
+This tool is designed to facilitate the search for an invariant in CHCs. Magic numbers are usually huge numbers that make it difficult to find an invariant for a problem. Also, these numbers may be repeated or have relationships with each other. In order to make this task easier, I decided to get rid of them, but not completely, but only replace specific numbers with variables. This will help the spacer determine the invariant faster, since it will find patterns for the variable, which should significantly speed up finding the invariant
 
 * Imports and dependencies
 I use `sys` module to import z3 properly from a path that locates in `secrets.py` file. In such way I can manually change z3 version and try to solve benchmark using concrete z3 version
@@ -162,7 +163,11 @@ def extract_rules(fp):
 ** Find magic numbers
 Following functions try to find a magic number in following cases:
 1. If expression has a comparison sign (i.e <,<=, >=, >,=, !=)
+   - It was decided to look for the magic numbers in expressions with comparison signs because benchmarks won't be affected if we substitute numbers with variables. If we take numbers from sum or multiplication expressions, it can lead to unexpected results that do not correlate with the initial problem.
 2. Is non-zero integer
+   - Zero is usually a starting point for major part of benchmarks and there is no much sense in identification zeros for following operating
+3. Not a denominator in div or mod operation
+   - This is due to the fact that the Spacer is built on the z3 tool, which checks whether the denominator is a non-zero number in the division operation. When replacing a number with a variable, z3 probably does not know whether the number behind the variable is non-zero, so it was decided to limit the search for magic numbers in denominators
 
 #+begin_src python
 def is_magic_num(v):
@@ -453,11 +458,11 @@ def process_4_version(rules):
 #+END_SRC
 
 ** Combo
-=Parametrization or Substitution = Combo=
+=PaRanga or Substitution = Combo=
 
-This technique *doesn't* provide a new way of represenation or transformation with magic numbers. The purpose of this solution finder is to make a change to benchmarks that have <= 1 magic number, because [[#parametrization-technique][Parametrization technique]] strategy relies on GCD strategy and couldn't find a relation between 1 number or less. Since I use two techniques that I consider equisat, then in the end this technique will return an equisat benchmark.
+This technique *doesn't* provide a new way of represenation or transformation with magic numbers. The purpose of this solution finder is to make a change to benchmarks that have <= 1 magic number, because [[#parametrization-technique][Parametrization technique]] strategy relies on GCD strategy and couldn't find a relation between 1 number or less. Since I use two techniques but one of them is not equisat I consider in the end this technique will return an non-equisat benchmark.
 
-||magic_numbers∣ ≤ 1 ? [[#substitution-technique][Substitution technique]] : [[#parametrization-technique][Parametrization technique]]
+|len(magic_numbers) ≤ 1 ? [[#substitution-technique][Substitution technique]] : [[#paranga-technique][PaRanga technique]]
 
 #+BEGIN_SRC python
 def process_rules_and_queries(code, max_depth, version="1"):
@@ -486,6 +491,15 @@ def process_rules_and_queries(code, max_depth, version="1"):
     new_rules = process_first_rule(subs_rules, additional_conditions)
     return new_rules, queries, magic_values_vars
 #+END_SRC
+
+** Summary
+| Technique                 | Main idea                                                        | Equisat? |
+|---------------------------+------------------------------------------------------------------+----------|
+| [[#substitution-technique][Substitution technique]]    | Numbers -> variables                                             | true     |
+| [[#range-technique][Range technique]]           | Numbers -> variables in a range 0 < var < number                 | false    |
+| [[#parametrization-technique][Parametrization technique]] | Numbers -> [GCD_variable && parametrized_variables]              | true     |
+| [[#paranga-technique][PaRanga technique]]         | Numbers -> [GCD_variable && 0 < parametrized_variables < number] | false    |
+| [[#combo][Combo]]                     | [[#substitution-technique][Substitution technique]] or [[#paranga-technique][PaRanga technique]]                      | false    |
 
 * Transformation
 ** New invariant creation
