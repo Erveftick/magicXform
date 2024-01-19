@@ -1,3 +1,18 @@
+#+TITLE: MagicXform source code & documentation
+#+DESCRIPTION: Literate programming approach to write a good documentation and notes to my code for fast bug-identification
+#+PROPERTY: header-args :tangle magicXform.py
+#+auto_tangle: t
+#+STARTUP: showeverything
+#+AUTHOR: Eduard Kvashyn
+
+* Introduction
+  This is an introduction to my Python code.
+
+* Initial point
+** Imports and dependencies
+I use `sys` module to import z3 properly from a path that locates in `secrets.py` file. In such way I can manually change z3 version and try to solve benchmark using concrete z3 version
+
+  #+BEGIN_SRC python
 import sys
 import os
 from secrets import z3_path, z3_eval_path
@@ -12,6 +27,10 @@ from datetime import datetime
 z3.set_param(proof=True)
 z3.set_param(model=True)
 
+#+END_SRC
+
+** Terminal arguments parser
+#+BEGIN_SRC python
 parser = argparse.ArgumentParser(description="A script to process problem and result files")
 
 # Add optional arguments with default values
@@ -21,6 +40,22 @@ parser.add_argument('--max_depth', default=100, help='Amount of iteration for SP
 parser.add_argument('--s', default=True, help='Indicate whether SPACER will find solution for rewrittencode')
 parser.add_argument('--ver', default="1", help="Indicate version of the tool: 1 - substitution technique; 2 - parametrization ")
 
+#+END_SRC
+
+- See the =help= for getting more information
+- --ver is for choosing version of the tool. In total I have 5 versions:
+**** 1 - Substitution technique
+Takes a benchmark, finds all magic numbers using it's parser (further in the file). Provides a variable for each magic number, add them to the initial rule and substitutes those numbers with variables.
+**** 2 - Range technique
+Finds magic numbers and provides variables, but variables is in range between 1 and corresponing magic number (0 < var < magicNumber)
+**** TODO 3 Parametrization
+**** TODO 4 PaRanga
+**** TODO 5 Combination
+
+** Logo
+Prints logo just to show that script is actually working (and cool as well 😎)
+
+#+begin_src python
 ascii_art = r"""
 ███╗░░░███╗░█████╗░░██████╗░██╗░█████╗░██╗░░██╗███████╗░█████╗░██████╗░███╗░░░███╗
 ████╗░████║██╔══██╗██╔════╝░██║██╔══██╗╚██╗██╔╝██╔════╝██╔══██╗██╔══██╗████╗░████║
@@ -31,6 +66,11 @@ ascii_art = r"""
 """
 print(ascii_art)
 
+#+end_src
+
+** Helper functions
+*** Utils
+#+begin_src python
 Z = z3.IntSort()
 B = z3.BoolSort()
 start_time = time.time()
@@ -57,7 +97,10 @@ def flatten(lst):
         else:
             result.append(i)
     return result
+#+end_src
 
+*** Prof util functions for expressions
+#+begin_src python
 def expand_quant(fml):
     """Expand quantifier into Quantifier, Variables, and Body."""
     if z3.is_quantifier(fml):
@@ -74,6 +117,10 @@ def apply_to_each_expr(fml, fn, *args, **kwargs):
         for child in fml.children():
             apply_to_each_expr(child, fn, *args, **kwargs)
 
+#+end_src
+
+*** Problem parser functions
+#+begin_src python
 def setup_fixedpoint(max_depth):
     fp = z3.Fixedpoint()
     fp.set('spacer.max_level', max_depth)
@@ -86,7 +133,14 @@ def parse_queries(fp, code):
 
 def extract_rules(fp):
     return fp.get_rules()
+#+end_src
 
+*** Find magic numbers
+Following functions try to find a magic number in following cases:
+1. If expression has a comparison sign (i.e <,<=, >=, >,=, !=)
+2. Is non-zero integer
+
+#+begin_src python
 def is_magic_num(v):
     return z3.is_int_value(v) and v.as_long() != 0
 
@@ -129,7 +183,15 @@ def find_magic_in_rule(rule):
 
 def find_magic_values(rules):
     return list(set().union(*map(find_magic_in_rule, rules)))
+#+end_src
 
+*** Benchmark rewrite functions
+Functions that do the trick.
+Core functions:
+- =apply_substitution= - makes plain substitution. Replace all numbers with variables in all rules
+- =apply_custom_substitution= - substitutes numbers in rules except the first one. Ignores those numbers in expr that have number as denominator in mod or div operation. Replace rest numbers with variables
+
+#+begin_src python
 def prepare_substitution(values, prefix):
     """For given list of values provides corresponding list of variables"""
     values_consts = [z3.IntVal(val) for val in values]
@@ -174,7 +236,11 @@ def apply_custom_substitution(rules, substitutions):
 
 def generate_additional_conditions(substitutions):
     return [(sub_var == sub_val) for sub_val, sub_var in substitutions]
+#+END_SRC
 
+*** Initial rule
+**** Constructing
+#+BEGIN_SRC python
 def implies_and_way(rule_body, additional_conditions):
     assert(z3.is_implies(rule_body))
     assert(z3.is_and(rule_body.arg(0)))
@@ -196,7 +262,13 @@ def construct_first_rule(rule_body, additional_conditions):
             return rule_body.arg(1), implies_way(rule_body, additional_conditions)
     else:
         return rule_body, clear_inv_way(additional_conditions)
+#+END_SRC
 
+#+NAME: new rules generation
+**** Processing
+The idea of processing initial(first) rule separately came to my head when one of the benchmarks performed worse timing in finding of the invariant. Since then I implemented a separate function for this behavior.
+
+#+BEGIN_SRC python
 def process_first_rule(rules, additional_conditions):
     _, _, rule_body = expand_quant(rules[0])
     rule_head, rule_tail = construct_first_rule(rule_body, additional_conditions)
@@ -239,21 +311,65 @@ def gcd_based_rules(magic_values):
         return diff, gcd, magic_values, gcd_rules, gcd_z3_var
     else:
         return [], None, [], [], None
+#+END_SRC
 
+* mXf techniques
+** Substitution technique
+The idea focuses on the application of a substitution technique that establishes unique and direct relations between =magic_numbers= with corresponding =magic_variables=. The result of the transformed benchmark should be a more general version of the instance and should cover an original benchmark as a special case. I assume that the result is equisatisfiable to the original problem.
+
+
+Workflow:
+- First of all we search for all magic numbers in the rules using =find_magic_values(rules[1:])=. We don't want to catch magic numbers in the initial (first) rule because they are already assigned to some variable and providing a new variable potentially can lead to slowing down the solver. See [[Find magic numbers]] chapter to learn more.
+
+- Next, we =prepare_substitution= for all found magic numbers, meaning we define new variables that correspond to its value using some prefix, in our case =K=, and a list with pairs that should be substituted in the benchmark (i.e [(5, K5), (10, K10)].
+
+- Application of substitution is the main part of this snippet: custom substitution is basically making substitutions in all rules except the first one. The first rule is ignored again because it slows down the solver and can make unnecessary relations between numbers that shouldn't correlate. In other rules, we just make changes where were numbers and return updated rules.
+
+- =additional_conditions= stable that same relation between variables and magic numbers just putting them in the initial rule in addition to existing constraints. See substitution functions at [[Benchmark rewrite functions]].
+
+#+BEGIN_SRC python
 def process_first_version(rules):
     magic_values = find_magic_values(rules[1:])
     magic_values_vars, substitutions = prepare_substitution(magic_values, "K")
     subs_rules = apply_custom_substitution(rules, substitutions)
     additional_conditions = generate_additional_conditions(substitutions)
     return magic_values_vars, subs_rules, additional_conditions
+#+END_SRC
 
+** Range technique
+The idea is to focus on the identification of magic numbers, substituting them with vars, but unlike [[Substitution technique]] we will provide ranges for each magic variable. The result of the transformed benchmark should be a more general version of the instance and should cover cases of values smaller than in the original benchmark until gets to the desired number. I assume that the result is NOT equivalent to the original problem, but can provide a solution faster due to the simplicity of calculating solutions for smaller numbers.
+
+
+Workflow:
+- First of all, we search for all magic numbers in the rules using =find_magic_values(rules[1:])=. We don't want to catch magic numbers in the initial (first) rule because they are already assigned to some variable and providing a new variable potentially can lead to slowing down the solver. See [[Find magic numbers]] chapter to learn more.
+
+- Generation of additional constraints to initial rule that provides variables in range 0 < var <= magic_number (i.e (and (> A 0) (<= A 42))). See new rule [[Processing]].
+
+- Application of substitution is the main part of this snippet: custom substitution is basically making substitutions in all rules except the first one. The first rule is ignored again because it slows down the solver and can make unnecessary relations between numbers that shouldn't correlate. In other rules, we just make changes where were numbers and return updated rules.
+
+- =additional_conditions= stable that same relation between variables and magic numbers just putting them in the initial rule in addition to existing constraints. See substitution functions at [[Benchmark rewrite functions]].
+
+#+BEGIN_SRC python
 def process_second_version(rules):
     magic_values = find_magic_values(rules[1:])
     range_rules = generate_range_rules(magic_values)
     magic_values_vars, substitutions = prepare_substitution(magic_values, "K")
     subs_rules = apply_custom_substitution(rules, substitutions)
     return magic_values_vars, subs_rules, range_rules
+#+END_SRC
 
+** Parametrization technique
+The idea is to focus on the identification of magic numbers, finding a pattern or special relation between all magic numbers or subsequences of that list. The technique that I use is finding relations using the GCD property of numbers. This approach takes into account the relationship between numbers and eliminates cases when the transformed benchmark turns to an absolutely different one with arbitrary numbers. I assume it's equisatisfiable to original problem.
+
+
+Workflow:
+- In initial rule usually stands starting point for benchmark and there can be present constrains like (and (= A 0) (= B 0)). To escape it I parse first rule in separate operation and if it consists only of zeros and ones then I ignore this magic_numbers. There is no sense to keep them when we will try to find GCD relation.
+
+- The function =gcd_based_rules= attempts to find a common parameter =GCD > 1= for =magic_numbers=. If a parameter greater than 1 is found, it is considered as the common parameter for all the numbers. If the GCD of all the numbers is 1, the function tries a different subsequence (by removing one element from =magic_numbers= until it discovers a parameter greater than 1). If all combinations were inspected and GCD = 1, then GCD is considered as 1, which means numbers don't have relationship.
+
+- What if =GCD= == 1? At this point we don't have relation between numbers and processed with magic numbers list as we do in [[Substitution technique]]. If only a subsequence of magic_numbers has relation and part not, then the part that don't have relation will be treated using [[Substitution technique]], and another part according to parametrization technique.
+
+#+BEGIN_SRC python
 def process_lists(A, B):
     return B if all(n in {0, 1} for n in A) else A + B
 
@@ -278,7 +394,14 @@ def process_third_version(rules):
     diff_additional_conditions = generate_additional_conditions(diff_subs)
     additional_conditions = gcd_rules+diff_additional_conditions
     return magic_values_vars, subs_rules, additional_conditions
+#+END_SRC
 
+** PaRanga technique
+=Parametrization + Range = PaRanga 😅=
+
+The idea is to combine [[Parametrization technique]] and [[Range technique]] to achieve a more simple instance for the solver transformed benchmark. It works the same as [[Parametrization technique]] but instead of providing fixed numbers in the initial rule, we specify ranges for numbers. Transformed benchmark is NOT equisatisfiable. NOTE: The GCD variable is a fixed number because it's a parameter.
+
+#+BEGIN_SRC python
 def process_4_version(rules):
     """Fourth version relates to parametrization
     and providing the parameter as range
@@ -304,7 +427,16 @@ def process_4_version(rules):
     diff_additional_conditions = generate_additional_conditions(diff_subs)
     additional_conditions = gcd_rules+diff_additional_conditions+gcd_range_rules
     return magic_values_vars, subs_rules, additional_conditions
+#+END_SRC
 
+** Combo
+=PaRanga or Substitution = Combo=
+
+This technique **doesn't** provide a new way of represenation or transformation with magic numbers. The purpose of this solution finder is to make a change to benchmarks that have <= 1 magic number, because [[Parametrization technique]] strategy relies on GCD strategy and couldn't find a relation between 1 number or less. Since I use two techniques that I consider equisat, then in the end this technique will return an equisat benchmark.
+
+|magic_numbers∣ ≤ 1 ? [[Parametrization technique]] : [[Parametrization technique]]
+
+#+BEGIN_SRC python
 def process_rules_and_queries(code, max_depth, version="1"):
     fp = setup_fixedpoint(max_depth)
     queries = parse_queries(fp, code)
@@ -330,7 +462,12 @@ def process_rules_and_queries(code, max_depth, version="1"):
 
     new_rules = process_first_rule(subs_rules, additional_conditions)
     return new_rules, queries, magic_values_vars
+#+END_SRC
 
+* Transformation
+** New invariant creation
+
+#+BEGIN_SRC python
 def find_invs(gnd_rule_body, inv_name='inv'):
     found = set()
 
@@ -387,7 +524,11 @@ def mk_new_rule(rule, values_vars):
     subs = generate_rule_substitutions(rule_body, values_vars)
     new_body = z3.substitute(rule_body, subs)
     return new_body
+#+END_SRC
 
+** Main rewriter process
+
+#+BEGIN_SRC python
 def set_fixedpoint(new_rules, new_vars, additional_vars):
     fp_new = z3.Fixedpoint()
     invs = flatten([*map(get_inv_instance, new_rules)])
@@ -414,7 +555,11 @@ def write_to_file(fp_new, queries, filename='res.smt2'):
 def simple_write_to_file(content, filename):
     with open(filename, 'w') as f:
         print(content, file=f)
+#+END_SRC
 
+** Result section
+
+#+BEGIN_SRC python
 def extract_required_parts(logs):
     logs_list = logs.split('\n')  # Splits the logs into lines
     required_parts = []
@@ -487,7 +632,11 @@ def parse_cmd_args():
 
 def extract_name_from_path(path):
     return os.path.basename(path)
+#+END_SRC
 
+* Main function
+
+#+BEGIN_SRC python
 def main():
     problem_file, result_file, max_depth, is_solving_on, version = parse_cmd_args()
     result_file = f"./tmp/{result_file}"
@@ -526,3 +675,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+  #+END_SRC
