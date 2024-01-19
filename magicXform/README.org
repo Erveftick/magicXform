@@ -5,8 +5,28 @@
 #+STARTUP: showeverything
 #+AUTHOR: Eduard Kvashyn
 
+
+* TABLE OF CONTENTS :toc:
+- [[#introduction][Introduction]]
+- [[#initial-point][Initial point]]
+  - [[#imports-and-dependencies][Imports and dependencies]]
+  - [[#terminal-arguments-parser][Terminal arguments parser]]
+  - [[#logo][Logo]]
+  - [[#helper-functions][Helper functions]]
+- [[#mxf-techniques][mXf techniques]]
+  - [[#substitution-technique][Substitution technique]]
+  - [[#range-technique][Range technique]]
+  - [[#parametrization-technique][Parametrization technique]]
+  - [[#paranga-technique][PaRanga technique]]
+  - [[#combo][Combo]]
+- [[#transformation][Transformation]]
+  - [[#new-invariant-creation][New invariant creation]]
+  - [[#main-rewriter-process][Main rewriter process]]
+  - [[#result-section][Result section]]
+- [[#main-function][Main function]]
+
 * Introduction
-  This is an introduction to my Python code.
+This is an introduction to my Python code.
 
 * Initial point
 ** Imports and dependencies
@@ -185,7 +205,7 @@ def find_magic_values(rules):
     return list(set().union(*map(find_magic_in_rule, rules)))
 #+end_src
 
-*** Benchmark rewrite functions
+*** Benchmark rewriter
 Functions that do the trick.
 Core functions:
 - =apply_substitution= - makes plain substitution. Replace all numbers with variables in all rules
