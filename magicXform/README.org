@@ -390,7 +390,7 @@ Workflow:
 
 - The function =gcd_based_rules= attempts to find a common parameter =GCD > 1= for =magic_numbers=. If a parameter greater than 1 is found, it is considered as the common parameter for all the numbers. If the GCD of all the numbers is 1, the function tries a different subsequence (by removing one element from =magic_numbers= until it discovers a parameter greater than 1). If all combinations were inspected and GCD = 1, then GCD is considered as 1, which means numbers don't have relationship.
 
-- What if =GCD= == 1? At this point we don't have relation between numbers and processed with magic numbers list as we do in [[Substitution technique]]. If only a subsequence of magic_numbers has relation and part not, then the part that don't have relation will be treated using [[Substitution technique]], and another part according to parametrization technique.
+- What if =GCD= == 1? At this point we don't have relation between numbers and processed with magic numbers list as we do in [[#substitution-technique][Substitution technique]]. If only a subsequence of magic_numbers has relation and part not, then the part that don't have relation will be treated using substitution, and another part according to parametrization technique.
 
 #+BEGIN_SRC python
 def process_lists(A, B):
@@ -422,7 +422,7 @@ def process_third_version(rules):
 ** PaRanga technique
 =Parametrization + Range = PaRanga 😅=
 
-The idea is to combine [[Parametrization technique]] and [[Range technique]] to achieve a more simple instance for the solver transformed benchmark. It works the same as [[Parametrization technique]] but instead of providing fixed numbers in the initial rule, we specify ranges for numbers. Transformed benchmark is NOT equisatisfiable. NOTE: The GCD variable is a fixed number because it's a parameter.
+The idea is to combine [[#parametrization-technique][Parametrization technique]] and [[#range-technique][Range technique]] to achieve a more simple instance for the solver transformed benchmark. It works the same as [[#parametrization-technique][Parametrization technique]] but instead of providing fixed numbers in the initial rule, we specify ranges for numbers. Transformed benchmark is NOT equisatisfiable. NOTE: The GCD variable is a fixed number because it's a parameter.
 
 #+BEGIN_SRC python
 def process_4_version(rules):
@@ -455,9 +455,9 @@ def process_4_version(rules):
 ** Combo
 =PaRanga or Substitution = Combo=
 
-This technique **doesn't** provide a new way of represenation or transformation with magic numbers. The purpose of this solution finder is to make a change to benchmarks that have <= 1 magic number, because [[Parametrization technique]] strategy relies on GCD strategy and couldn't find a relation between 1 number or less. Since I use two techniques that I consider equisat, then in the end this technique will return an equisat benchmark.
+This technique **doesn't** provide a new way of represenation or transformation with magic numbers. The purpose of this solution finder is to make a change to benchmarks that have <= 1 magic number, because [[#parametrization-technique][Parametrization technique]] strategy relies on GCD strategy and couldn't find a relation between 1 number or less. Since I use two techniques that I consider equisat, then in the end this technique will return an equisat benchmark.
 
-|magic_numbers∣ ≤ 1 ? [[Parametrization technique]] : [[Parametrization technique]]
+|magic_numbers∣ ≤ 1 ? [[#substitution-technique][Substitution technique]] : [[#parametrization-technique][Parametrization technique]]
 
 #+BEGIN_SRC python
 def process_rules_and_queries(code, max_depth, version="1"):
