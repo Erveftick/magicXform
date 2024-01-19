@@ -453,11 +453,11 @@ def process_4_version(rules):
 #+END_SRC
 
 ** Combo
-=PaRanga or Substitution = Combo=
+=Parametrization or Substitution = Combo=
 
-This technique **doesn't** provide a new way of represenation or transformation with magic numbers. The purpose of this solution finder is to make a change to benchmarks that have <= 1 magic number, because [[#parametrization-technique][Parametrization technique]] strategy relies on GCD strategy and couldn't find a relation between 1 number or less. Since I use two techniques that I consider equisat, then in the end this technique will return an equisat benchmark.
+This technique *doesn't* provide a new way of represenation or transformation with magic numbers. The purpose of this solution finder is to make a change to benchmarks that have <= 1 magic number, because [[#parametrization-technique][Parametrization technique]] strategy relies on GCD strategy and couldn't find a relation between 1 number or less. Since I use two techniques that I consider equisat, then in the end this technique will return an equisat benchmark.
 
-|magic_numbers∣ ≤ 1 ? [[#substitution-technique][Substitution technique]] : [[#parametrization-technique][Parametrization technique]]
+||magic_numbers∣ ≤ 1 ? [[#substitution-technique][Substitution technique]] : [[#parametrization-technique][Parametrization technique]]
 
 #+BEGIN_SRC python
 def process_rules_and_queries(code, max_depth, version="1"):
