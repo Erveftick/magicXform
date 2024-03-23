@@ -1,0 +1,45 @@
+#+title: Proofs
+
+* Theorem for equisat of substitution technique
+** Theorem
+   Let R be a set of Constrained Horn Clauses (CHCs) over the Theory of Linear Integer Arithmetic. Let V be the set of variables on which R is applied. Suppose there exists a variable v in V such that, for all rules r in R, v is bound to a constant c in ℕ. Then, there exists an equisatisfiable rule set R' derived from R, where all occurrences of v in R are replaced with the constant c.
+
+*** Proof
+
+**** Rule Set Definitions
+    - Let R = {r_1, r_2, ..., r_n} be a set of CHCs
+    - For each r_i, let v be a variable in V such that v is bound to a constant c across all instances of r_i.
+
+**** Rule Set Transformation
+    - Consider the rule set R' obtained by replacing all occurrences of v in R with the constant c.
+    - Formally, R' = {r'_1, r'_2, ..., r'_n}, where each r'_i is derived from r_i by substituting v with c.
+
+**** Equivalence of Rule Sets
+    - **Soundness**: If R is satisfiable, then there exists an assignment of values to variables in V that satisfies all rules in R. Since v is equivalent to c in all rules, replacing v with c in each rule does not affect the satisfiability of the set. Therefore, R' is also satisfiable.
+    - **Completeness**: If R' is satisfiable, then there exists an assignment of values to variables in V (including v) that satisfies all rules in R'. Since all occurrences of v are replaced with c in R', the same assignment of values to variables in V also satisfies all rules in R. Therefore, R is satisfiable.
+
+*** Conclusion
+    - Hence, R and R' are equisatisfiable, and the theorem is proven.
+
+* Proving transformed benchmark invariant for the original problem
+** Original system (1)
+- init(x,c) -> Inv(x)
+- Inv(x) & tr(x,y,c) -> Inv(y)
+- Inv(x) & bad(x,c) -> False
+
+** Transformed a=c system (2)
+- a = c & init(x,a) -> Inv2(x,a)
+- Inv2(x,a) & tr(x,y,a) -> Inv2(y,a)
+- Inv2(x,a) & bad(x,c) -> False
+
+ 
+*** Prove: if f2(x) is a solution to (2) -> show f2 is a solution to (1)
+
++ f2(x) [0%]
+  + [ ] a) a=c & init(x,a) => f2(x)
+Show: init(x,c) => f2(x)
+Forall (a=c & init(x,a) => f2(x)) -->
+forall (init(x,c) => f2(x))
+a = c &
+  + [ ] b)
+  + [ ] c)

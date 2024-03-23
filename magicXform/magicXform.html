@@ -1,0 +1,1058 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-01-18 Thu 16:22 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MagicXform source code &amp; documentation</title>
+<meta name="author" content="Eduard Kvashyn" />
+<meta name="description" content="Literate programming approach to write a good documentation and notes to my code for fast bug-identification" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">MagicXform source code &amp; documentation</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc109319">1. Introduction</a></li>
+<li><a href="#org15e82f1">2. Initial point</a>
+<ul>
+<li><a href="#org08e81fc">2.1. Imports and dependencies</a></li>
+<li><a href="#org44e6e6b">2.2. Terminal arguments parser</a></li>
+<li><a href="#orgfceff55">2.3. Logo</a></li>
+<li><a href="#org821e23a">2.4. Helper functions</a>
+<ul>
+<li><a href="#orgf9b1007">2.4.1. Utils</a></li>
+<li><a href="#org7eb1eb6">2.4.2. Prof util functions for expressions</a></li>
+<li><a href="#orga0b5a98">2.4.3. Problem parser functions</a></li>
+<li><a href="#org1f3a482">2.4.4. Find magic numbers</a></li>
+<li><a href="#org0672b82">2.4.5. Benchmark rewrite functions</a></li>
+<li><a href="#orgc3b518b">2.4.6. Initial rule</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orga953ed9">3. mXf techniques</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orga6f1653">3.0.1. Substitution technique</a></li>
+<li><a href="#org03471bc">3.0.2. Range technique</a></li>
+<li><a href="#org6f97813">3.0.3. Parametrization technique</a></li>
+<li><a href="#orgdb44e93">3.0.4. PaRanga technique</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc109319" class="outline-2">
+<h2 id="orgc109319"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+This is an introduction to my Python code.
+</p>
+</div>
+</div>
+<div id="outline-container-org15e82f1" class="outline-2">
+<h2 id="org15e82f1"><span class="section-number-2">2.</span> Initial point</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org08e81fc" class="outline-3">
+<h3 id="org08e81fc"><span class="section-number-3">2.1.</span> Imports and dependencies</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+I use `sys` module to import z3 properly from a path that locates in `secrets.py` file. In such way I can manually change z3 version and try to solve benchmark using concrete z3 version
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">import</span> sys
+<span style="color: #51afef;">import</span> os
+<span style="color: #51afef;">from</span> secrets <span style="color: #51afef;">import</span> z3_path, z3_eval_path
+<span style="color: #51afef;">from</span> spinner <span style="color: #51afef;">import</span> Loader
+<span style="color: #51afef;">from</span> gcd <span style="color: #51afef;">import</span> *
+sys.path.append(z3_path)
+
+<span style="color: #51afef;">import</span> argparse, subprocess, z3, time
+<span style="color: #51afef;">from</span> datetime <span style="color: #51afef;">import</span> datetime
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Proof mode must be enabled before any expressions are created</span>
+z3.set_param(proof=<span style="color: #a9a1e1;">True</span>)
+z3.set_param(model=<span style="color: #a9a1e1;">True</span>)
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org44e6e6b" class="outline-3">
+<h3 id="org44e6e6b"><span class="section-number-3">2.2.</span> Terminal arguments parser</h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #dcaeea;">parser</span> = argparse.ArgumentParser(description=<span style="color: #98be65;">"A script to process problem and result files"</span>)
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Add optional arguments with default values</span>
+parser.add_argument(<span style="color: #98be65;">'--pf'</span>, default=<span style="color: #98be65;">'problem.smt2'</span>, <span style="color: #c678dd;">help</span>=<span style="color: #98be65;">'Path to the problem file'</span>)
+parser.add_argument(<span style="color: #98be65;">'--rf'</span>, default=<span style="color: #98be65;">'result.smt2'</span>, <span style="color: #c678dd;">help</span>=<span style="color: #98be65;">'Path to the result file'</span>)
+parser.add_argument(<span style="color: #98be65;">'--max_depth'</span>, default=<span style="color: #da8548; font-weight: bold;">100</span>, <span style="color: #c678dd;">help</span>=<span style="color: #98be65;">'Amount of iteration for SPACER to find the invariant'</span>)
+parser.add_argument(<span style="color: #98be65;">'--s'</span>, default=<span style="color: #a9a1e1;">True</span>, <span style="color: #c678dd;">help</span>=<span style="color: #98be65;">'Indicate whether SPACER will find solution for rewrittencode'</span>)
+parser.add_argument(<span style="color: #98be65;">'--ver'</span>, default=<span style="color: #98be65;">"1"</span>, <span style="color: #c678dd;">help</span>=<span style="color: #98be65;">"Indicate version of the tool: 1 - substitution technique; 2 - parametrization "</span>)
+
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>See the <code>help</code> for getting more information</li>
+<li>&#x2013;ver is for choosing version of the tool. In total I have 5 versions:</li>
+</ul>
+</div>
+<ol class="org-ol">
+<li><a id="orgdc2b007"></a>1 - Substitution technique<br />
+<div class="outline-text-5" id="text-2-2-0-1">
+<p>
+Takes a benchmark, finds all magic numbers using it&rsquo;s parser (further in the file). Provides a variable for each magic number, add them to the initial rule and substitutes those numbers with variables.
+</p>
+</div>
+</li>
+<li><a id="org06133be"></a>2 - Range technique<br />
+<div class="outline-text-5" id="text-2-2-0-2">
+<p>
+Finds magic numbers and provides variables, but variables is in range between 1 and corresponing magic number (0 &lt; var &lt; magicNumber)
+</p>
+</div>
+</li>
+<li><a id="orgd096ee5"></a><span class="todo TODO">TODO</span> 3 Parametrization<br /></li>
+<li><a id="org3401db4"></a><span class="todo TODO">TODO</span> 4 PaRanga<br /></li>
+<li><a id="orgfd57c36"></a><span class="todo TODO">TODO</span> 5 Combination<br /></li>
+</ol>
+</div>
+<div id="outline-container-orgfceff55" class="outline-3">
+<h3 id="orgfceff55"><span class="section-number-3">2.3.</span> Logo</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Prints logo just to show that script is actually working (and cool as well 😎)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #dcaeea;">ascii_art</span> = r<span style="color: #98be65;">"""</span>
+<span style="color: #98be65;">&#9608;&#9608;&#9608;&#9559;&#9617;&#9617;&#9617;&#9608;&#9608;&#9608;&#9559;&#9617;&#9608;&#9608;&#9608;&#9608;&#9608;&#9559;&#9617;&#9617;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9559;&#9617;&#9608;&#9608;&#9559;&#9617;&#9608;&#9608;&#9608;&#9608;&#9608;&#9559;&#9617;&#9608;&#9608;&#9559;&#9617;&#9617;&#9608;&#9608;&#9559;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9559;&#9617;&#9608;&#9608;&#9608;&#9608;&#9608;&#9559;&#9617;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9559;&#9617;&#9608;&#9608;&#9608;&#9559;&#9617;&#9617;&#9617;&#9608;&#9608;&#9608;&#9559;</span>
+<span style="color: #98be65;">&#9608;&#9608;&#9608;&#9608;&#9559;&#9617;&#9608;&#9608;&#9608;&#9608;&#9553;&#9608;&#9608;&#9556;&#9552;&#9552;&#9608;&#9608;&#9559;&#9608;&#9608;&#9556;&#9552;&#9552;&#9552;&#9552;&#9565;&#9617;&#9608;&#9608;&#9553;&#9608;&#9608;&#9556;&#9552;&#9552;&#9608;&#9608;&#9559;&#9562;&#9608;&#9608;&#9559;&#9608;&#9608;&#9556;&#9565;&#9608;&#9608;&#9556;&#9552;&#9552;&#9552;&#9552;&#9565;&#9608;&#9608;&#9556;&#9552;&#9552;&#9608;&#9608;&#9559;&#9608;&#9608;&#9556;&#9552;&#9552;&#9608;&#9608;&#9559;&#9608;&#9608;&#9608;&#9608;&#9559;&#9617;&#9608;&#9608;&#9608;&#9608;&#9553;</span>
+<span style="color: #98be65;">&#9608;&#9608;&#9556;&#9608;&#9608;&#9608;&#9608;&#9556;&#9608;&#9608;&#9553;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9553;&#9608;&#9608;&#9553;&#9617;&#9617;&#9608;&#9608;&#9559;&#9617;&#9608;&#9608;&#9553;&#9608;&#9608;&#9553;&#9617;&#9617;&#9562;&#9552;&#9565;&#9617;&#9562;&#9608;&#9608;&#9608;&#9556;&#9565;&#9617;&#9608;&#9608;&#9608;&#9608;&#9608;&#9559;&#9617;&#9617;&#9608;&#9608;&#9553;&#9617;&#9617;&#9608;&#9608;&#9553;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9556;&#9565;&#9608;&#9608;&#9556;&#9608;&#9608;&#9608;&#9608;&#9556;&#9608;&#9608;&#9553;</span>
+<span style="color: #98be65;">&#9608;&#9608;&#9553;&#9562;&#9608;&#9608;&#9556;&#9565;&#9608;&#9608;&#9553;&#9608;&#9608;&#9556;&#9552;&#9552;&#9608;&#9608;&#9553;&#9608;&#9608;&#9553;&#9617;&#9617;&#9562;&#9608;&#9608;&#9559;&#9608;&#9608;&#9553;&#9608;&#9608;&#9553;&#9617;&#9617;&#9608;&#9608;&#9559;&#9617;&#9608;&#9608;&#9556;&#9608;&#9608;&#9559;&#9617;&#9608;&#9608;&#9556;&#9552;&#9552;&#9565;&#9617;&#9617;&#9608;&#9608;&#9553;&#9617;&#9617;&#9608;&#9608;&#9553;&#9608;&#9608;&#9556;&#9552;&#9552;&#9608;&#9608;&#9559;&#9608;&#9608;&#9553;&#9562;&#9608;&#9608;&#9556;&#9565;&#9608;&#9608;&#9553;</span>
+<span style="color: #98be65;">&#9608;&#9608;&#9553;&#9617;&#9562;&#9552;&#9565;&#9617;&#9608;&#9608;&#9553;&#9608;&#9608;&#9553;&#9617;&#9617;&#9608;&#9608;&#9553;&#9562;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9556;&#9565;&#9608;&#9608;&#9553;&#9562;&#9608;&#9608;&#9608;&#9608;&#9608;&#9556;&#9565;&#9608;&#9608;&#9556;&#9565;&#9562;&#9608;&#9608;&#9559;&#9608;&#9608;&#9553;&#9617;&#9617;&#9617;&#9617;&#9617;&#9562;&#9608;&#9608;&#9608;&#9608;&#9608;&#9556;&#9565;&#9608;&#9608;&#9553;&#9617;&#9617;&#9608;&#9608;&#9553;&#9608;&#9608;&#9553;&#9617;&#9562;&#9552;&#9565;&#9617;&#9608;&#9608;&#9553;</span>
+<span style="color: #98be65;">&#9562;&#9552;&#9565;&#9617;&#9617;&#9617;&#9617;&#9617;&#9562;&#9552;&#9565;&#9562;&#9552;&#9565;&#9617;&#9617;&#9562;&#9552;&#9565;&#9617;&#9562;&#9552;&#9552;&#9552;&#9552;&#9552;&#9565;&#9617;&#9562;&#9552;&#9565;&#9617;&#9562;&#9552;&#9552;&#9552;&#9552;&#9565;&#9617;&#9562;&#9552;&#9565;&#9617;&#9617;&#9562;&#9552;&#9565;&#9562;&#9552;&#9565;&#9617;&#9617;&#9617;&#9617;&#9617;&#9617;&#9562;&#9552;&#9552;&#9552;&#9552;&#9565;&#9617;&#9562;&#9552;&#9565;&#9617;&#9617;&#9562;&#9552;&#9565;&#9562;&#9552;&#9565;&#9617;&#9617;&#9617;&#9617;&#9617;&#9562;&#9552;&#9565;</span>
+<span style="color: #98be65;">"""</span>
+<span style="color: #c678dd;">print</span>(ascii_art)
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org821e23a" class="outline-3">
+<h3 id="org821e23a"><span class="section-number-3">2.4.</span> Helper functions</h3>
+<div class="outline-text-3" id="text-2-4">
+</div>
+<div id="outline-container-orgf9b1007" class="outline-4">
+<h4 id="orgf9b1007"><span class="section-number-4">2.4.1.</span> Utils</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #dcaeea;">Z</span> = z3.IntSort()
+<span style="color: #dcaeea;">B</span> = z3.BoolSort()
+<span style="color: #dcaeea;">start_time</span> = time.time()
+
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">get_current_time</span>():
+    <span style="color: #83898d;">"""Get the current time and format it"""</span>
+    <span style="color: #51afef;">return</span> datetime.now().strftime(<span style="color: #98be65;">"%H:%M:%S"</span>)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">t_log</span>(log):
+    <span style="color: #dcaeea;">curr_time</span> = get_current_time()
+    <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"</span>{curr_time}<span style="color: #98be65;"> | ----- </span>{log}<span style="color: #98be65;"> ----- </span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">"</span>)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">read_file</span>(problem_file=<span style="color: #98be65;">'prblm.smt2'</span>):
+    <span style="color: #51afef;">with</span> <span style="color: #c678dd;">open</span>(problem_file, <span style="color: #98be65;">'r'</span>) <span style="color: #51afef;">as</span> <span style="color: #c678dd;">file</span>:
+        <span style="color: #dcaeea;">code</span> = <span style="color: #c678dd;">file</span>.read()
+    <span style="color: #51afef;">return</span> code
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org7eb1eb6" class="outline-4">
+<h4 id="org7eb1eb6"><span class="section-number-4">2.4.2.</span> Prof util functions for expressions</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">def</span> <span style="color: #c678dd;">expand_quant</span>(fml):
+    <span style="color: #83898d;">"""Expand quantifier into Quantifier, Variables, and Body."""</span>
+    <span style="color: #51afef;">if</span> z3.is_quantifier(fml):
+        <span style="color: #dcaeea;">gnd_vars</span> = [z3.Const(fml.var_name(i), fml.var_sort(i)) <span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(fml.num_vars())]
+        <span style="color: #dcaeea;">gnd_body</span> = z3.substitute_vars(fml.body(), *<span style="color: #c678dd;">reversed</span>(gnd_vars))
+        <span style="color: #dcaeea;">quant</span> = z3.Exists <span style="color: #51afef;">if</span> fml.is_exists() <span style="color: #51afef;">else</span> z3.ForAll
+        <span style="color: #51afef;">return</span> quant, gnd_vars, gnd_body
+    <span style="color: #51afef;">else</span>:
+        <span style="color: #51afef;">return</span> (<span style="color: #51afef;">lambda</span> x, y: y), [], fml
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">apply_to_each_expr</span>(fml, fn, *args, **kwargs):
+    <span style="color: #83898d;">"""Apply given function to every sub-expression of a formula."""</span>
+    <span style="color: #51afef;">if</span> fn(fml, *args, **kwargs):
+        <span style="color: #51afef;">for</span> child <span style="color: #51afef;">in</span> fml.children():
+            apply_to_each_expr(child, fn, *args, **kwargs)
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga0b5a98" class="outline-4">
+<h4 id="orga0b5a98"><span class="section-number-4">2.4.3.</span> Problem parser functions</h4>
+<div class="outline-text-4" id="text-2-4-3">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">def</span> <span style="color: #c678dd;">setup_fixedpoint</span>(max_depth):
+    <span style="color: #dcaeea;">fp</span> = z3.Fixedpoint()
+    fp.<span style="color: #c678dd;">set</span>(<span style="color: #98be65;">'spacer.max_level'</span>, max_depth)
+    <span style="color: #51afef;">return</span> fp
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">parse_queries</span>(fp, code):
+    <span style="color: #dcaeea;">queries</span> = fp.parse_string(code)
+    <span style="color: #51afef;">assert</span> <span style="color: #c678dd;">len</span>(queries) == <span style="color: #da8548; font-weight: bold;">1</span>
+    <span style="color: #51afef;">return</span> queries
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">extract_rules</span>(fp):
+    <span style="color: #51afef;">return</span> fp.get_rules()
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1f3a482" class="outline-4">
+<h4 id="org1f3a482"><span class="section-number-4">2.4.4.</span> Find magic numbers</h4>
+<div class="outline-text-4" id="text-2-4-4">
+<p>
+Following functions try to find a magic number in following cases:
+</p>
+<ol class="org-ol">
+<li>If expression has a comparison sign (i.e &lt;,&lt;=, &gt;=, &gt;,=, !=)</li>
+<li>Is non-zero integer</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">def</span> <span style="color: #c678dd;">is_magic_num</span>(v):
+    <span style="color: #51afef;">return</span> z3.is_int_value(v) <span style="color: #51afef;">and</span> v.as_long() != <span style="color: #da8548; font-weight: bold;">0</span>
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">has_comparison_operator</span>(expr):
+    <span style="color: #dcaeea;">comparison_ops</span> = [z3.is_lt, z3.is_le, z3.is_gt, z3.is_ge, z3.is_eq, z3.is_distinct]
+    <span style="color: #51afef;">return</span> <span style="color: #c678dd;">any</span>(op(expr) <span style="color: #51afef;">for</span> op <span style="color: #51afef;">in</span> comparison_ops)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">has_div_or_mod_operator</span>(expr):
+    <span style="color: #dcaeea;">div_ops</span> = [z3.is_div, z3.is_idiv, z3.is_mod]
+    <span style="color: #51afef;">return</span> <span style="color: #c678dd;">any</span>(op(expr) <span style="color: #51afef;">for</span> op <span style="color: #51afef;">in</span> div_ops)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">has_magic_num_child</span>(expr):
+    <span style="color: #51afef;">return</span> <span style="color: #c678dd;">any</span>(is_magic_num(child) <span style="color: #51afef;">for</span> child <span style="color: #51afef;">in</span> expr.children())
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">find_magic_root</span>(expr):
+    <span style="color: #83898d;">"""Magic root means if expr has a comparison operator and at least one of the</span>
+<span style="color: #83898d;">    children is number"""</span>
+    <span style="color: #51afef;">return</span> has_comparison_operator(expr) <span style="color: #51afef;">and</span> has_magic_num_child(expr)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">find_magic_in_gnd_rule</span>(rule):
+    <span style="color: #dcaeea;">myset</span> = <span style="color: #c678dd;">set</span>()
+
+    <span style="color: #51afef;">def</span> <span style="color: #c678dd;">find_magic</span>(x, found):
+        <span style="color: #51afef;">if</span> has_div_or_mod_operator(x):
+            <span style="color: #51afef;">return</span> <span style="color: #a9a1e1;">False</span>
+        <span style="color: #51afef;">if</span> find_magic_root(x):
+            <span style="color: #51afef;">for</span> arg <span style="color: #51afef;">in</span> x.children():
+                <span style="color: #51afef;">if</span> is_magic_num(arg):
+                    found.add(arg)
+            <span style="color: #51afef;">return</span> <span style="color: #a9a1e1;">False</span>
+        <span style="color: #51afef;">else</span>:
+            <span style="color: #51afef;">return</span> <span style="color: #a9a1e1;">True</span>
+
+    apply_to_each_expr(rule, find_magic, found=myset)
+    <span style="color: #51afef;">return</span> myset
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">find_magic_in_rule</span>(rule):
+    <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">b</span> = expand_quant(rule)
+    <span style="color: #51afef;">return</span> find_magic_in_gnd_rule(b)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">find_magic_values</span>(rules):
+    <span style="color: #51afef;">return</span> <span style="color: #c678dd;">list</span>(<span style="color: #c678dd;">set</span>().union(*<span style="color: #c678dd;">map</span>(find_magic_in_rule, rules)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0672b82" class="outline-4">
+<h4 id="org0672b82"><span class="section-number-4">2.4.5.</span> Benchmark rewrite functions</h4>
+<div class="outline-text-4" id="text-2-4-5">
+<p>
+Functions that do the trick.
+Core functions:
+</p>
+<ul class="org-ul">
+<li><code>apply_substitution</code> - makes plain substitution. Replace all numbers with variables in all rules</li>
+<li><code>apply_custom_substitution</code> - substitutes numbers in rules except the first one. Ignores those numbers in expr that have number as denominator in mod or div operation. Replace rest numbers with variables</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">def</span> <span style="color: #c678dd;">prepare_substitution</span>(values, prefix):
+    <span style="color: #83898d;">"""For given list of values provides corresponding list of variables"""</span>
+    <span style="color: #dcaeea;">values_consts</span> = [z3.IntVal(val) <span style="color: #51afef;">for</span> val <span style="color: #51afef;">in</span> values]
+    <span style="color: #dcaeea;">values_vars</span> = [z3.Int(f<span style="color: #98be65;">"</span>{prefix}{val}<span style="color: #98be65;">"</span>) <span style="color: #51afef;">for</span> val <span style="color: #51afef;">in</span> values]
+    <span style="color: #51afef;">return</span> values_vars, [*<span style="color: #c678dd;">zip</span>(values_consts, values_vars)]
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">apply_substitution</span>(rules, substitutions):
+    <span style="color: #83898d;">"""Plain substitution. Replace all numbers with variables"""</span>
+    <span style="color: #51afef;">return</span> [z3.substitute(rule, substitutions) <span style="color: #51afef;">for</span> rule <span style="color: #51afef;">in</span> rules]
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">reverse_pairs</span>(lst):
+    <span style="color: #83898d;">"""Takes a list of pairs and returns a new list with the pairs reversed"""</span>
+    <span style="color: #51afef;">return</span> [(y, x) <span style="color: #51afef;">for</span> x, y <span style="color: #51afef;">in</span> lst]
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">substitute_with_exceptions</span>(rule, substitutions):
+    <span style="color: #dcaeea;">rule_quant</span>, <span style="color: #dcaeea;">rule_args</span>, <span style="color: #dcaeea;">rule_body</span> = expand_quant(rule)
+    <span style="color: #dcaeea;">reversed_subs</span> = reverse_pairs(substitutions)
+    <span style="color: #dcaeea;">new_sub_rule</span> = <span style="color: #c678dd;">set</span>()
+
+    <span style="color: #51afef;">def</span> <span style="color: #c678dd;">custom_substituter</span>(expr, found):
+        <span style="color: #51afef;">if</span> has_div_or_mod_operator(expr):
+            <span style="color: #dcaeea;">sub_expr</span> = z3.substitute(expr, reversed_subs)
+            found.add((expr, sub_expr))
+            <span style="color: #51afef;">return</span> <span style="color: #a9a1e1;">False</span>
+        <span style="color: #51afef;">else</span>:
+            <span style="color: #51afef;">return</span> <span style="color: #a9a1e1;">True</span>
+
+    apply_to_each_expr(rule_body, custom_substituter, found=new_sub_rule)
+    <span style="color: #dcaeea;">substituted_rule_body</span> = z3.substitute(rule_body, new_sub_rule)
+    <span style="color: #dcaeea;">substituted_rule</span> = rule_quant(rule_args, substituted_rule_body)
+    <span style="color: #51afef;">return</span> substituted_rule
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">int_2_var</span>(rules, substitutions):
+    <span style="color: #dcaeea;">subs_rules</span> = apply_substitution(rules, substitutions)
+    <span style="color: #51afef;">return</span> [substitute_with_exceptions(rule, substitutions) <span style="color: #51afef;">for</span> rule <span style="color: #51afef;">in</span> subs_rules]
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">apply_custom_substitution</span>(rules, substitutions):
+    <span style="color: #83898d;">"""Substitutes numbers in rules except the first one. Ignores those numbers in expr that have number as denominator in mod or div operation. Replace rest numbers with variables"""</span>
+    <span style="color: #dcaeea;">first_rule</span> = [rules[<span style="color: #da8548; font-weight: bold;">0</span>]]
+    <span style="color: #dcaeea;">new_rules</span> = int_2_var(rules[<span style="color: #da8548; font-weight: bold;">1</span>:], substitutions)
+    <span style="color: #51afef;">return</span> first_rule + new_rules
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">generate_additional_conditions</span>(substitutions):
+    <span style="color: #51afef;">return</span> [(sub_var == sub_val) <span style="color: #51afef;">for</span> sub_val, sub_var <span style="color: #51afef;">in</span> substitutions]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc3b518b" class="outline-4">
+<h4 id="orgc3b518b"><span class="section-number-4">2.4.6.</span> Initial rule</h4>
+<div class="outline-text-4" id="text-2-4-6">
+</div>
+<ol class="org-ol">
+<li><a id="org27c8209"></a>Constructing<br />
+<div class="outline-text-5" id="text-2-4-6-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">def</span> <span style="color: #c678dd;">implies_and_way</span>(rule_body, additional_conditions):
+    <span style="color: #51afef;">assert</span>(z3.is_implies(rule_body))
+    <span style="color: #51afef;">assert</span>(z3.is_and(rule_body.arg(<span style="color: #da8548; font-weight: bold;">0</span>)))
+    <span style="color: #51afef;">return</span> z3.And(*rule_body.arg(<span style="color: #da8548; font-weight: bold;">0</span>).children(), *additional_conditions)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">implies_way</span>(rule_body, additional_conditions):
+    <span style="color: #51afef;">assert</span>(z3.is_implies(rule_body))
+    <span style="color: #51afef;">assert</span> <span style="color: #51afef;">not</span> z3.is_and(rule_body.arg(<span style="color: #da8548; font-weight: bold;">0</span>))
+    <span style="color: #51afef;">return</span> z3.And(rule_body.arg(<span style="color: #da8548; font-weight: bold;">0</span>), *additional_conditions)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">clear_inv_way</span>(additional_conditions):
+    <span style="color: #51afef;">return</span> z3.And(*additional_conditions)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">construct_first_rule</span>(rule_body, additional_conditions):
+    <span style="color: #51afef;">if</span> z3.is_implies(rule_body):
+        <span style="color: #51afef;">if</span> z3.is_and(rule_body.arg(<span style="color: #da8548; font-weight: bold;">0</span>)):
+            <span style="color: #51afef;">return</span> rule_body.arg(<span style="color: #da8548; font-weight: bold;">1</span>), implies_and_way(rule_body, additional_conditions)
+        <span style="color: #51afef;">else</span>:
+            <span style="color: #51afef;">return</span> rule_body.arg(<span style="color: #da8548; font-weight: bold;">1</span>), implies_way(rule_body, additional_conditions)
+    <span style="color: #51afef;">else</span>:
+        <span style="color: #51afef;">return</span> rule_body, clear_inv_way(additional_conditions)
+</pre>
+</div>
+</div>
+</li>
+<li><a id="orgdf14ba8"></a>Processing<br />
+<div class="outline-text-5" id="text-2-4-6-2">
+<p>
+The idea of processing initial(first) rule separately came to my head when one of the benchmarks performed worse timing in finding of the invariant. Since then I implemented a separate function for this behavior.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">def</span> <span style="color: #c678dd;">process_first_rule</span>(rules, additional_conditions):
+    <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">rule_body</span> = expand_quant(rules[<span style="color: #da8548; font-weight: bold;">0</span>])
+    <span style="color: #dcaeea;">rule_head</span>, <span style="color: #dcaeea;">rule_tail</span> = construct_first_rule(rule_body, additional_conditions)
+    <span style="color: #dcaeea;">rules</span>[<span style="color: #da8548; font-weight: bold;">0</span>] = z3.Implies(rule_tail, rule_head)
+    <span style="color: #51afef;">return</span> rules
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">create_new_rules</span>(rules, magic_values_vars):
+    <span style="color: #51afef;">return</span> [*<span style="color: #c678dd;">map</span>(<span style="color: #51afef;">lambda</span> rule: mk_new_rule(rule, magic_values_vars), rules)]
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">create_new_vars</span>(rules):
+    <span style="color: #51afef;">return</span> <span style="color: #c678dd;">list</span>(<span style="color: #c678dd;">set</span>().union(*<span style="color: #c678dd;">map</span>(mk_rule_vars, rules)))
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">generate_range_rules</span>(num_list):
+    <span style="color: #83898d;">"""</span>
+<span style="color: #83898d;">    Generates range conditions for a given list of integers.</span>
+<span style="color: #83898d;">    The conditions are that the Z3 integer variable is greater</span>
+<span style="color: #83898d;">    than zero and less than or equal to the input value.</span>
+
+<span style="color: #83898d;">    Params:</span>
+<span style="color: #83898d;">    list of integers: numbers for which range conditions are needed.</span>
+
+<span style="color: #83898d;">    Returns:</span>
+<span style="color: #83898d;">    a list of Z3 conditions for the variable to be in the desired range</span>
+<span style="color: #83898d;">    """</span>
+    <span style="color: #dcaeea;">rules_list</span> = []
+    <span style="color: #51afef;">for</span> num <span style="color: #51afef;">in</span> num_list:
+        <span style="color: #dcaeea;">z3_var</span> = z3.Int(f<span style="color: #98be65;">"K</span>{num}<span style="color: #98be65;">"</span>)
+        <span style="color: #dcaeea;">z3_int</span> = z3.IntVal(num)
+        <span style="color: #dcaeea;">range_rule</span> = [(z3_var &gt; <span style="color: #da8548; font-weight: bold;">0</span>), (z3_var &lt;= z3_int)]
+        rules_list.append(range_rule)
+    <span style="color: #51afef;">return</span> flatten(rules_list)
+
+
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">---- GCD based rules</span>
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">gcd_based_rules</span>(magic_values):
+    <span style="color: #51afef;">if</span> <span style="color: #c678dd;">len</span>(magic_values) &gt; <span style="color: #da8548; font-weight: bold;">0</span>:
+        <span style="color: #dcaeea;">int_magic_values</span> = [<span style="color: #c678dd;">int</span>(m_int.as_long()) <span style="color: #51afef;">for</span> m_int <span style="color: #51afef;">in</span> magic_values]
+        <span style="color: #dcaeea;">gcd</span>, <span style="color: #dcaeea;">diff</span>, <span style="color: #dcaeea;">magic_values</span>, <span style="color: #dcaeea;">gcd_rules</span> = param_finder(int_magic_values)
+        <span style="color: #dcaeea;">gcd_z3_var</span> = z3.Int(f<span style="color: #98be65;">"K</span>{gcd}<span style="color: #98be65;">"</span>)
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">upd_gcd_rules = int_2_var(gcd_rules, gcd_substitution</span>
+        )
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">gcd_rules = gcd_range_rules + gcd_rules</span>
+        <span style="color: #51afef;">return</span> diff, gcd, magic_values, gcd_rules, gcd_z3_var
+    <span style="color: #51afef;">else</span>:
+        <span style="color: #51afef;">return</span> [], <span style="color: #a9a1e1;">None</span>, [], [], <span style="color: #a9a1e1;">None</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">----</span>
+
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orga953ed9" class="outline-2">
+<h2 id="orga953ed9"><span class="section-number-2">3.</span> mXf techniques</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orga6f1653" class="outline-4">
+<h4 id="orga6f1653"><span class="section-number-4">3.0.1.</span> Substitution technique</h4>
+<div class="outline-text-4" id="text-3-0-1">
+<p>
+The idea focuses on the application of a substitution technique that establishes unique and direct relations between <code>magic_numbers</code> with corresponding <code>magic_variables</code>. The result of the transformed benchmark should be a more general version of the instance and should cover an original benchmark as a special case. I assume that the result is equisatisfiable to the original problem.
+</p>
+
+
+<p>
+Workflow:
+</p>
+<ul class="org-ul">
+<li>First of all we search for all magic numbers in the rules using <code>find_magic_values(rules[1:])</code>. We don&rsquo;t want to catch magic numbers in the initial (first) rule because they are already assigned to some variable and providing a new variable potentially can lead to slowing down the solver. See <a href="#org1f3a482">2.4.4</a> chapter to learn more.</li>
+
+<li>Next, we <code>prepare_substitution</code> for all found magic numbers, meaning we define new variables that correspond to its value using some prefix, in our case <code>K</code>, and a list with pairs that should be substituted in the benchmark (i.e [(5, K5), (10, K10)].</li>
+
+<li>Application of substitution is the main part of this snippet: custom substitution is basically making substitutions in all rules except the first one. The first rule is ignored again because it slows down the solver and can make unnecessary relations between numbers that shouldn&rsquo;t correlate. In other rules, we just make changes where were numbers and return updated rules.</li>
+
+<li><code>additional_conditions</code> stable that same relation between variables and magic numbers just putting them in the initial rule in addition to existing constraints. See substitution functions at <a href="#org0672b82">2.4.5</a>.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">def</span> <span style="color: #c678dd;">process_first_version</span>(rules):
+    <span style="color: #dcaeea;">magic_values</span> = find_magic_values(rules[<span style="color: #da8548; font-weight: bold;">1</span>:])
+    <span style="color: #dcaeea;">magic_values_vars</span>, <span style="color: #dcaeea;">substitutions</span> = prepare_substitution(magic_values, <span style="color: #98be65;">"K"</span>)
+    <span style="color: #dcaeea;">subs_rules</span> = apply_custom_substitution(rules, substitutions)
+    <span style="color: #dcaeea;">additional_conditions</span> = generate_additional_conditions(substitutions)
+    <span style="color: #51afef;">return</span> magic_values_vars, subs_rules, additional_conditions
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org03471bc" class="outline-4">
+<h4 id="org03471bc"><span class="section-number-4">3.0.2.</span> Range technique</h4>
+<div class="outline-text-4" id="text-3-0-2">
+<p>
+The idea is to focus on the identification of magic numbers, substituting them with vars, but unlike <a href="#orga6f1653">3.0.1</a> we will provide ranges for each magic variable. The result of the transformed benchmark should be a more general version of the instance and should cover cases of values smaller than in the original benchmark until gets to the desired number. I assume that the result is NOT equivalent to the original problem, but can provide a solution faster due to the simplicity of calculating solutions for smaller numbers.
+</p>
+
+
+<p>
+Workflow:
+</p>
+<ul class="org-ul">
+<li>First of all, we search for all magic numbers in the rules using <code>find_magic_values(rules[1:])</code>. We don&rsquo;t want to catch magic numbers in the initial (first) rule because they are already assigned to some variable and providing a new variable potentially can lead to slowing down the solver. See <a href="#org1f3a482">2.4.4</a> chapter to learn more.</li>
+
+<li>Generation of additional constraints to initial rule that provides variables in range 0 &lt; var &lt;= magic<sub>number</sub> (i.e (and (&gt; A 0) (&lt;= A 42))). See new rule <a href="#orgdf14ba8">2.4.6.2</a>.</li>
+
+<li>Application of substitution is the main part of this snippet: custom substitution is basically making substitutions in all rules except the first one. The first rule is ignored again because it slows down the solver and can make unnecessary relations between numbers that shouldn&rsquo;t correlate. In other rules, we just make changes where were numbers and return updated rules.</li>
+
+<li><code>additional_conditions</code> stable that same relation between variables and magic numbers just putting them in the initial rule in addition to existing constraints. See substitution functions at <a href="#org0672b82">2.4.5</a>.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">def</span> <span style="color: #c678dd;">process_second_version</span>(rules):
+    <span style="color: #83898d;">"""Second version relates to substitution numbers with ranges"""</span>
+    <span style="color: #dcaeea;">magic_values</span> = find_magic_values(rules[<span style="color: #da8548; font-weight: bold;">1</span>:])
+    <span style="color: #dcaeea;">range_rules</span> = generate_range_rules(magic_values)
+    <span style="color: #dcaeea;">magic_values_vars</span>, <span style="color: #dcaeea;">substitutions</span> = prepare_substitution(magic_values, <span style="color: #98be65;">"K"</span>)
+    <span style="color: #dcaeea;">subs_rules</span> = apply_custom_substitution(rules, substitutions)
+    <span style="color: #51afef;">return</span> magic_values_vars, subs_rules, range_rules
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6f97813" class="outline-4">
+<h4 id="org6f97813"><span class="section-number-4">3.0.3.</span> Parametrization technique</h4>
+<div class="outline-text-4" id="text-3-0-3">
+<p>
+The idea is to focus on the identification of magic numbers, finding a pattern or special relation between all magic numbers or subsequences of that list. The technique that I use is finding relations using the GCD property of numbers. This approach takes into account the relationship between numbers and eliminates cases when the transformed benchmark turns to an absolutely different one with arbitrary numbers.
+</p>
+
+
+<blockquote>
+<p>
+The function <code>FindGCD</code> attempts to find a common parameter \(GCD > 1\) for {\(AllMagicNumbers\)}. If a parameter greater than 1 is found, it is considered as the common parameter for all the numbers. If the GCD of all the numbers is 1, the function tries a different subsequence (by removing one element from {\(AllMagicNumbers\)} until it discovers a parameter greater than 1). If all combinations were inspected and GCD &lt;= 1, then GCD is considered as 1.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">def</span> <span style="color: #c678dd;">process_lists</span>(A, B):
+    <span style="color: #51afef;">return</span> B <span style="color: #51afef;">if</span> <span style="color: #c678dd;">all</span>(bit <span style="color: #51afef;">in</span> {<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">1</span>} <span style="color: #51afef;">for</span> bit <span style="color: #51afef;">in</span> A) <span style="color: #51afef;">else</span> A + B
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">process_third_version</span>(rules):
+    <span style="color: #83898d;">"""Third version algo for tool that relates to parametrization</span>
+<span style="color: #83898d;">    and finding the parameter itself</span>
+<span style="color: #83898d;">    """</span>
+    <span style="color: #dcaeea;">core_magic_values</span> = find_magic_values(rules[<span style="color: #da8548; font-weight: bold;">1</span>:])
+    <span style="color: #dcaeea;">init_magic_values</span> = find_magic_values([rules[<span style="color: #da8548; font-weight: bold;">0</span>]])
+    <span style="color: #dcaeea;">magic_values</span> = process_lists(init_magic_values, core_magic_values)
+    <span style="color: #dcaeea;">diff</span>, <span style="color: #dcaeea;">gcd</span>, <span style="color: #dcaeea;">magic_values</span>, <span style="color: #dcaeea;">gcd_rules</span>, <span style="color: #dcaeea;">gcd_z3_var</span> = gcd_based_rules(magic_values)
+    <span style="color: #dcaeea;">magic_values_vars</span>, <span style="color: #dcaeea;">substitutions</span> = prepare_substitution(magic_values, <span style="color: #98be65;">"K"</span>)
+    <span style="color: #dcaeea;">diff</span> += [gcd]
+    <span style="color: #dcaeea;">diff_magic_values_vars</span>, <span style="color: #dcaeea;">diff_subs</span> = prepare_substitution(diff, <span style="color: #98be65;">"GCD"</span>)
+
+    <span style="color: #51afef;">if</span> gcd_z3_var <span style="color: #51afef;">is</span> <span style="color: #51afef;">not</span> <span style="color: #a9a1e1;">None</span>:
+        <span style="color: #dcaeea;">magic_values_vars</span> += [gcd_z3_var] + diff_magic_values_vars
+    <span style="color: #51afef;">else</span>:
+        <span style="color: #dcaeea;">magic_values_vars</span> += diff_magic_values_vars
+
+    <span style="color: #dcaeea;">magic_values_vars</span> = <span style="color: #c678dd;">list</span>(<span style="color: #c678dd;">set</span>(magic_values_vars))
+
+    <span style="color: #dcaeea;">subs_rules</span> = int_2_var(int_2_var(rules, substitutions), diff_subs)
+    <span style="color: #dcaeea;">gcd_rules</span> = int_2_var(int_2_var(gcd_rules, substitutions), diff_subs)
+    <span style="color: #dcaeea;">diff_additional_conditions</span> = generate_additional_conditions(diff_subs)
+    <span style="color: #dcaeea;">additional_conditions</span> = gcd_rules+diff_additional_conditions
+    <span style="color: #51afef;">return</span> magic_values_vars, subs_rules, additional_conditions
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdb44e93" class="outline-4">
+<h4 id="orgdb44e93"><span class="section-number-4">3.0.4.</span> PaRanga technique</h4>
+<div class="outline-text-4" id="text-3-0-4">
+<p>
+=Parametrization + Range = PaRanga 😅
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">def</span> <span style="color: #c678dd;">process_4_version</span>(rules):
+    <span style="color: #83898d;">"""Fourth version relates to parametrization</span>
+<span style="color: #83898d;">    and providing the parameter as range</span>
+<span style="color: #83898d;">    """</span>
+    <span style="color: #dcaeea;">core_magic_values</span> = find_magic_values(rules[<span style="color: #da8548; font-weight: bold;">1</span>:])
+    <span style="color: #dcaeea;">init_magic_values</span> = find_magic_values([rules[<span style="color: #da8548; font-weight: bold;">0</span>]])
+    <span style="color: #dcaeea;">magic_values</span> = process_lists(init_magic_values, core_magic_values)
+    <span style="color: #dcaeea;">diff</span>, <span style="color: #dcaeea;">gcd</span>, <span style="color: #dcaeea;">magic_values</span>, <span style="color: #dcaeea;">gcd_rules</span>, <span style="color: #dcaeea;">gcd_z3_var</span> = gcd_based_rules(magic_values)
+    <span style="color: #dcaeea;">magic_values_vars</span>, <span style="color: #dcaeea;">substitutions</span> = prepare_substitution(magic_values, <span style="color: #98be65;">"K"</span>)
+    <span style="color: #dcaeea;">diff_magic_values_vars</span>, <span style="color: #dcaeea;">diff_subs</span> = prepare_substitution(diff, <span style="color: #98be65;">"GCD"</span>)
+
+    <span style="color: #51afef;">if</span> gcd_z3_var <span style="color: #51afef;">is</span> <span style="color: #51afef;">not</span> <span style="color: #a9a1e1;">None</span>:
+        <span style="color: #dcaeea;">magic_values_vars</span> += [gcd_z3_var] + diff_magic_values_vars
+    <span style="color: #51afef;">else</span>:
+        <span style="color: #dcaeea;">magic_values_vars</span> += diff_magic_values_vars
+
+    <span style="color: #dcaeea;">magic_values_vars</span> = <span style="color: #c678dd;">list</span>(<span style="color: #c678dd;">set</span>(magic_values_vars))
+
+    <span style="color: #dcaeea;">subs_rules</span> = int_2_var(int_2_var(rules, substitutions), diff_subs)
+    <span style="color: #dcaeea;">gcd_rules</span> = int_2_var(int_2_var(gcd_rules, substitutions), diff_subs)
+    <span style="color: #dcaeea;">gcd_range_rules</span> = generate_range_rules([gcd]) <span style="color: #51afef;">if</span> gcd <span style="color: #51afef;">is</span> <span style="color: #51afef;">not</span> <span style="color: #a9a1e1;">None</span> <span style="color: #51afef;">else</span> []
+
+    <span style="color: #dcaeea;">diff_additional_conditions</span> = generate_additional_conditions(diff_subs)
+    <span style="color: #dcaeea;">additional_conditions</span> = gcd_rules+diff_additional_conditions+gcd_range_rules
+    <span style="color: #51afef;">return</span> magic_values_vars, subs_rules, additional_conditions
+
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">process_rules_and_queries</span>(code, max_depth, version=<span style="color: #98be65;">"1"</span>):
+    <span style="color: #dcaeea;">fp</span> = setup_fixedpoint(max_depth)
+    <span style="color: #dcaeea;">queries</span> = parse_queries(fp, code)
+    <span style="color: #dcaeea;">rules</span> = extract_rules(fp)
+
+    <span style="color: #dcaeea;">magic_values</span> = [x <span style="color: #51afef;">for</span> x <span style="color: #51afef;">in</span> find_magic_values(rules) <span style="color: #51afef;">if</span> x <span style="color: #51afef;">not</span> <span style="color: #51afef;">in</span> [<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">1</span>]]
+
+    <span style="color: #51afef;">if</span> version == <span style="color: #98be65;">"2"</span>:
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">second version that relates to range providing</span>
+        <span style="color: #dcaeea;">magic_values_vars</span>, <span style="color: #dcaeea;">subs_rules</span>, <span style="color: #dcaeea;">additional_conditions</span> = process_second_version(rules)
+    <span style="color: #51afef;">elif</span> version == <span style="color: #98be65;">"3"</span>:
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">third version that relates to parametrization and finding the parameter itself</span>
+        <span style="color: #dcaeea;">magic_values_vars</span>, <span style="color: #dcaeea;">subs_rules</span>, <span style="color: #dcaeea;">additional_conditions</span> = process_third_version(rules)
+    <span style="color: #51afef;">elif</span> version == <span style="color: #98be65;">"4"</span>:
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">fourth version is combo of parametrization and putting parameter in a range</span>
+        <span style="color: #dcaeea;">magic_values_vars</span>, <span style="color: #dcaeea;">subs_rules</span>, <span style="color: #dcaeea;">additional_conditions</span> = process_4_version(rules)
+    <span style="color: #51afef;">elif</span> version == <span style="color: #98be65;">"5"</span> <span style="color: #51afef;">and</span> <span style="color: #c678dd;">len</span>(magic_values) &gt; <span style="color: #da8548; font-weight: bold;">1</span>:
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">fourth version is combo of parametrization and putting parameter in a range</span>
+        <span style="color: #dcaeea;">magic_values_vars</span>, <span style="color: #dcaeea;">subs_rules</span>, <span style="color: #dcaeea;">additional_conditions</span> = process_4_version(rules)
+    <span style="color: #51afef;">else</span>:
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">first version relates to substitution technique only</span>
+        <span style="color: #dcaeea;">magic_values_vars</span>, <span style="color: #dcaeea;">subs_rules</span>, <span style="color: #dcaeea;">additional_conditions</span> = process_first_version(rules)
+
+    <span style="color: #dcaeea;">new_rules</span> = process_first_rule(subs_rules, additional_conditions)
+    <span style="color: #51afef;">return</span> new_rules, queries, magic_values_vars
+
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">---- New invariant creation -----------</span>
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">find_invs</span>(gnd_rule_body, inv_name=<span style="color: #98be65;">'inv'</span>):
+    <span style="color: #dcaeea;">found</span> = <span style="color: #c678dd;">set</span>()
+
+    <span style="color: #51afef;">def</span> <span style="color: #c678dd;">_is_inv_term</span>(e, found):
+        <span style="color: #51afef;">if</span> e.decl().name().startswith(inv_name):
+            found.add(e)
+            <span style="color: #51afef;">return</span> <span style="color: #a9a1e1;">False</span>
+        <span style="color: #51afef;">return</span> <span style="color: #a9a1e1;">True</span>
+
+    apply_to_each_expr(gnd_rule_body, _is_inv_term, found=found)
+    <span style="color: #51afef;">return</span> found
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">append_sorts</span>(inv_term, new_vars):
+    <span style="color: #dcaeea;">inv2_sorts</span> = [inv_term.decl().domain(i) <span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(inv_term.decl().arity())]
+    <span style="color: #51afef;">for</span> v <span style="color: #51afef;">in</span> new_vars:
+        inv2_sorts.append(v.sort())
+    inv2_sorts.append(B)
+    <span style="color: #51afef;">return</span> inv2_sorts
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">mk_inv2</span>(inv_term, new_vars=[]):
+    <span style="color: #dcaeea;">inv2_sorts</span> = append_sorts(inv_term, new_vars)
+    <span style="color: #dcaeea;">inv2_fdecl</span> = z3.Function(<span style="color: #98be65;">"inv2"</span>, *inv2_sorts)
+    <span style="color: #dcaeea;">inv2_args</span> = inv_term.children() + new_vars
+    <span style="color: #dcaeea;">inv2_term</span> = inv2_fdecl(*inv2_args)
+    <span style="color: #51afef;">return</span> inv2_term, inv2_fdecl
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">mk_rule_vars</span>(rule):
+    <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">rule_vars</span>, <span style="color: #dcaeea;">_</span> = expand_quant(rule)
+    <span style="color: #51afef;">return</span> rule_vars
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">generate_rule_substitutions</span>(rule_body, new_vars):
+    <span style="color: #dcaeea;">subs</span> = <span style="color: #c678dd;">list</span>()
+    <span style="color: #dcaeea;">inv_terms</span> = find_invs(rule_body)
+    <span style="color: #51afef;">for</span> inv_term <span style="color: #51afef;">in</span> inv_terms:
+        <span style="color: #dcaeea;">inv2_term</span>, <span style="color: #dcaeea;">_</span> = mk_inv2(inv_term, new_vars)
+        subs.append((inv_term, inv2_term))
+    <span style="color: #51afef;">return</span> subs
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">flatten</span>(lst):
+    <span style="color: #dcaeea;">result</span> = []
+    <span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> lst:
+        <span style="color: #51afef;">if</span> <span style="color: #c678dd;">isinstance</span>(i, <span style="color: #c678dd;">list</span>):
+            result.extend(flatten(i))
+        <span style="color: #51afef;">else</span>:
+            result.append(i)
+    <span style="color: #51afef;">return</span> result
+
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">get_inv_instance</span>(rule):
+    <span style="color: #51afef;">def</span> <span style="color: #c678dd;">inve</span>(rule_body):
+        <span style="color: #dcaeea;">inv_list</span> = <span style="color: #c678dd;">list</span>()
+        <span style="color: #dcaeea;">inv_terms</span> = find_invs(rule_body)
+        <span style="color: #51afef;">for</span> inv_term <span style="color: #51afef;">in</span> inv_terms:
+            <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">inv2</span> = mk_inv2(inv_term)
+            inv_list.append(inv2)
+        <span style="color: #51afef;">return</span> inv_list
+
+    <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">rule_body</span> = expand_quant(rule)
+    <span style="color: #dcaeea;">inv_list</span> = inve(rule_body)
+    <span style="color: #51afef;">return</span> inv_list
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">mk_new_rule</span>(rule, values_vars):
+    <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">rule_body</span> = expand_quant(rule)
+    <span style="color: #dcaeea;">subs</span> = generate_rule_substitutions(rule_body, values_vars)
+    <span style="color: #dcaeea;">new_body</span> = z3.substitute(rule_body, subs)
+    <span style="color: #51afef;">return</span> new_body
+
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">---- Main rewriter process -----------</span>
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">set_fixedpoint</span>(new_rules, new_vars, additional_vars):
+    <span style="color: #dcaeea;">fp_new</span> = z3.Fixedpoint()
+    <span style="color: #dcaeea;">invs</span> = flatten([*<span style="color: #c678dd;">map</span>(get_inv_instance, new_rules)])
+    <span style="color: #dcaeea;">inv2</span> = invs[<span style="color: #da8548; font-weight: bold;">0</span>]
+    fp_new.register_relation(inv2)
+    fp_new.register_relation(z3.Function(<span style="color: #98be65;">'fail'</span>, B))
+    fp_new.declare_var(*new_vars)
+    fp_new.declare_var(*additional_vars)
+    <span style="color: #51afef;">for</span> new_rule <span style="color: #51afef;">in</span> new_rules:
+        fp_new.add_rule(new_rule)
+    <span style="color: #51afef;">return</span> fp_new
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">rewritten_result</span>(fp_new, queries):
+    <span style="color: #51afef;">return</span> fp_new.to_string(queries)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">write_to_console</span>(fp_new, queries):
+    t_log(<span style="color: #98be65;">"Rewritten code section"</span>)
+    <span style="color: #c678dd;">print</span>(rewritten_result(fp_new, queries))
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">write_to_file</span>(fp_new, queries, filename=<span style="color: #98be65;">'res.smt2'</span>):
+    <span style="color: #51afef;">with</span> <span style="color: #c678dd;">open</span>(filename, <span style="color: #98be65;">'w'</span>) <span style="color: #51afef;">as</span> f:
+        <span style="color: #c678dd;">print</span>(rewritten_result(fp_new, queries), <span style="color: #c678dd;">file</span>=f)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">simple_write_to_file</span>(content, filename):
+    <span style="color: #51afef;">with</span> <span style="color: #c678dd;">open</span>(filename, <span style="color: #98be65;">'w'</span>) <span style="color: #51afef;">as</span> f:
+        <span style="color: #c678dd;">print</span>(content, <span style="color: #c678dd;">file</span>=f)
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Result section</span>
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">extract_required_parts</span>(logs):
+    <span style="color: #dcaeea;">logs_list</span> = logs.split(<span style="color: #98be65;">'</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">'</span>)  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Splits the logs into lines</span>
+    <span style="color: #dcaeea;">required_parts</span> = []
+
+    <span style="color: #51afef;">for</span> log <span style="color: #51afef;">in</span> logs_list:
+        <span style="color: #51afef;">if</span> log.startswith(<span style="color: #98be65;">"(define-fun inv"</span>):
+            required_parts.append(log)
+        <span style="color: #51afef;">elif</span> <span style="color: #c678dd;">len</span>(required_parts) &gt; <span style="color: #da8548; font-weight: bold;">0</span> <span style="color: #51afef;">and</span> <span style="color: #51afef;">not</span> log.startswith(<span style="color: #98be65;">"expand:"</span>):
+            <span style="color: #5B6268;"># </span><span style="color: #5B6268;">continue appending lines if it's part of the 'define-fun' block</span>
+            required_parts.append(log)
+
+    <span style="color: #51afef;">return</span> <span style="color: #98be65;">'</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">'</span>.join(required_parts)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">push_subprocess</span>(result_file, max_depth):
+    <span style="color: #dcaeea;">cmd</span> = [
+        z3_eval_path + <span style="color: #98be65;">"/z3"</span>,
+        <span style="color: #98be65;">"fp.spacer.max_level="</span>+ <span style="color: #c678dd;">str</span>(max_depth),
+        <span style="color: #98be65;">"fp.spacer.global=true"</span>,
+        result_file,
+        <span style="color: #98be65;">"-v:1"</span>]
+
+    <span style="color: #dcaeea;">loader</span> = Loader(<span style="color: #98be65;">"Finding an invariant for the rewritten code..."</span>, <span style="color: #98be65;">"</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">"</span>).start()
+    <span style="color: #dcaeea;">proc</span> = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+    <span style="color: #51afef;">try</span>:
+        <span style="color: #dcaeea;">output</span>, <span style="color: #dcaeea;">logs</span> = proc.communicate(timeout=<span style="color: #da8548; font-weight: bold;">300</span>)
+        <span style="color: #dcaeea;">output</span> = output.decode(<span style="color: #98be65;">'utf-8'</span>).upper()
+        <span style="color: #dcaeea;">logs</span> = logs.decode(<span style="color: #98be65;">'utf-8'</span>)
+        loader.stop()
+    <span style="color: #51afef;">except</span> subprocess.TimeoutExpired:
+        proc.kill()
+        <span style="color: #dcaeea;">output</span>, <span style="color: #dcaeea;">logs</span> = proc.communicate()
+        <span style="color: #dcaeea;">output</span> = <span style="color: #98be65;">"TIMEOUT"</span>
+
+    t_log(<span style="color: #98be65;">"Result section"</span>)
+
+    <span style="color: #51afef;">if</span> <span style="color: #98be65;">"UNSAT"</span> <span style="color: #51afef;">in</span> output:
+        <span style="color: #dcaeea;">result</span> = <span style="color: #98be65;">"SAT"</span>
+        <span style="color: #dcaeea;">inv</span> = extract_required_parts(logs)
+        <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"Output: </span>{result}<span style="color: #98be65;">"</span>)
+        <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"Invariant: </span><span style="color: #a9a1e1;">\n</span>{inv}<span style="color: #98be65;">"</span>)
+        <span style="color: #51afef;">return</span> result, inv
+    <span style="color: #51afef;">elif</span> <span style="color: #98be65;">"SAT"</span> <span style="color: #51afef;">in</span> output:
+        <span style="color: #dcaeea;">result</span> = <span style="color: #98be65;">"UNSAT"</span>
+        <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"Output: </span>{result}<span style="color: #98be65;">"</span>)
+        <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"Logs: </span><span style="color: #a9a1e1;">\n</span>{logs}<span style="color: #98be65;">"</span>)
+        <span style="color: #51afef;">return</span> result, logs
+    <span style="color: #51afef;">elif</span> <span style="color: #98be65;">"TIMEOUT"</span> <span style="color: #51afef;">in</span> output:
+        <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"Output: </span>{output}<span style="color: #98be65;">"</span>)
+        <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"Errors: </span><span style="color: #a9a1e1;">\n</span>{logs}<span style="color: #98be65;">"</span>)
+        <span style="color: #51afef;">return</span> output, logs
+    <span style="color: #51afef;">else</span>:
+        <span style="color: #dcaeea;">result</span> = <span style="color: #98be65;">"FAILED"</span>
+        <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"Output: </span>{output}<span style="color: #98be65;">"</span>)
+        <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"Errors: </span><span style="color: #a9a1e1;">\n</span>{logs}<span style="color: #98be65;">"</span>)
+        <span style="color: #51afef;">return</span> output, logs
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">dummy_bool_parser</span>(s):
+    <span style="color: #dcaeea;">value</span> = s.strip().lower()
+    <span style="color: #51afef;">return</span> <span style="color: #51afef;">not</span> (value == <span style="color: #98be65;">'false'</span> <span style="color: #51afef;">or</span> value == <span style="color: #98be65;">'0'</span>)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">clr_arg</span>(arg):
+    <span style="color: #dcaeea;">arg</span> = <span style="color: #c678dd;">str</span>(arg)
+    <span style="color: #51afef;">return</span> arg.replace(<span style="color: #98be65;">'</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">'</span>,<span style="color: #98be65;">''</span>).replace(<span style="color: #98be65;">'</span><span style="color: #a9a1e1;">\r</span><span style="color: #98be65;">'</span>,<span style="color: #98be65;">''</span>)
+
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">parse_cmd_args</span>():
+    <span style="color: #dcaeea;">program_args</span> = parser.parse_args()
+    t_log(f<span style="color: #98be65;">"CMD params: </span>{<span style="color: #c678dd;">vars</span>(program_args)}<span style="color: #98be65;">"</span>)
+    <span style="color: #51afef;">return</span> clr_arg(program_args.pf), clr_arg(program_args.rf), <span style="color: #c678dd;">int</span>(program_args.max_depth), dummy_bool_parser(clr_arg(program_args.s)), clr_arg(program_args.ver)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">extract_name_from_path</span>(path):
+    <span style="color: #51afef;">return</span> os.path.basename(path)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">main</span>():
+    <span style="color: #dcaeea;">problem_file</span>, <span style="color: #dcaeea;">result_file</span>, <span style="color: #dcaeea;">max_depth</span>, <span style="color: #dcaeea;">is_solving_on</span>, <span style="color: #dcaeea;">version</span> = parse_cmd_args()
+    <span style="color: #dcaeea;">result_file</span> = f<span style="color: #98be65;">"./tmp/</span>{result_file}<span style="color: #98be65;">"</span>
+
+    <span style="color: #dcaeea;">code</span> = read_file(problem_file)
+    t_log(f<span style="color: #98be65;">"Code"</span>)
+    <span style="color: #c678dd;">print</span>(code)
+    <span style="color: #dcaeea;">rules</span>, <span style="color: #dcaeea;">queries</span>, <span style="color: #dcaeea;">magic_values_vars</span> = process_rules_and_queries(code, max_depth, version)
+
+    <span style="color: #dcaeea;">new_rules</span> = create_new_rules(rules, magic_values_vars)
+    <span style="color: #dcaeea;">new_vars</span> = create_new_vars(rules)
+
+    <span style="color: #dcaeea;">fp_new</span> = set_fixedpoint(new_rules, new_vars, magic_values_vars)
+
+    <span style="color: #dcaeea;">fp_rules</span> = fp_new.get_rules()
+    fp_rules.push(z3.Implies(queries[<span style="color: #da8548; font-weight: bold;">0</span>], z3.BoolVal(<span style="color: #a9a1e1;">False</span>)))
+
+    write_to_console(fp_new, queries)
+    write_to_file(fp_new, queries, result_file)
+
+    <span style="color: #51afef;">if</span> is_solving_on:
+        <span style="color: #dcaeea;">output</span>, <span style="color: #dcaeea;">inv</span> = push_subprocess(result_file, max_depth)
+        <span style="color: #dcaeea;">result_file_name</span> = extract_name_from_path(problem_file)
+        <span style="color: #dcaeea;">out_time</span> = time.time() - start_time
+        <span style="color: #dcaeea;">out_time</span> = <span style="color: #c678dd;">round</span>(out_time, <span style="color: #da8548; font-weight: bold;">2</span>)
+        <span style="color: #dcaeea;">answer_file</span> = f<span style="color: #98be65;">"/Users/ekvashyn/Code/mXf/magicXform-utils/results/time_tracker_last/ver_</span>{version}<span style="color: #98be65;">/</span>{output}<span style="color: #98be65;">/"</span>
+        <span style="color: #dcaeea;">result_file</span> = f<span style="color: #98be65;">"</span>{answer_file}{out_time}<span style="color: #98be65;">-</span>{result_file_name}<span style="color: #98be65;">"</span>
+        <span style="color: #51afef;">if</span> output == <span style="color: #98be65;">"SAT"</span>:
+            simple_write_to_file(inv, f<span style="color: #98be65;">"</span>{answer_file}<span style="color: #98be65;">INV-</span>{result_file_name}<span style="color: #98be65;">"</span>)
+        <span style="color: #51afef;">else</span>:
+            simple_write_to_file(inv, f<span style="color: #98be65;">"</span>{answer_file}<span style="color: #98be65;">LOG-</span>{result_file_name}<span style="color: #98be65;">"</span>)
+        write_to_file(fp_new, queries, result_file)
+        t_log(f<span style="color: #98be65;">"Program took </span>{out_time}<span style="color: #98be65;">s to run"</span>)
+
+
+
+<span style="color: #51afef;">if</span> <span style="color: #c678dd;">__name__</span> == <span style="color: #98be65;">'__main__'</span>:
+    main()
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Eduard Kvashyn</p>
+<p class="date">Created: 2024-01-18 Thu 16:22</p>
+</div>
+</body>
+</html>
