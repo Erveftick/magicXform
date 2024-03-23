@@ -6,10 +6,12 @@ This project provides a tool that accepts CHC as input and outputs a new version
 
 MagicXform is a Python-based tool for automatically refactoring CHC by eliminating magic numbers. It takes in CHC as input, identifies all instances of magic numbers, and replaces them with named constants to make the code more maintainable, understandable, and robust.
 
+Latest version of mXf (magicXform) includes 5 different techniques that transform input benchmark. In detail description of each you can find in [this file](./magicXform/README.org)
+
 ### Features
 - Efficient parsing of CHC
 - Identification of magic numbers
-- Replacement of magic numbers with appropriately named constants
+- Replacement of magic numbers with appropriately named constants or other tricks
 - The output of refactored CHC
 
 ### Dependencies
@@ -62,10 +64,11 @@ The main functionality of MagicXform includes:
 - Optionally processing Horn clauses if present
 
 ### Utils
-Find results and benchmarks in the [utils repository](https://github.com/Erveftick/magicXform-utils)
+- Find results and benchmarks in the [utils repository](https://github.com/Erveftick/magicXform-utils)
+- Check more data [in collab](https://colab.research.google.com/drive/13nctY1yO0_QhSFZpKNYF_UKWXGFs2p8H?usp=sharing). Consider to use this data in your research work if needed.
 
 ### Contributing
-Contributions, issues, and feature requests are welcome. Please feel free to check issues page if you want to contribute.
+Contributions, issues, and feature requests are welcome. This project doesn't have any open issues but you can fork it to your github account and continue development. Please feel free to ask me if you have any questions about the code.
 
 ### License
 Distributed under the MIT License. See LICENSE for more information.
